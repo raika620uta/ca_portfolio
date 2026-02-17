@@ -1,12 +1,6 @@
 /* =============================================
    page-main.js — メインページのセクション定義
    ★ 普段触るファイル（内容の追加・編集・並べ替え）
-   
-   【編集ルール】
-   - sections 配列の順番 ＝ ページ上の表示順
-   - 新セクションを追加するには、配列に要素を挿入するだけ
-   - ケース追加は cases 配列にオブジェクトを追加するだけ
-   - number（セクション番号）は自動付与されないので手動で振る
    ============================================= */
 
 const PAGE = {
@@ -16,209 +10,215 @@ const PAGE = {
 
         /* ----- HERO ----- */
         {
-            type: "hero",
-            label: "Portfolio",
-            tagline: "AI動画制作の構造化を、\n模索しています。",
-            sub: "TikTok縦型広告 × AI活用 × 制作プロセスの可視化\nまだ途中ですが、ここまで考えたことをまとめました。"
-        },
-
-        /* ----- 01 運用型広告への理解 ----- */
-        {
-            type: "text-list",
-            id: "understanding",
-            number: "01",
-            title: "運用型広告に必要な構造への理解",
-            lead: "CA Advanceの仕事に向き合うにあたって、\n自分なりに整理した「運用型広告の構造」です。",
-            items: [
-                {
-                    icon: "📊",
-                    title: "クリエイティブは「消耗品」である",
-                    body: "TikTok広告のクリエイティブ寿命は平均<strong>3〜5日</strong>と言われています。1本の完成度を追うだけでなく、<strong>継続的にテストパターンを回す仕組み</strong>が求められる世界だと理解しています。"
-                },
-                {
-                    icon: "🔄",
-                    title: "「量」と「質」の矛盾",
-                    body: "A/Bテストを回すには量が必要。でも量産するとクオリティが落ちやすい。この矛盾にどう向き合うかが、現場の大きなテーマだと感じています。"
-                },
-                {
-                    icon: "🧩",
-                    title: "属人化しやすい制作工程",
-                    body: "AI動画制作は「なんとなくうまくいった」が多く、再現性が低くなりがちです。属人化を少しでも減らす方法を模索できないか、ということが自分の問題意識です。"
-                }
-            ],
-            note: "これらは外部から調べた上での理解であり、実際の現場にはもっと複雑な事情があるはずです。だからこそ、チームの中に入って学びながら理解を深めたいと考えています。"
-        },
-
-        /* ----- 02 制作した動画 ----- */
-        {
-            type: "cards",
-            id: "works",
-            number: "02",
-            title: "制作した動画",
-            lead: "就活コミュニティの広報を題材に、異なるフック仮説で複数パターンを制作しました。\n1本の完成作ではなく、<strong>テストパターンを回す姿勢</strong>を意識しています。",
-            intro: "ターゲットはすべて<strong>28卒の就活生</strong>。AI（Kling / Runway等）で素材を生成し、TikTok縦型（9:16）で制作しています。各ケースで異なるフックや訴求軸を試し、何が刺さるかを仮説ベースで検証しようとしています。",
-            cases: [
-                {
-                    id: "01",
-                    title: "焦りフック（主軸）",
-                    src: "assets/videos/ai-case01.mp4",
-                    poster: "",
-                    hook: "「28卒、まだ何もしてないの私だけ？」",
-                    hypothesis: "就活早期化の不安に共感させることで、最初の1秒で離脱を防げるのではないか",
-                    finishing: "テロップで視線誘導、BGMはローテンポで不安感を演出。AI素材の粗さはテキストオーバーレイで補完"
-                },
-                {
-                    id: "02",
-                    title: "ベネフィット訴求",
-                    src: "assets/videos/ai-case02.mp4",
-                    poster: "",
-                    hook: "「ES添削も面接練習も、全部ここで。」",
-                    hypothesis: "具体的なメリットを冒頭で提示すると、目的意識が高い層のCTRが上がるのではないか",
-                    finishing: "テロップ主体の構成。AI映像は背景的に使い、情報量で勝負する方向"
-                },
-                {
-                    id: "03",
-                    title: "ガクチカ訴求",
-                    src: "assets/videos/ai-case03.mp4",
-                    poster: "",
-                    hook: "「ガクチカ、まだ\"バイト\"って書く？」",
-                    hypothesis: "コミュニティ参加＝ガクチカになるという訴求は、行動喚起につながりやすいのではないか",
-                    finishing: "UGC風の画面構成。音声後付けでリアルさを意識。AI素材はアクセントカット的に使用"
-                },
-                {
-                    id: "04",
-                    title: "内定者サポート訴求",
-                    src: "assets/videos/ai-case04.mp4",
-                    poster: "",
-                    hook: "「内定者が、壁打ち相手になります。」",
-                    hypothesis: "「先輩の支援がある」という安心感は、不安層のコンバージョンを後押しするのではないか",
-                    finishing: "信頼感のあるトーンで構成。テロップは控えめ、ナレーション的な音声で誘導"
-                },
-                {
-                    id: "05",
-                    title: "エージェント連携",
-                    src: "assets/videos/ai-case05.mp4",
-                    poster: "",
-                    hook: "「自己分析、一人でやるの限界じゃない？」",
-                    hypothesis: "エージェント連携という具体的な出口を見せると、行動ハードルが下がるのではないか",
-                    finishing: "CTA導線を意識した構成。末尾に明確なアクションポイントを配置"
-                }
+            type: "hero-simple",
+            tagline: "少人数で、\n縦型動画を量産する必要がありました。",
+            paragraphs: [
+                "時間も、クレジットも限られている。\nそれでも、スクロールに耐えられる質は落とせない。",
+                "その中で、\nAIをどう使えば、再現性を持って制作を回せるのか。\nその試行錯誤をまとめています。"
             ]
         },
 
-        /* ----- 03 フック設計 ----- */
-        {
-            type: "steps",
-            id: "hook-design",
-            number: "03",
-            title: "フック設計の考え方",
-            lead: "Case 01を例に、フック設計の思考プロセスを整理します。",
-            steps: [
-                { label: "背景", text: "28卒は就活のさらなる早期化に直面している。「まだ何も始めていない」という焦りが広がっている。" },
-                { label: "仮説", text: "「自分だけ遅れているかも」という不安は、TikTokの短尺動画で最も共感を生みやすいフックになるのではないか。" },
-                { label: "設計", text: "冒頭1秒で「まだ何もしてないの？」と問いかけ、共感から解決策（コミュニティ紹介）へ接続する構成にした。" }
-            ]
-        },
-
-        /* ----- 04 A/B仮説 ----- */
-        {
-            type: "ab-test",
-            id: "ab-hypothesis",
-            number: "04",
-            title: "A/Bテストの仮説",
-            lead: "配信の機会があれば試したい仮説です。\nまだ検証はできていませんが、思考の途中経過として記録しています。",
-            hypotheses: [
-                {
-                    question: "冒頭テキストの配置で、3秒視聴率は変わるか？",
-                    a: "画面上部 1/3 に配置",
-                    b: "画面中央に配置",
-                    metric: "測定指標：3秒視聴率"
-                },
-                {
-                    question: "フック類型でCTRにどの程度差が出るか？",
-                    a: "共感型：「まだ何もしてないの？」",
-                    b: "直球型：「ES添削も面接練習も全部ここで」",
-                    metric: "測定指標：CTR・エンゲージメント率"
-                },
-                {
-                    question: "AI生成素材と実写で、信頼感に差が出るか？",
-                    a: "AI生成映像で構成",
-                    b: "実写で同じ構成",
-                    metric: "測定指標：CTR・CPC・完視聴率"
-                }
-            ]
-        },
-
-        /* ----- 05 AI素材の仕上げ ----- */
+        /* ----- Context ----- */
         {
             type: "content",
-            id: "finishing",
-            number: "05",
-            title: "AI素材の「仕上げ」について",
-            lead: "AI生成だけでは完結しない、という現実への理解です。",
-            heading: "70点の素材を、広告に耐える形へ",
+            id: "context",
+            title: "Context",
             paragraphs: [
-                "AIで生成した映像は、そのままでは「広告」として成立しにくいと感じています。どこか不自然だったり、メッセージが弱かったり。あくまでベース素材、という印象です。",
-                "だからこそ、<strong>生成後の仕上げ工程</strong>の重要性を強く感じています。テロップで視線を誘導する、UGC風に崩して親近感を出す、音声や「間」で感情を操作する——そうした編集の積み重ねが、70点の素材を広告に耐えるレベルに引き上げるのではないかと考えています。",
-                "自分はまだこの領域を学んでいる途中ですが、AI生成と仕上げの両方を意識して制作に取り組んでいます。"
-            ],
-            tags: ["テロップ配置", "UGC化", "音声演出", "間の設計", "ノイズ処理", "AE仕上げ"]
-        },
-
-        /* ----- 06 FAILMAP ----- */
-        {
-            type: "flowchart",
-            id: "failmap",
-            number: "06",
-            title: "FAILMAP — 制作プロセスの可視化",
-            lead: "AI動画制作の「なぜうまくいかなかったか」を構造的に整理するための、\n自分なりの道具です。",
-            introHeading: "なぜFAILMAPが必要だと思ったか",
-            introParagraphs: [
-                "AI動画制作では、失敗の原因がブラックボックスになりやすいと感じています。同じプロンプトでも全然違う映像が出てきたり、「なんとなくダメだった」で終わってしまうことが多い。",
-                "その「なんとなく」を放置しないために、各ステップの失敗要因を分解して、次の仮説に接続する仕組みとしてFAILMAPを使い始めました。"
-            ],
-            quote: "完璧な管理ツールではありませんが、ブラックボックスを放置しないための整理の仕組みとして使っています。",
-            flowTitle: "各ステップの安定度マップ",
-            nodes: [
-                { label: "ブリーフ設計", status: "ok", statusText: "✓ 安定", note: "ターゲット・フックの言語化は比較的安定して行える" },
-                { label: "プロンプト設計", status: "warn", statusText: "△ 不安定", note: "意図した映像に近づけるプロンプトの書き方がまだ属人的" },
-                { label: "AI生成", status: "fail", statusText: "✗ ブラックボックス", note: "同じプロンプトでも出力が毎回違う。品質のばらつきが最大の課題" },
-                { label: "素材選定・仕上げ", status: "warn", statusText: "△ 判断基準が曖昧", note: "70点の素材をどう広告に耐える形にするか、まだ言語化しきれていない" },
-                { label: "構成・編集", status: "ok", statusText: "✓ 比較的安定", note: "フック→展開→CTAの構成は型化できてきている" }
-            ],
-            insightHeading: "ここから見えてきたこと",
-            insights: [
-                { text: "<strong>AI生成ステップが最大のボトルネック。</strong><br>完全なコントロールは難しいけれど、プロンプトのテンプレート化と選定基準の明文化で、ある程度は安定させられる可能性がある。" },
-                { text: "<strong>「失敗の記録」が次の改善の起点になる。</strong><br>うまくいった制作物だけでなく、破綻した制作物の原因を残しておくことで、同じ失敗を繰り返しにくくなると感じている。" },
-                { text: "<strong>全工程の安定化は、まだ遠い。</strong><br>正直なところ、まだ試行錯誤の途中。でも「どこが不安定か」を可視化できたことは、小さな一歩だと思っている。" }
+                "現在、学生3人で縦型コンテンツの制作を行っています。",
+                "新しいアプリ内で公開される動画のため、高速スクロール環境に耐えるフックと、一定の制作本数が同時に求められます。",
+                "制作時間も限られています。クレジットも無限ではありません。",
+                "その制約の中で、AIを\"生成ツール\"としてではなく、制作工程の一部として扱えないかと考えました。"
             ]
         },
 
-        /* ----- 07 改善余地 ----- */
+        /* ----- Workflow ----- */
         {
-            type: "checklist",
-            id: "improvement",
-            number: "07",
-            title: "今後の改善余地",
-            lead: "自分でも「まだ足りない」と感じている部分を、正直に書きます。",
-            items: [
-                { status: "未着手", title: "実配信データによる検証", body: "A/Bテストの仮説止まり。実際に配信してデータで検証する経験がまだない。" },
-                { status: "模索中", title: "プロンプトのテンプレート化", body: "AI生成の品質安定化のため、プロンプトの型を作ろうとしているが試行錯誤の段階。" },
-                { status: "模索中", title: "仕上げ工程の言語化", body: "70点素材を広告に耐える形にする工程を、もっと具体的に言語化したい。" },
-                { status: "未着手", title: "複数商材への展開", body: "今は就活コミュニティの1テーマのみ。他の商材でも同じプロセスが通用するか検証したい。" }
+            type: "workflow",
+            id: "workflow",
+            title: "Workflow",
+            lead: "再現性を持たせるための制作フロー",
+            intro: "AIを使えば映像は作れます。でも、それだけでは安定しません。",
+            steps: [
+                { label: "仮説設計", text: "フック・訴求の整理" },
+                { label: "構図・動線", text: "3Dで整理" },
+                { label: "AI素材生成", text: "" },
+                { label: "素材の分解・選定", text: "" },
+                { label: "AE再設計", text: "" },
+                { label: "改善ログ", text: "FAILMAP" }
+            ],
+            note: "ガチャ的な生成に頼らず、構造を持った制作を目指しています。"
+        },
+
+        /* ----- Case 01: 就活コミュニティ（メインケース） ----- */
+        {
+            type: "case-detailed",
+            id: "case01",
+            number: "01",
+            title: "就活コミュニティ",
+            description: "28卒向け就活コミュニティの募集動画。\n\n不安ではなく「得られるもの」にフォーカスし、ベネフィット型のフックを設計しました。",
+
+            // 最終動画
+            final: {
+                type: "video",
+                src: "assets/cases/case01/CASE01_FINAL.mp4",
+                label: "最終動画"
+            },
+
+            // フック比較（5バリエーション）
+            hooks: {
+                title: "フック比較（5バリエーション）",
+                items: [
+                    { src: "assets/cases/case01/CASE01_HOOK_01.mp4", type: "FOMO型", intent: "「逃すと損」という不安を刺激" },
+                    { src: "assets/cases/case01/CASE01_HOOK_02.mp4", type: "UGC型", intent: "実際の利用者の声を前面に" },
+                    { src: "assets/cases/case01/CASE01_HOOK_03.mp4", type: "ベネフィット型", intent: "得られる価値を明示" },
+                    { src: "assets/cases/case01/CASE01_HOOK_04.mp4", type: "権威型", intent: "信頼性を前面に" },
+                    { src: "assets/cases/case01/CASE01_HOOK_05.mp4", type: "疑問型", intent: "問いかけで興味を引く" }
+                ],
+                decision: "UGC型を採用",
+                reason: "実際の利用者の声が最も信頼性が高く、スクロール環境でも止まりやすいと判断しました。"
+            },
+
+            // ストーリーボード
+            storyboard: {
+                title: "俯瞰ストーリーボード",
+                items: [
+                    { src: "assets/cases/case01/CASE01_STORYBOARD_01.png", label: "STORYBOARD_01" },
+                    { src: "assets/cases/case01/CASE01_STORYBOARD_02.png", label: "STORYBOARD_02" },
+                    { src: "assets/cases/case01/CASE01_STORYBOARD_03.png", label: "STORYBOARD_03" },
+                    { src: "assets/cases/case01/CASE01_STORYBOARD_04.png", label: "STORYBOARD_04" },
+                    { src: "assets/cases/case01/CASE01_STORYBOARD_05.png", label: "STORYBOARD_05" },
+                    { src: "assets/cases/case01/CASE01_STORYBOARD_06.png", label: "STORYBOARD_06" }
+                ]
+            },
+
+            // ブロッキング
+            blocking: {
+                title: "ブロッキング/構図証明",
+                items: [
+                    { src: "assets/cases/case01/CASE01_BLOCKING_01.png", label: "BLOCKING_01" },
+                    { src: "assets/cases/case01/CASE01_BLOCKING_02.png", label: "BLOCKING_02" },
+                    { src: "assets/cases/case01/CASE01_BLOCKING_03.png", label: "BLOCKING_03" }
+                ]
+            },
+
+            // スタートフレーム
+            startframes: {
+                title: "スタートフレーム定義",
+                items: [
+                    { src: "assets/cases/case01/CASE01_STARTFRAME_01.png", label: "STARTFRAME_01" },
+                    { src: "assets/cases/case01/CASE01_STARTFRAME_02.png", label: "STARTFRAME_02" },
+                    { src: "assets/cases/case01/CASE01_STARTFRAME_03.png", label: "STARTFRAME_03" }
+                ]
+            },
+
+            // キャラクター参考
+            charRef: {
+                title: "キャラクター参考",
+                src: "assets/cases/case01/CASE01_CHAR_REF.png",
+                label: "CHAR_REF"
+            },
+
+            // AE仕上げ
+            aeTimeline: {
+                title: "AE仕上げ証明",
+                src: "assets/cases/case01/CASE01_AE_TIMELINE.png",
+                label: "AE_TIMELINE"
+            },
+
+            // 詳細ドロップダウン
+            details: {
+                title: "詳細プロセスノート",
+                content: "フック設計では、5つのパターンを比較検証しました。FOMO型は不安を刺激しますが、ネガティブな印象を与える可能性があります。UGC型は実際の利用者の声を前面に出すことで、信頼性と親近感を両立できると判断しました。\n\n構図設計では、3Dブロッキングで動線を事前に整理し、AI生成時の偶然性を減らしています。スタートフレームを明確に定義することで、生成結果の一貫性を高めました。\n\nAE仕上げでは、AI素材をそのまま使うのではなく、タイミング調整、色補正、モーショングラフィックスの追加を行い、完成度を高めています。"
+            }
+        },
+
+        /* ----- Case 02: マウスメーカー（AE仕上げ） ----- */
+        {
+            type: "case-standard",
+            id: "case02",
+            number: "02",
+            title: "マウスメーカー",
+            description: "プロダクト広告を想定した映像。\n\nクロマキー背景で生成した動きをAfter Effects上で抜き、ダイナミックなモーションに再構築しています。",
+
+            media: [
+                { type: "video", src: "assets/cases/case02/CASE02_FINAL.mp4", label: "最終動画" },
+                { type: "video", src: "assets/cases/case02/CASE02_AI_ASSET_01.mp4", label: "AI素材" },
+                { type: "image", src: "assets/cases/case02/CASE02_AE_TIMELINE.png", label: "AEタイムライン" }
+            ],
+
+            details: {
+                title: "制作ブレイクダウン",
+                content: "AI生成時にクロマキー背景（グリーンバック）を指定し、動きのある素材を生成。After Effectsでクロマキー合成を行い、背景を抜き出しました。\n\n抜き出した素材に対して、カメラワーク、パーティクル、グローエフェクトを追加し、ダイナミックなモーションに仕上げています。AI素材をそのまま使うのではなく、AEでの再設計が重要です。"
+            }
+        },
+
+        /* ----- Case 03: TOYOTA 北山区（実案件＋自動化） ----- */
+        {
+            type: "case-standard",
+            id: "case03",
+            number: "03",
+            title: "TOYOTA 北山区",
+            description: "TOYOTAインターンで制作した、京都市北山区店舗のPR映像。\n\n実際に公開されているアプリ内で使用されています。学生3人で、量と質を同時に求められる環境で制作を行いました。",
+
+            media: [
+                { type: "video", src: "assets/cases/case03/CASE03_FINAL.mp4", label: "最終動画" },
+                { type: "image", src: "assets/cases/case03/CASE03_APP_LINK.png", label: "アプリ/プロジェクトリンク" },
+                { type: "image", src: "assets/cases/case03/CASE03_REMOTION_UI.png", label: "Remotion UI" },
+                { type: "image", src: "assets/cases/case03/CASE03_AE_TEMPLATE.png", label: "AEテンプレート" },
+                { type: "image", src: "assets/cases/case03/CASE03_AUTO_CAPTION_EXAMPLE.png", label: "自動字幕例" }
+            ],
+
+            details: {
+                title: "自動化の必要性",
+                content: "90本以上の動画を、学生3人で制作する必要がありました。手作業では到底間に合いません。\n\nRemotion（React + TypeScript）を使用し、データ駆動型の動画生成システムを構築。AEテンプレートと組み合わせることで、データを入力するだけで動画が生成される仕組みを作りました。\n\n自動字幕生成、タイミング調整、エクスポートまでを自動化し、制作時間を大幅に短縮しています。"
+            }
+        },
+
+        /* ----- Other Works（3カテゴリ） ----- */
+        {
+            type: "other-works-categorized",
+            id: "other-works",
+            title: "Other Works",
+            intro: "現在はAI広告制作にフォーカスしていますが、UI/UX、モーショングラフィックス、システム設計なども行っています。",
+
+            categories: [
+                {
+                    id: "video",
+                    title: "Video / Motion",
+                    items: [
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_01.mp4", label: "VIDEO_01" },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_02.mp4", label: "VIDEO_02" },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_03.mp4", label: "VIDEO_03" },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_04.mp4", label: "VIDEO_04" }
+                    ]
+                },
+                {
+                    id: "ui",
+                    title: "UI / Graphic",
+                    items: [
+                        { type: "image", src: "assets/other/ui/OTHER_UI_01.png", label: "UI_01" },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_02.png", label: "UI_02" },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_03.png", label: "UI_03" },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_04.png", label: "UI_04" }
+                    ]
+                },
+                {
+                    id: "system",
+                    title: "Apps / Systems",
+                    items: [
+                        { type: "image", src: "assets/other/system/OTHER_SYS_01.png", label: "SYS_01" },
+                        { type: "image", src: "assets/other/system/OTHER_SYS_02.png", label: "SYS_02" },
+                        { type: "image", src: "assets/other/system/OTHER_SYS_03.png", label: "SYS_03" },
+                        { type: "image", src: "assets/other/system/OTHER_SYS_04.png", label: "SYS_04" }
+                    ]
+                }
             ]
         },
 
-        /* ----- 締め ----- */
+        /* ----- Contact ----- */
         {
-            type: "closing",
-            id: "closing",
-            heading: "このポートフォリオは、完成品ではありません。",
-            paragraphs: [
-                "AI動画制作の構造化という大きなテーマに対して、\n今の段階で考えたこと、試したこと、\nまだうまくいっていないことを、正直にまとめたものです。",
-                "足りないことはたくさんあります。\nでも、足りない部分を見つけて改善し続ける姿勢は、\nこれからも持ち続けたいと思っています。"
-            ],
-            cta: "チームの一員として、\n現場の改善サイクルに参加できたら嬉しいです。"
+            type: "contact",
+            id: "contact"
         }
 
     ]
