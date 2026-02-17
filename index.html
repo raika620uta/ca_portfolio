@@ -14,7 +14,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="engine/style.css?v=20260218">
+  <link rel="stylesheet" href="engine/style.css" id="main-css">
 </head>
 
 <body>
@@ -24,12 +24,42 @@
   <main id="app"></main>
   <footer id="site-footer"></footer>
 
-  <!-- データ層（★ 普段触るのはここだけ） -->
-  <script src="data/site.js?v=20260218"></script>
-  <script src="data/page-main.js?v=20260218"></script>
+  <!-- キャッシュバスティング: SITE_VERSIONを使って動的にクエリパラメータを付与 -->
+  <script>
+    (function () {
+      // 1. data/site.js を読み込み
+      const siteScript = document.createElement('script');
+      siteScript.src = 'data/site.js';
+      siteScript.onload = function () {
+        const v = window.SITE && window.SITE.SITE_VERSION ? window.SITE.SITE_VERSION : 'default';
 
-  <!-- エンジン層（触らない） -->
-  <script src="engine/renderer.js?v=20260218"></script>
+        // 2. CSSにバージョンパラメータを付与
+        const cssLink = document.getElementById('main-css');
+        if (cssLink) {
+          cssLink.href = 'engine/style.css?v=' + v;
+        }
+
+        // 3. 残りのJSファイルを順番に読み込み
+        const scripts = [
+          'data/page-main.js?v=' + v,
+          'engine/renderer.js?v=' + v
+        ];
+
+        scripts.forEach(function (src, index) {
+          const script = document.createElement('script');
+          script.src = src;
+          if (index === scripts.length - 1) {
+            // 最後のスクリプト（renderer.js）が読み込まれたら初期化
+            script.onload = function () {
+              if (window.initRenderer) window.initRenderer();
+            };
+          }
+          document.body.appendChild(script);
+        });
+      };
+      document.body.appendChild(siteScript);
+    })();
+  </script>
 </body>
 
 </html>
