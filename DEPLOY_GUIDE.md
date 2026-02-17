@@ -172,32 +172,129 @@ git push origin main
 
 ---
 
-## 📝 推奨ワークフロー
+# デプロイガイド
 
-### 日常的な更新作業
+## 🚀 デプロイ手順
 
-1. **ファイルを編集・保存**
-   - `index.html`, `data/page-main.js`, `style.css`など
+### 1. 変更をコミット
 
-2. **デプロイ実行**
-   ```powershell
-   npm run deploy
+```powershell
+git add -A
+git commit -m "変更内容の説明"
+```
+
+### 2. プッシュ
+
+```powershell
+git push origin main
+```
+
+### 3. GitHub Actionsの確認
+
+1. GitHubリポジトリページを開く: https://github.com/raika620uta/ca_portfolio
+2. 「Actions」タブをクリック
+3. 最新の「pages build and deployment」ワークフローを確認
+4. ✅ 緑のチェックマークが表示されるまで待つ（通常30秒〜2分）
+
+### 4. 反映確認
+
+**公開URL**: https://raika620uta.github.io/ca_portfolio/
+
+**確認方法**:
+1. 上記URLをブラウザで開く
+2. **強制リロード**を実行:
+   - Windows: `Ctrl + Shift + R` または `Ctrl + F5`
+   - Mac: `Cmd + Shift + R`
+3. 最新の変更が反映されていることを確認
+
+**反映されない場合**:
+1. ブラウザのキャッシュをクリア
+2. シークレットモード/プライベートブラウジングで開く
+3. 5分待ってから再度確認（CDNキャッシュの更新）
+
+---
+
+## 🔧 キャッシュバスティング（更新時）
+
+**更新が即座に反映されるようにするため、デプロイ時にバージョンパラメータを更新してください。**
+
+### 手順
+
+1. **`index.html`のバージョンパラメータを更新**:
+   ```html
+   <!-- 変更前 -->
+   <link rel="stylesheet" href="engine/style.css?v=20260218">
+   <script src="data/site.js?v=20260218"></script>
+   
+   <!-- 変更後（日付を今日の日付に） -->
+   <link rel="stylesheet" href="engine/style.css?v=20260219">
+   <script src="data/site.js?v=20260219"></script>
    ```
 
-3. **確認**
-   - 数分待機後、https://raika620uta.github.io/ca_portfolio/ にアクセス
-   - 変更が反映されていることを確認
-
-### 大規模な変更時
-
-1. **ローカルで動作確認**
-   - Live Serverなどで動作確認
-
-2. **変更内容を確認**
-   ```powershell
-   git status
-   git diff
+2. **`data/site.js`のバージョン情報を更新**:
+   ```javascript
+   const SITE = {
+       version: "2026-02-19T12:00:00+09:00", // 現在時刻に更新
+       // ...
+   };
    ```
+
+3. コミット・プッシュ
+
+**自動化スクリプト**（今後実装予定）:
+- `deploy.ps1`を実行すると自動的にバージョンパラメータを更新
+
+---
+
+## 📋 トラブルシューティング
+
+### 問題: 更新が反映されない
+
+**原因と対策**:
+
+1. **コミット・プッシュ忘れ**
+   ```powershell
+   git status  # 未コミットの変更を確認
+   git add -A
+   git commit -m "更新"
+   git push origin main
+   ```
+
+2. **GitHub Actionsの失敗**
+   - GitHubの「Actions」タブで失敗ログを確認
+   - エラーメッセージに従って修正
+
+3. **Jekyllビルド干渉**
+   - `.nojekyll`ファイルが存在することを確認
+   - なければ作成: `New-Item -ItemType File -Path ".nojekyll"`
+
+4. **ブラウザキャッシュ**
+   - 強制リロード: `Ctrl + Shift + R`
+   - シークレットモードで確認
+
+5. **CDNキャッシュ**
+   - 5〜10分待つ
+   - バージョンパラメータを更新（上記参照）
+
+---
+
+## 🎯 確実に反映させるチェックリスト
+
+- [ ] `git status`で未コミットの変更がないことを確認
+- [ ] `git push`が成功したことを確認
+- [ ] GitHub Actionsが✅成功したことを確認
+- [ ] `index.html`のバージョンパラメータを更新
+- [ ] ブラウザで強制リロード（`Ctrl + Shift + R`）
+- [ ] 最新の変更が表示されることを確認
+
+---
+
+## 📝 補足
+
+- **GitHub Pages の公開元**: `main`ブランチの`/`（ルート）
+- **デプロイ方式**: GitHub Actions（自動）
+- **反映時間**: 通常30秒〜2分、最大10分
+- **キャッシュバスティング**: `?v=YYYYMMDD`パラメータで対応
 
 3. **手動でコミット**（より詳細なコミットメッセージを書く場合）
    ```powershell
