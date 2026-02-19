@@ -1,144 +1,145 @@
-# GitHub Pages 自動デプロイスクリプト (B案: ファイル監視方式)
-# 使い方: .\auto-deploy.ps1
-# 停止: Ctrl+C
+﻿# ============================================
+# auto-deploy.ps1 -- File Watcher + Auto Deploy
+# Watches the repository for file changes.
+# After 30 seconds of inactivity, runs git add/commit/push.
+# All log messages are in English to avoid encoding issues.
+# ============================================
 
-Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "  自動デプロイ監視を開始します" -ForegroundColor Cyan
-Write-Host "========================================" -ForegroundColor Cyan
-Write-Host ""
-Write-Host "監視対象: カレントディレクトリ" -ForegroundColor Gray
-Write-Host "除外: .git/, node_modules/, dist/, build/" -ForegroundColor Gray
-Write-Host "待機時間: 変更検知後30秒" -ForegroundColor Gray
-Write-Host ""
-Write-Host "停止するには Ctrl+C を押してください。" -ForegroundColor Yellow
-Write-Host ""
-
-# 監視対象ディレクトリ
-$watchPath = Get-Location
-
-# FileSystemWatcherの設定
-$watcher = New-Object System.IO.FileSystemWatcher
-$watcher.Path = $watchPath
-$watcher.IncludeSubdirectories = $true
-$watcher.EnableRaisingEvents = $true
-
-# 除外パターン
-$excludePatterns = @(
-    "\.git",
-    "node_modules",
-    "dist",
-    "build",
-    "\.log$",
-    "~$"
+param(
+    [int]$DebounceSeconds = 30
 )
 
-# 最後のデプロイ時刻
-$script:lastDeployTime = [DateTime]::MinValue
-$script:pendingChanges = $false
-$script:timer = $null
+$repoRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 
-# 変更を検知したときの処理
-$onChange = {
-    param($source, $e)
-    
-    # 除外パターンに一致するか確認
-    $relativePath = $e.FullPath.Replace($watchPath.Path, "").TrimStart("\")
-    $shouldExclude = $false
-    
-    foreach ($pattern in $excludePatterns) {
-        if ($relativePath -match $pattern) {
-            $shouldExclude = $true
-            break
-        }
-    }
-    
-    if ($shouldExclude) {
-        return
-    }
-    
-    # 変更を検知
-    $changeType = $e.ChangeType
-    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] 変更検知: $relativePath ($changeType)" -ForegroundColor Cyan
-    
-    # 30秒のタイマーをリセット
-    if ($script:timer) {
-        $script:timer.Stop()
-        $script:timer.Dispose()
-    }
-    
-    $script:pendingChanges = $true
-    
-    $script:timer = New-Object System.Timers.Timer
-    $script:timer.Interval = 30000  # 30秒
-    $script:timer.AutoReset = $false
-    
-    Register-ObjectEvent -InputObject $script:timer -EventName Elapsed -Action {
-        # デプロイ実行
-        Write-Host ""
-        Write-Host "----------------------------------------" -ForegroundColor Yellow
-        Write-Host "  自動デプロイを開始します..." -ForegroundColor Yellow
-        Write-Host "----------------------------------------" -ForegroundColor Yellow
-        
-        # 変更確認
-        $hasChanges = git status --porcelain
-        if (-not $hasChanges) {
-            Write-Host "変更がありません。スキップします。" -ForegroundColor Gray
-            Write-Host ""
-            return
-        }
-        
-        # デプロイ実行
-        git add -A
-        $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm"
-        $commitMessage = "Auto-update: $timestamp"
-        
-        Write-Host "コミット: $commitMessage" -ForegroundColor Gray
-        git commit -m $commitMessage | Out-Null
-        
-        if ($LASTEXITCODE -eq 0) {
-            Write-Host "プッシュ中..." -ForegroundColor Gray
-            git push origin main | Out-Null
-            
-            if ($LASTEXITCODE -eq 0) {
-                Write-Host "✓ デプロイ完了！" -ForegroundColor Green
-                $script:lastDeployTime = Get-Date
-            } else {
-                Write-Host "✗ プッシュに失敗しました。" -ForegroundColor Red
-            }
-        } else {
-            Write-Host "✗ コミットに失敗しました。" -ForegroundColor Red
-        }
-        
-        Write-Host ""
-        $script:pendingChanges = $false
-    } | Out-Null
-    
-    $script:timer.Start()
+# --- Exclude patterns ---
+$excludeDirs = @('.git', 'node_modules', '.vscode', 'dist', 'build', '.next', '.cache', '__pycache__')
+
+# --- Helper: colored log ---
+function Write-Log {
+    param([string]$Message, [string]$Color = 'Gray')
+    $ts = Get-Date -Format 'HH:mm:ss'
+    Write-Host "[$ts] $Message" -ForegroundColor $Color
 }
 
-# イベント登録
-Register-ObjectEvent -InputObject $watcher -EventName Changed -Action $onChange | Out-Null
-Register-ObjectEvent -InputObject $watcher -EventName Created -Action $onChange | Out-Null
-Register-ObjectEvent -InputObject $watcher -EventName Deleted -Action $onChange | Out-Null
-Register-ObjectEvent -InputObject $watcher -EventName Renamed -Action $onChange | Out-Null
-
-Write-Host "✓ 監視を開始しました。" -ForegroundColor Green
-Write-Host ""
-
-# 無限ループで待機
-try {
-    while ($true) {
-        Start-Sleep -Seconds 1
+# --- Helper: check if path should be excluded ---
+function Test-Excluded {
+    param([string]$FilePath)
+    foreach ($dir in $excludeDirs) {
+        $escaped = [regex]::Escape($dir)
+        if ($FilePath -match "(\\|/)$escaped(\\|/)") { return $true }
     }
-} finally {
-    # クリーンアップ
+    if ($FilePath -match '\.(log|tmp)$') { return $true }
+    if ($FilePath -match '~$') { return $true }
+    return $false
+}
+
+# --- Deploy function ---
+function Invoke-Deploy {
+    Write-Log '--- Deploy sequence started ---' Cyan
+
+    Push-Location $repoRoot
+    try {
+        # Check for actual changes
+        $status = git status --porcelain 2>&1
+        if (-not $status) {
+            Write-Log 'No changes detected. Skipping deploy.' Yellow
+            return
+        }
+
+        Write-Log "Changes detected:" White
+        $status | ForEach-Object { Write-Log "  $_" DarkGray }
+
+        # Stage all
+        git add -A 2>&1 | Out-Null
+        Write-Log 'git add -A ... done' Green
+
+        # Commit with timestamp
+        $msg = "Update: " + (Get-Date -Format 'yyyy-MM-dd HH:mm')
+        $commitResult = git commit -m $msg 2>&1
+        if ($LASTEXITCODE -ne 0) {
+            Write-Log "git commit failed: $commitResult" Red
+            return
+        }
+        Write-Log "git commit ... done" Green
+
+        # Push
+        Write-Log 'git push ... (this may take a moment)' Yellow
+        $pushResult = git push 2>&1
+        if ($LASTEXITCODE -ne 0) {
+            Write-Log "git push failed: $pushResult" Red
+            return
+        }
+        Write-Log 'git push ... done' Green
+        Write-Log '--- Deploy complete! ---' Cyan
+    }
+    catch {
+        Write-Log "Error during deploy: $_" Red
+    }
+    finally {
+        Pop-Location
+    }
+}
+
+# === Main: File System Watcher ===
+Write-Host ''
+Write-Log '========================================' Cyan
+Write-Log '  Auto-Deploy Watcher' Cyan
+Write-Log '========================================' Cyan
+Write-Log "Watching: $repoRoot" White
+Write-Log "Debounce: ${DebounceSeconds}s after last change" White
+$excludeList = $excludeDirs -join ', '
+Write-Log "Excluded: $excludeList" DarkGray
+Write-Log 'Press Ctrl+C to stop.' Yellow
+Write-Host ''
+
+$watcher = New-Object System.IO.FileSystemWatcher
+$watcher.Path = $repoRoot
+$watcher.IncludeSubdirectories = $true
+$watcher.EnableRaisingEvents = $false
+$nf = [System.IO.NotifyFilters]::FileName -bor [System.IO.NotifyFilters]::LastWrite -bor [System.IO.NotifyFilters]::DirectoryName
+$watcher.NotifyFilter = $nf
+
+$lastChangeTime = $null
+$pending = $false
+
+try {
+    $watcher.EnableRaisingEvents = $true
+    Write-Log 'Watcher started. Waiting for file changes...' Green
+
+    while ($true) {
+        # Poll for events (WaitForChanged with 1s timeout)
+        $result = $watcher.WaitForChanged([System.IO.WatcherChangeTypes]::All, 1000)
+
+        if (-not $result.TimedOut) {
+            $changedPath = $result.Name
+            if (-not (Test-Excluded $changedPath)) {
+                $lastChangeTime = Get-Date
+                if (-not $pending) {
+                    Write-Log "Change detected: $changedPath" White
+                    $pending = $true
+                }
+                else {
+                    Write-Log "  + $changedPath" DarkGray
+                }
+            }
+        }
+
+        # Check debounce timer
+        if ($pending -and $lastChangeTime) {
+            $elapsed = (Get-Date) - $lastChangeTime
+            if ($elapsed.TotalSeconds -ge $DebounceSeconds) {
+                Write-Log "${DebounceSeconds}s elapsed since last change. Deploying..." Yellow
+                $pending = $false
+                $lastChangeTime = $null
+                Invoke-Deploy
+                Write-Log 'Resuming watch...' Green
+                Write-Host ''
+            }
+        }
+    }
+}
+finally {
     $watcher.EnableRaisingEvents = $false
     $watcher.Dispose()
-    if ($script:timer) {
-        $script:timer.Dispose()
-    }
-    Get-EventSubscriber | Unregister-Event
-    Write-Host ""
-    Write-Host "監視を停止しました。" -ForegroundColor Yellow
-    Write-Host ""
+    Write-Log 'Watcher stopped.' Yellow
 }
