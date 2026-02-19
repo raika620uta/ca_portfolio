@@ -1,4 +1,4 @@
-/* =============================================
+ï»¿/* =============================================
    engine/style.css â€” ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆCSS
    âš  ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯åŸå‰‡è§¦ã‚‰ãªã„
    ãƒ‡ã‚¶ã‚¤ãƒ³ãƒˆãƒ¼ã‚¯ãƒ³ãƒ»å„ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’å®šç¾©
@@ -633,17 +633,8 @@ strong {
         display: none
     }
 }
-/* ===== ‰¡ƒXƒNƒ[ƒ‹ƒMƒƒƒ‰ƒŠ[ ===== */
-.horizontal-scroll {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 16px;
-    padding-bottom: 16px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-border) transparent
-}
+/* ===== ï¿½ï¿½ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ ===== */
+.horizontal-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: clamp(12px, 2vw, 20px); padding-bottom: clamp(12px, 2vw, 20px); -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--color-border) transparent; cursor: grab; user-select: none }
 
 .horizontal-scroll::-webkit-scrollbar {
     height: 6px
@@ -658,26 +649,12 @@ strong {
     background: transparent
 }
 
-/* ===== ƒtƒbƒNƒ^ƒCƒ‹ ===== */
-.hook-tile {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    width: 280px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    padding: 16px;
-    transition: transform var(--transition-base), box-shadow var(--transition-base)
-}
+.horizontal-scroll:active { cursor: grabbing }
 
-@media (min-width: 768px) {
-    .hook-tile {
-        width: 320px
-    }
-}
+/* ===== ï¿½tï¿½bï¿½Nï¿½^ï¿½Cï¿½ï¿½ ===== */
+.hook-tile { flex: 0 0 auto; scroll-snap-align: start; width: clamp(220px, 28vw, 360px); display: flex; flex-direction: column; gap: 12px; background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 16px; transition: transform var(--transition-base), box-shadow var(--transition-base) }
+
+
 
 .hook-tile:hover {
     transform: translateY(-2px);
@@ -715,7 +692,7 @@ strong {
     line-height: 1.7
 }
 
-/* ===== ƒtƒbƒNŒˆ’è ===== */
+/* ===== ï¿½tï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½ ===== */
 .hook-decision {
     margin-top: 24px;
     padding: 20px;
@@ -737,24 +714,10 @@ strong {
     line-height: 1.8
 }
 
-/* ===== ƒMƒƒƒ‰ƒŠ[ƒAƒCƒeƒ€ ===== */
-.gallery-item {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    width: 240px;
-    position: relative;
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    transition: transform var(--transition-base), box-shadow var(--transition-base)
-}
+/* ===== ï¿½Mï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½Aï¿½Cï¿½eï¿½ï¿½ ===== */
+.gallery-item { flex: 0 0 auto; scroll-snap-align: start; width: clamp(200px, 25vw, 320px); position: relative; background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: var(--border-radius); overflow: hidden; transition: transform var(--transition-base), box-shadow var(--transition-base) }
 
-@media (min-width: 768px) {
-    .gallery-item {
-        width: 280px
-    }
-}
+
 
 .gallery-item:hover {
     transform: translateY(-2px);
@@ -768,32 +731,18 @@ strong {
     display: none
 }
 
-/* ===== ƒMƒƒƒ‰ƒŠ[ƒOƒŠƒbƒh ===== */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-top: 16px
-}
+/* ===== ï¿½Mï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½Oï¿½ï¿½ï¿½bï¿½h ===== */
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(12px, 2vw, 24px); margin-top: clamp(16px, 2vw, 24px) }
 
-@media (min-width: 640px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr)
-    }
-}
 
-@media (min-width: 1024px) {
-    .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px
-    }
-}
+
+
 
 .gallery-grid .gallery-item {
     width: 100%
 }
 
-/* ===== ’PˆêƒƒfƒBƒA ===== */
+/* ===== ï¿½Pï¿½êƒï¿½fï¿½Bï¿½A ===== */
 .single-media {
     max-width: 800px;
     margin: 16px 0;
@@ -809,7 +758,7 @@ strong {
     display: none
 }
 
-/* ===== ƒTƒuƒZƒNƒVƒ‡ƒ“ ===== */
+/* ===== ï¿½Tï¿½uï¿½Zï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ ===== */
 .subsection {
     margin-top: 48px
 }
@@ -821,7 +770,7 @@ strong {
     color: var(--color-text)
 }
 
-/* ===== ƒhƒƒbƒvƒ_ƒEƒ“/ƒAƒR[ƒfƒBƒIƒ“ ===== */
+/* ===== ï¿½hï¿½ï¿½ï¿½bï¿½vï¿½_ï¿½Eï¿½ï¿½/ï¿½Aï¿½Rï¿½[ï¿½fï¿½Bï¿½Iï¿½ï¿½ ===== */
 .dropdown {
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
@@ -868,7 +817,7 @@ strong {
     white-space: pre-line
 }
 
-/* ===== Other Works ƒJƒeƒSƒŠ ===== */
+/* ===== Other Works ï¿½Jï¿½eï¿½Sï¿½ï¿½ ===== */
 .other-works__category {
     margin-bottom: 48px
 }
@@ -893,7 +842,7 @@ strong {
     display: none
 }
 
-/* ===== ƒvƒŒ[ƒXƒzƒ‹ƒ_[icŒ^j ===== */
+/* ===== ï¿½vï¿½ï¿½ï¿½[ï¿½Xï¿½zï¿½ï¿½ï¿½_ï¿½[ï¿½iï¿½cï¿½^ï¿½j ===== */
 .media-placeholder--vertical {
     aspect-ratio: 9/16;
     max-height: 600px

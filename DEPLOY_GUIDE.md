@@ -352,3 +352,16 @@ git push origin main
 **公開URL**: https://raika620uta.github.io/ca_portfolio/
 
 変更がGitHub Pagesに反映されるまで、通常2〜5分かかります。
+
+---
+
+## ⚠ auto-deploy.ps1 の文字コードについて
+
+- `auto-deploy.ps1` は **UTF-8 with BOM** で保存されています。
+- Windows PowerShell (5.x) は BOM なしの UTF-8 を正しく解釈できない場合があります。
+- **スクリプトを編集する場合は、保存時に「UTF-8 (BOM付き)」を選択してください。**
+  - VSCode: 右下の `UTF-8` をクリック → `Save with Encoding` → `UTF-8 with BOM`
+  - メモ帳: `名前を付けて保存` → 文字コード `UTF-8 (BOM付き)`
+- ログメッセージは文字化け回避のため **英語** で出力されます。
+- 壊れた旧バージョンは `auto-deploy.broken.ps1` としてバックアップされています。
+

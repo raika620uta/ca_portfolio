@@ -330,7 +330,7 @@
       hooksHtml = `
         <div class="subsection fade-in">
           <h4 class="subsection__title">${esc(s.hooks.title)}</h4>
-          <div class="horizontal-scroll">${hookTilesHtml}</div>
+          <div class="horizontal-scroll hscroll">${hookTilesHtml}</div>
           ${decisionHtml}
         </div>`;
     }
@@ -347,7 +347,7 @@
       storyboardHtml = `
         <div class="subsection fade-in">
           <h4 class="subsection__title">${esc(s.storyboard.title)}</h4>
-          <div class="horizontal-scroll">${itemsHtml}</div>
+          <div class="horizontal-scroll hscroll">${itemsHtml}</div>
         </div>`;
     }
 
@@ -795,9 +795,69 @@
 
   /* --- DOMContentLoaded で実行 --- */
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", render);
+    document.addEventListener("DOMContentLoaded", function () {
+      render();
+      initDragScroll();
+    });
   } else {
     render();
+    initDragScroll();
+  }
+
+  /* =============================================
+     ドラッグスクロール機能
+     ============================================= */
+  function initDragScroll() {
+    const containers = document.querySelectorAll('.hscroll');
+
+    containers.forEach(container => {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      let hasMoved = false;
+
+      container.addEventListener('pointerdown', (e) => {
+        // リンクやボタンのクリックを妨げないため、特定の要素は除外
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+
+        isDown = true;
+        hasMoved = false;
+        container.style.cursor = 'grabbing';
+        container.style.userSelect = 'none';
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+      });
+
+      container.addEventListener('pointerleave', () => {
+        isDown = false;
+        container.style.cursor = 'grab';
+        container.style.userSelect = '';
+      });
+
+      container.addEventListener('pointerup', () => {
+        isDown = false;
+        container.style.cursor = 'grab';
+        container.style.userSelect = '';
+      });
+
+      container.addEventListener('pointermove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX) * 1.5; // スクロール速度調整
+        if (Math.abs(walk) > 5) hasMoved = true; // しきい値5px
+        container.scrollLeft = scrollLeft - walk;
+      });
+
+      // クリックイベントを壊さないための処理
+      container.addEventListener('click', (e) => {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+    });
   }
 
 })();
+
