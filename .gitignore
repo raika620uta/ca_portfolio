@@ -19,3 +19,8 @@ build/
 # Logs
 *.log
 npm-debug.log*
+
+# Windows junk
+desktop.ini
+Thumbs.db
+

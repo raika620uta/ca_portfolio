@@ -61,18 +61,20 @@ const PAGE = {
             final: {
                 type: "video",
                 src: "assets/cases/case01/CASE01_FINAL.mp4",
-                label: "最終動画"
+                label: "最終動画（CASE01_FINAL.mp4）",
+                role: "final",
+                ratio: "9/16"
             },
 
             // フック比較（5バリエーション）
             hooks: {
                 title: "フック比較（5バリエーション）",
                 items: [
-                    { src: "assets/cases/case01/CASE01_HOOK_01.mp4", type: "FOMO型", intent: "「逃すと損」という不安を刺激" },
-                    { src: "assets/cases/case01/CASE01_HOOK_02.mp4", type: "UGC型", intent: "実際の利用者の声を前面に" },
-                    { src: "assets/cases/case01/CASE01_HOOK_03.mp4", type: "ベネフィット型", intent: "得られる価値を明示" },
-                    { src: "assets/cases/case01/CASE01_HOOK_04.mp4", type: "権威型", intent: "信頼性を前面に" },
-                    { src: "assets/cases/case01/CASE01_HOOK_05.mp4", type: "疑問型", intent: "問いかけで興味を引く" }
+                    { src: "assets/cases/case01/CASE01_HOOK_01.mp4", type: "FOMO型（CASE01_HOOK_01.mp4）", intent: "「逃すと損」という不安を刺激" },
+                    { src: "assets/cases/case01/CASE01_HOOK_02.mp4", type: "UGC型（CASE01_HOOK_02.mp4）", intent: "実際の利用者の声を前面に" },
+                    { src: "assets/cases/case01/CASE01_HOOK_03.mp4", type: "ベネフィット型（CASE01_HOOK_03.mp4）", intent: "得られる価値を明示" },
+                    { src: "assets/cases/case01/CASE01_HOOK_04.mp4", type: "権威型（CASE01_HOOK_04.mp4）", intent: "信頼性を前面に" },
+                    { src: "assets/cases/case01/CASE01_HOOK_05.mp4", type: "疑問型（CASE01_HOOK_05.mp4）", intent: "問いかけで興味を引く" }
                 ],
                 decision: "UGC型を採用",
                 reason: "実際の利用者の声が最も信頼性が高く、スクロール環境でも止まりやすいと判断しました。"
@@ -82,12 +84,12 @@ const PAGE = {
             storyboard: {
                 title: "俯瞰ストーリーボード",
                 items: [
-                    { src: "assets/cases/case01/CASE01_STORYBOARD_01.png", label: "STORYBOARD_01" },
-                    { src: "assets/cases/case01/CASE01_STORYBOARD_02.png", label: "STORYBOARD_02" },
-                    { src: "assets/cases/case01/CASE01_STORYBOARD_03.png", label: "STORYBOARD_03" },
-                    { src: "assets/cases/case01/CASE01_STORYBOARD_04.png", label: "STORYBOARD_04" },
-                    { src: "assets/cases/case01/CASE01_STORYBOARD_05.png", label: "STORYBOARD_05" },
-                    { src: "assets/cases/case01/CASE01_STORYBOARD_06.png", label: "STORYBOARD_06" }
+                    { src: "assets/cases/case01/CASE01_STORYBOARD_01.png", label: "ストーリーボード01（CASE01_STORYBOARD_01.png）" },
+                    { src: "assets/cases/case01/CASE01_STORYBOARD_02.png", label: "ストーリーボード02（CASE01_STORYBOARD_02.png）" },
+                    { src: "assets/cases/case01/CASE01_STORYBOARD_03.png", label: "ストーリーボード03（CASE01_STORYBOARD_03.png）" },
+                    { src: "assets/cases/case01/CASE01_STORYBOARD_04.png", label: "ストーリーボード04（CASE01_STORYBOARD_04.png）" },
+                    { src: "assets/cases/case01/CASE01_STORYBOARD_05.png", label: "ストーリーボード05（CASE01_STORYBOARD_05.png）" },
+                    { src: "assets/cases/case01/CASE01_STORYBOARD_06.png", label: "ストーリーボード06（CASE01_STORYBOARD_06.png）" }
                 ]
             },
 
@@ -95,9 +97,9 @@ const PAGE = {
             blocking: {
                 title: "ブロッキング/構図証明",
                 items: [
-                    { src: "assets/cases/case01/CASE01_BLOCKING_01.png", label: "BLOCKING_01" },
-                    { src: "assets/cases/case01/CASE01_BLOCKING_02.png", label: "BLOCKING_02" },
-                    { src: "assets/cases/case01/CASE01_BLOCKING_03.png", label: "BLOCKING_03" }
+                    { src: "assets/cases/case01/CASE01_BLOCKING_01.png", label: "ブロッキング01（CASE01_BLOCKING_01.png）" },
+                    { src: "assets/cases/case01/CASE01_BLOCKING_02.png", label: "ブロッキング02（CASE01_BLOCKING_02.png）" },
+                    { src: "assets/cases/case01/CASE01_BLOCKING_03.png", label: "ブロッキング03（CASE01_BLOCKING_03.png）" }
                 ]
             },
 
@@ -105,9 +107,9 @@ const PAGE = {
             startframes: {
                 title: "スタートフレーム定義",
                 items: [
-                    { src: "assets/cases/case01/CASE01_STARTFRAME_01.png", label: "STARTFRAME_01" },
-                    { src: "assets/cases/case01/CASE01_STARTFRAME_02.png", label: "STARTFRAME_02" },
-                    { src: "assets/cases/case01/CASE01_STARTFRAME_03.png", label: "STARTFRAME_03" }
+                    { src: "assets/cases/case01/CASE01_STARTFRAME_01.png", label: "スタートフレーム01（CASE01_STARTFRAME_01.png）" },
+                    { src: "assets/cases/case01/CASE01_STARTFRAME_02.png", label: "スタートフレーム02（CASE01_STARTFRAME_02.png）" },
+                    { src: "assets/cases/case01/CASE01_STARTFRAME_03.png", label: "スタートフレーム03（CASE01_STARTFRAME_03.png）" }
                 ]
             },
 
@@ -115,14 +117,14 @@ const PAGE = {
             charRef: {
                 title: "キャラクター参考",
                 src: "assets/cases/case01/CASE01_CHAR_REF.png",
-                label: "CHAR_REF"
+                label: "キャラクター参考（CASE01_CHAR_REF.png）"
             },
 
             // AE仕上げ
             aeTimeline: {
                 title: "AE仕上げ証明",
                 src: "assets/cases/case01/CASE01_AE_TIMELINE.png",
-                label: "AE_TIMELINE"
+                label: "AEタイムライン（CASE01_AE_TIMELINE.png）"
             },
 
             // 詳細ドロップダウン
@@ -141,9 +143,9 @@ const PAGE = {
             description: "プロダクト広告を想定した映像。\n\nクロマキー背景で生成した動きをAfter Effects上で抜き、ダイナミックなモーションに再構築しています。",
 
             media: [
-                { type: "video", src: "assets/cases/case02/CASE02_FINAL.mp4", label: "最終動画" },
-                { type: "video", src: "assets/cases/case02/CASE02_AI_ASSET_01.mp4", label: "AI素材" },
-                { type: "image", src: "assets/cases/case02/CASE02_AE_TIMELINE.png", label: "AEタイムライン" }
+                { type: "video", src: "assets/cases/case02/CASE02_FINAL.mp4", label: "最終動画（CASE02_FINAL.mp4）", role: "final", ratio: "9/16" },
+                { type: "video", src: "assets/cases/case02/CASE02_AI_ASSET_01.mp4", label: "AI素材（CASE02_AI_ASSET_01.mp4）", role: "other" },
+                { type: "image", src: "assets/cases/case02/CASE02_AE_TIMELINE.png", label: "AEタイムライン（CASE02_AE_TIMELINE.png）", role: "timeline" }
             ],
 
             details: {
@@ -161,11 +163,11 @@ const PAGE = {
             description: "TOYOTAインターンで制作した、京都市北山区店舗のPR映像。\n\n実際に公開されているアプリ内で使用されています。学生3人で、量と質を同時に求められる環境で制作を行いました。",
 
             media: [
-                { type: "video", src: "assets/cases/case03/CASE03_FINAL.mp4", label: "最終動画" },
-                { type: "image", src: "assets/cases/case03/CASE03_APP_LINK.png", label: "アプリ/プロジェクトリンク" },
-                { type: "image", src: "assets/cases/case03/CASE03_REMOTION_UI.png", label: "Remotion UI" },
-                { type: "image", src: "assets/cases/case03/CASE03_AE_TEMPLATE.png", label: "AEテンプレート" },
-                { type: "image", src: "assets/cases/case03/CASE03_AUTO_CAPTION_EXAMPLE.png", label: "自動字幕例" }
+                { type: "video", src: "assets/cases/case03/CASE03_FINAL.mp4", label: "最終動画（CASE03_FINAL.mp4）" },
+                { type: "image", src: "assets/cases/case03/CASE03_APP_LINK.png", label: "アプリリンク（CASE03_APP_LINK.png）" },
+                { type: "image", src: "assets/cases/case03/CASE03_REMOTION_UI.png", label: "Remotion UI（CASE03_REMOTION_UI.png）" },
+                { type: "image", src: "assets/cases/case03/CASE03_AE_TEMPLATE.png", label: "AEテンプレート（CASE03_AE_TEMPLATE.png）" },
+                { type: "image", src: "assets/cases/case03/CASE03_AUTO_CAPTION_EXAMPLE.png", label: "自動字幕例（CASE03_AUTO_CAPTION_EXAMPLE.png）" }
             ],
 
             details: {
@@ -186,30 +188,30 @@ const PAGE = {
                     id: "video",
                     title: "Video / Motion",
                     items: [
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_01.mp4", label: "VIDEO_01" },
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_02.mp4", label: "VIDEO_02" },
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_03.mp4", label: "VIDEO_03" },
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_04.mp4", label: "VIDEO_04" }
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_01.mp4", label: "VIDEO_01（OTHER_VIDEO_01.mp4）" },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_02.mp4", label: "VIDEO_02（OTHER_VIDEO_02.mp4）" },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_03.mp4", label: "VIDEO_03（OTHER_VIDEO_03.mp4）" },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_04.mp4", label: "VIDEO_04（OTHER_VIDEO_04.mp4）" }
                     ]
                 },
                 {
                     id: "ui",
                     title: "UI / Graphic",
                     items: [
-                        { type: "image", src: "assets/other/ui/OTHER_UI_01.png", label: "UI_01" },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_02.png", label: "UI_02" },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_03.png", label: "UI_03" },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_04.png", label: "UI_04" }
+                        { type: "image", src: "assets/other/ui/OTHER_UI_01.png", label: "UI_01（OTHER_UI_01.png）" },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_02.png", label: "UI_02（OTHER_UI_02.png）" },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_03.png", label: "UI_03（OTHER_UI_03.png）" },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_04.png", label: "UI_04（OTHER_UI_04.png）" }
                     ]
                 },
                 {
                     id: "system",
                     title: "Apps / Systems",
                     items: [
-                        { type: "image", src: "assets/other/system/OTHER_SYS_01.png", label: "SYS_01" },
-                        { type: "image", src: "assets/other/system/OTHER_SYS_02.png", label: "SYS_02" },
-                        { type: "image", src: "assets/other/system/OTHER_SYS_03.png", label: "SYS_03" },
-                        { type: "image", src: "assets/other/system/OTHER_SYS_04.png", label: "SYS_04" }
+                        { type: "image", src: "assets/other/system/OTHER_SYS_01.png", label: "SYS_01（OTHER_SYS_01.png）" },
+                        { type: "image", src: "assets/other/system/OTHER_SYS_02.png", label: "SYS_02（OTHER_SYS_02.png）" },
+                        { type: "image", src: "assets/other/system/OTHER_SYS_03.png", label: "SYS_03（OTHER_SYS_03.png）" },
+                        { type: "image", src: "assets/other/system/OTHER_SYS_04.png", label: "SYS_04（OTHER_SYS_04.png）" }
                     ]
                 }
             ]

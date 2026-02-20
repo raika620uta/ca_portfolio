@@ -25,7 +25,7 @@
     --font-size-xl: 22px;
     --font-size-2xl: 28px;
     --line-height: 1.85;
-    --max-width: 1280px;
+    --max-width: 900px;
     --section-padding: 72px 0;
     --border-radius: 8px;
     --border-radius-lg: 12px;
@@ -414,7 +414,7 @@ strong {
     background: var(--color-card-bg);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
-    overflow: hidden;
+    overflow: visible;
     transition: transform var(--transition-base), box-shadow var(--transition-base)
 }
 
@@ -431,10 +431,12 @@ strong {
 }
 
 .case-media__video {
+    width: 100%;
+    max-width: 320px;
     aspect-ratio: 9/16;
-    max-height: 600px;
-    background: #111;
-    object-fit: cover
+    object-fit: cover;
+    margin: 0 auto;
+    background: #111
 }
 
 .case-media__image {
@@ -541,7 +543,8 @@ strong {
 
 .case-media__video+.media-placeholder {
     aspect-ratio: 9/16;
-    max-height: 600px
+    max-width: 320px;
+    margin: 0 auto
 }
 
 /* --- フッター --- */
@@ -633,8 +636,20 @@ strong {
         display: none
     }
 }
+
 /* ===== ���X�N���[���M�������[ ===== */
-.horizontal-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: clamp(12px, 2vw, 20px); padding-bottom: clamp(12px, 2vw, 20px); -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--color-border) transparent; cursor: grab; user-select: none }
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: clamp(12px, 2vw, 20px);
+    padding-bottom: clamp(12px, 2vw, 20px);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+    cursor: grab;
+    user-select: none
+}
 
 .horizontal-scroll::-webkit-scrollbar {
     height: 6px
@@ -649,10 +664,24 @@ strong {
     background: transparent
 }
 
-.horizontal-scroll:active { cursor: grabbing }
+.horizontal-scroll:active {
+    cursor: grabbing
+}
 
 /* ===== �t�b�N�^�C�� ===== */
-.hook-tile { flex: 0 0 auto; scroll-snap-align: start; width: clamp(220px, 28vw, 360px); display: flex; flex-direction: column; gap: 12px; background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 16px; transition: transform var(--transition-base), box-shadow var(--transition-base) }
+.hook-tile {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: clamp(220px, 28vw, 360px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 16px;
+    transition: transform var(--transition-base), box-shadow var(--transition-base)
+}
 
 
 
@@ -715,7 +744,17 @@ strong {
 }
 
 /* ===== �M�������[�A�C�e�� ===== */
-.gallery-item { flex: 0 0 auto; scroll-snap-align: start; width: clamp(200px, 25vw, 320px); position: relative; background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: var(--border-radius); overflow: hidden; transition: transform var(--transition-base), box-shadow var(--transition-base) }
+.gallery-item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: clamp(200px, 25vw, 320px);
+    position: relative;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: transform var(--transition-base), box-shadow var(--transition-base)
+}
 
 
 
@@ -732,7 +771,12 @@ strong {
 }
 
 /* ===== �M�������[�O���b�h ===== */
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(12px, 2vw, 24px); margin-top: clamp(16px, 2vw, 24px) }
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(12px, 2vw, 24px);
+    margin-top: clamp(16px, 2vw, 24px)
+}
 
 
 
@@ -845,6 +889,6 @@ strong {
 /* ===== �v���[�X�z���_�[�i�c�^�j ===== */
 .media-placeholder--vertical {
     aspect-ratio: 9/16;
-    max-height: 600px
+    max-width: 320px;
+    margin: 0 auto
 }
-

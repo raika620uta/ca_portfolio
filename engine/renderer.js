@@ -157,7 +157,7 @@
       if (c.type === "image" && c.src) {
         mediaHtml = `<img class="case-image" src="${esc(c.src)}" alt="${esc(c.title)}" loading="lazy">`;
       } else if (hasSrc) {
-        mediaHtml = `<video class="case-video" data-src="${esc(c.src)}"${posterAttr} controls playsinline preload="none" aria-label="Case ${esc(c.id)} 動画"></video>`;
+        mediaHtml = `<video class="case-video" data-src="${esc(c.src)}"${posterAttr} controls playsinline preload="metadata" aria-label="Case ${esc(c.id)} 動画"></video>`;
       } else {
         mediaHtml = `<div class="video-placeholder"><div class="video-placeholder__icon">▶</div><p class="video-placeholder__text">動画を配置</p></div>`;
       }
@@ -309,17 +309,21 @@
     // フック比較（横スクロール）
     let hooksHtml = "";
     if (s.hooks && s.hooks.items) {
-      const hookTilesHtml = s.hooks.items.map(hook => `
+      const hookTilesHtml = s.hooks.items.map(hook => {
+        const hookFileName = hook.src ? hook.src.split("/").pop() : "";
+        const hookPlaceholder = hookFileName ? hookFileName + " をここに配置" : (hook.type || "VIDEO");
+        return `
         <div class="hook-tile">
           <div class="hook-tile__media">
-            <video class="hook-tile__video" data-src="${esc(hook.src)}" playsinline preload="none"></video>
-            <div class="media-placeholder media-placeholder--vertical">${esc(hook.type)}</div>
+            <video class="hook-tile__video" data-src="${esc(hook.src)}" data-hook-video="1" muted loop playsinline preload="metadata"></video>
+            <div class="media-placeholder media-placeholder--vertical">${esc(hookPlaceholder)}</div>
           </div>
           <div class="hook-tile__info">
             <div class="hook-tile__type">${esc(hook.type)}</div>
             <p class="hook-tile__intent">${esc(hook.intent)}</p>
           </div>
-        </div>`).join("");
+        </div>`;
+      }).join("");
 
       const decisionHtml = s.hooks.decision ? `
         <div class="hook-decision fade-in">
@@ -466,15 +470,19 @@
 
     const categoriesHtml = (s.categories || []).map(cat => {
       const itemsHtml = (cat.items || []).map(item => {
+        const owFileName = item.src ? item.src.split("/").pop() : "";
+        const owPlaceholder = owFileName ? owFileName + " をここに配置" : (item.label || (item.type === "video" ? "VIDEO" : "IMAGE"));
+        const ratioVal = item.ratio || item.aspect;
+        const ratioStyle = ratioVal && ratioVal !== "auto" ? ` style="aspect-ratio:${ratioVal.replace(":", "/")}"` : "";
         if (item.type === "video") {
           return `<div class="other-works__item fade-in">
-            <video class="other-works__video" data-src="${esc(item.src)}" playsinline preload="none"></video>
-            <div class="media-placeholder media-placeholder--vertical">${esc(item.label || "VIDEO")}</div>
+            <video class="other-works__video" data-src="${esc(item.src)}" controls playsinline preload="metadata"${ratioStyle}></video>
+            <div class="media-placeholder media-placeholder--vertical">${esc(owPlaceholder)}</div>
           </div>`;
         } else {
           return `<div class="other-works__item fade-in">
-            <img class="other-works__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy" />
-            <div class="media-placeholder">${esc(item.label || "IMAGE")}</div>
+            <img class="other-works__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy"${ratioStyle} />
+            <div class="media-placeholder">${esc(owPlaceholder)}</div>
           </div>`;
         }
       }).join("");
@@ -494,17 +502,40 @@
 
   /* ----- ヘルパー: メディアアイテムレンダリング ----- */
   function renderMediaItem(m) {
+    // --- 任意メタからインラインスタイルを生成（未指定時は空文字） ---
+    const mediaStyles = [];
+    // ratio および aspect の両方をサポート（ratio 優先）
+    const ratioVal = m.ratio || m.aspect;
+    if (ratioVal && ratioVal !== "auto") {
+      mediaStyles.push("aspect-ratio:" + ratioVal.replace(":", "/"));
+    }
+    if (m.fit) {
+      mediaStyles.push("object-fit:" + m.fit);
+    }
+    const mediaStyleAttr = mediaStyles.length ? ` style="${mediaStyles.join(";")}"` : "";
+
+    // span: グリッドで横2列占有（未指定 or 1 は何もしない）
+    const wrapStyles = [];
+    if (m.span && m.span > 1) {
+      wrapStyles.push("grid-column:span " + m.span);
+    }
+    const wrapStyleAttr = wrapStyles.length ? ` style="${wrapStyles.join(";")}"` : "";
+
+    // ファイル名を抽出してUIガイド文言を生成
+    const fileName = m.src ? m.src.split("/").pop() : "";
+    const placeholderText = fileName ? fileName + " をここに配置" : (m.label || (m.type === "video" ? "VIDEO" : "IMAGE"));
+
     const label = m.label ? `<div class="case-media__label">${esc(m.label)}</div>` : "";
     if (m.type === "video") {
-      return `<div class="case-media fade-in">
-        <video class="case-media__video" data-src="${esc(m.src)}" controls playsinline preload="none"></video>
-        <div class="media-placeholder media-placeholder--vertical">${esc(m.label || "VIDEO")}</div>
+      return `<div class="case-media fade-in"${wrapStyleAttr}>
+        <video class="case-media__video" data-src="${esc(m.src)}" controls playsinline preload="metadata"${mediaStyleAttr}></video>
+        <div class="media-placeholder media-placeholder--vertical">${esc(placeholderText)}</div>
         ${label}
       </div>`;
     } else {
-      return `<div class="case-media fade-in">
-        <img class="case-media__image" data-src="${esc(m.src)}" alt="${esc(m.label || "")}" loading="lazy" />
-        <div class="media-placeholder">${esc(m.label || "IMAGE")}</div>
+      return `<div class="case-media fade-in"${wrapStyleAttr}>
+        <img class="case-media__image" data-src="${esc(m.src)}" alt="${esc(m.label || "")}" loading="lazy"${mediaStyleAttr} />
+        <div class="media-placeholder">${esc(placeholderText)}</div>
         ${label}
       </div>`;
     }
@@ -516,7 +547,7 @@
       const label = m.label ? `<div class="case-media__label">${esc(m.label)}</div>` : "";
       if (m.type === "video") {
         return `<div class="case-media fade-in">
-          <video class="case-media__video" data-src="${esc(m.src)}" controls playsinline preload="none"></video>
+          <video class="case-media__video" data-src="${esc(m.src)}" controls playsinline preload="metadata"></video>
           <div class="media-placeholder">${esc(m.label || "VIDEO")}</div>
           ${label}
         </div>`;
@@ -791,6 +822,49 @@
 
       tryLoadImage(0);
     });
+
+    // --- フック動画: 表示中だけ再生（IntersectionObserver） ---
+    const hookVideos = document.querySelectorAll('video[data-hook-video]');
+    if (hookVideos.length && "IntersectionObserver" in window) {
+      // 横スクロールコンテナごとにObserverを作成
+      const scrollContainers = new Set();
+      hookVideos.forEach(v => {
+        const container = v.closest('.horizontal-scroll, .hscroll');
+        if (container) scrollContainers.add(container);
+      });
+
+      // 各コンテナ内のフック動画を監視
+      scrollContainers.forEach(container => {
+        const hookObs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            const v = e.target;
+            if (e.isIntersecting) {
+              try { v.play().catch(function () { }); } catch (err) { /* ignore */ }
+            } else {
+              v.pause();
+              v.currentTime = 0;
+            }
+          });
+        }, { root: container, threshold: 0.6 });
+
+        // このコンテナ内のフック動画だけ監視
+        container.querySelectorAll('video[data-hook-video]').forEach(v => {
+          hookObs.observe(v);
+        });
+      });
+
+      // viewport離脱時も停止（ページ外スクロール対策）
+      const vpObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) {
+            const v = e.target;
+            v.pause();
+            v.currentTime = 0;
+          }
+        });
+      }, { threshold: 0 });
+      hookVideos.forEach(v => vpObs.observe(v));
+    }
   }
 
   /* --- DOMContentLoaded で実行 --- */
