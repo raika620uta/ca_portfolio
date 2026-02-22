@@ -284,6 +284,30 @@
     return sectionWrap(s, idx, `<div class="checklist-list fade-in">${items}</div>`);
   };
 
+  /* ----- process-overview ----- */
+  renderers["process-overview"] = function (s, idx) {
+    const paras = (s.paragraphs || []).map(p =>
+      `<p class="process-overview__text">${nl2br(esc(p))}</p>`
+    ).join("");
+
+    return sectionWrap(s, idx, `
+      <div class="process-overview__body fade-in">${paras}</div>
+    `);
+  };
+
+  /* ----- wide-image ----- */
+  renderers["wide-image"] = function (s, idx) {
+    const fn = s.src ? s.src.split("/").pop() : "";
+    const ph = fn ? fn + " をここに配置" : "IMAGE";
+    return `
+      <section class="wide-image-section fade-in" id="${esc(s.id || "")}">
+        <div class="wide-image-wrap">
+          <img class="wide-image" data-src="${esc(s.src)}" alt="${esc(s.alt || "")}" loading="lazy" />
+          <div class="media-placeholder">${esc(ph)}</div>
+        </div>
+      </section>`;
+  };
+
   /* ----- workflow ----- */
   renderers.workflow = function (s, idx) {
     const introHtml = s.intro ? `<p class="workflow__intro">${nl2br(esc(s.intro))}</p>` : "";
@@ -305,6 +329,21 @@
   renderers["case-detailed"] = function (s, idx) {
     // 最終動画
     const finalHtml = s.final ? renderMediaItem(s.final) : "";
+
+    // 制作フロー画像（最終動画の直下）
+    let flowImageHtml = "";
+    if (s.flowImage) {
+      const flowFileName = s.flowImage.src ? s.flowImage.src.split("/").pop() : "";
+      const flowPlaceholder = flowFileName ? flowFileName + " をここに配置" : (s.flowImage.label || "IMAGE");
+      flowImageHtml = `
+        <div class="subsection fade-in">
+          <h4 class="subsection__title">${esc(s.flowImage.title)}</h4>
+          <div class="single-media">
+            <img class="single-media__image" data-src="${esc(s.flowImage.src)}" alt="${esc(s.flowImage.label || "")}" loading="lazy" style="aspect-ratio:16/9;object-fit:contain" />
+            <div class="media-placeholder">${esc(flowPlaceholder)}</div>
+          </div>
+        </div>`;
+    }
 
     // フック比較（横スクロール）
     let hooksHtml = "";
@@ -331,85 +370,153 @@
           <p class="hook-decision__reason">${esc(s.hooks.reason)}</p>
         </div>` : "";
 
+      const subtitleHtml = s.hooks.subtitle ? `<p class="subsection__subtitle">${esc(s.hooks.subtitle)}</p>` : "";
+
       hooksHtml = `
         <div class="subsection fade-in">
           <h4 class="subsection__title">${esc(s.hooks.title)}</h4>
-          <div class="horizontal-scroll hscroll">${hookTilesHtml}</div>
+          ${subtitleHtml}
+          <div class="hooks-grid">${hookTilesHtml}</div>
           ${decisionHtml}
         </div>`;
     }
 
-    // ストーリーボード（横スクロール）
+    // カット割り決め（singleImage対応）
     let storyboardHtml = "";
-    if (s.storyboard && s.storyboard.items) {
-      const itemsHtml = s.storyboard.items.map(item => `
-        <div class="gallery-item">
-          <img class="gallery-item__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy" />
-          <div class="media-placeholder">${esc(item.label || "IMAGE")}</div>
-        </div>`).join("");
-
-      storyboardHtml = `
-        <div class="subsection fade-in">
-          <h4 class="subsection__title">${esc(s.storyboard.title)}</h4>
-          <div class="horizontal-scroll hscroll">${itemsHtml}</div>
-        </div>`;
+    if (s.storyboard) {
+      if (s.storyboard.singleImage) {
+        const fn = s.storyboard.singleImage.split("/").pop();
+        const ph = fn ? fn + " をここに配置" : "IMAGE";
+        const desc = s.storyboard.description ? `<p class="subsection__subtitle">${esc(s.storyboard.description)}</p>` : "";
+        storyboardHtml = `
+          <div class="subsection fade-in">
+            <h4 class="subsection__title">${esc(s.storyboard.title)}</h4>
+            ${desc}
+            <div class="single-media">
+              <img class="single-media__image" data-src="${esc(s.storyboard.singleImage)}" alt="${esc(s.storyboard.title)}" loading="lazy" style="aspect-ratio:16/9;object-fit:contain" />
+              <div class="media-placeholder">${esc(ph)}</div>
+            </div>
+          </div>`;
+      } else if (s.storyboard.items) {
+        const itemsHtml = s.storyboard.items.map(item => `
+          <div class="gallery-item">
+            <img class="gallery-item__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy" />
+            <div class="media-placeholder">${esc(item.label || "IMAGE")}</div>
+          </div>`).join("");
+        storyboardHtml = `
+          <div class="subsection fade-in">
+            <h4 class="subsection__title">${esc(s.storyboard.title)}</h4>
+            <div class="horizontal-scroll hscroll">${itemsHtml}</div>
+          </div>`;
+      }
     }
 
-    // ブロッキング
+    // 主体モデルの当て込み（singleImage対応）
     let blockingHtml = "";
-    if (s.blocking && s.blocking.items) {
-      const itemsHtml = s.blocking.items.map(item => `
-        <div class="gallery-item">
-          <img class="gallery-item__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy" />
-          <div class="media-placeholder">${esc(item.label || "IMAGE")}</div>
-        </div>`).join("");
-
-      blockingHtml = `
-        <div class="subsection fade-in">
-          <h4 class="subsection__title">${esc(s.blocking.title)}</h4>
-          <div class="gallery-grid">${itemsHtml}</div>
-        </div>`;
+    if (s.blocking) {
+      if (s.blocking.singleImage) {
+        const fn = s.blocking.singleImage.split("/").pop();
+        const ph = fn ? fn + " をここに配置" : "IMAGE";
+        const desc = s.blocking.description ? `<p class="subsection__subtitle">${esc(s.blocking.description)}</p>` : "";
+        blockingHtml = `
+          <div class="subsection fade-in">
+            <h4 class="subsection__title">${esc(s.blocking.title)}</h4>
+            ${desc}
+            <div class="single-media">
+              <img class="single-media__image" data-src="${esc(s.blocking.singleImage)}" alt="${esc(s.blocking.title)}" loading="lazy" style="aspect-ratio:16/9;object-fit:contain" />
+              <div class="media-placeholder">${esc(ph)}</div>
+            </div>
+          </div>`;
+      } else if (s.blocking.items) {
+        const itemsHtml = s.blocking.items.map(item => `
+          <div class="gallery-item">
+            <img class="gallery-item__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy" />
+            <div class="media-placeholder">${esc(item.label || "IMAGE")}</div>
+          </div>`).join("");
+        blockingHtml = `
+          <div class="subsection fade-in">
+            <h4 class="subsection__title">${esc(s.blocking.title)}</h4>
+            <div class="gallery-grid">${itemsHtml}</div>
+          </div>`;
+      }
     }
 
-    // スタートフレーム
+    // 開始・終了フレーム固定（halfImage / singleImage対応）
     let startframesHtml = "";
-    if (s.startframes && s.startframes.items) {
-      const itemsHtml = s.startframes.items.map(item => `
-        <div class="gallery-item">
-          <img class="gallery-item__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy" />
-          <div class="media-placeholder">${esc(item.label || "IMAGE")}</div>
-        </div>`).join("");
-
-      startframesHtml = `
-        <div class="subsection fade-in">
-          <h4 class="subsection__title">${esc(s.startframes.title)}</h4>
-          <div class="gallery-grid">${itemsHtml}</div>
-        </div>`;
-    }
-
-    // キャラクター参考
-    let charRefHtml = "";
-    if (s.charRef) {
-      charRefHtml = `
-        <div class="subsection fade-in">
-          <h4 class="subsection__title">${esc(s.charRef.title)}</h4>
-          <div class="single-media">
-            <img class="single-media__image" data-src="${esc(s.charRef.src)}" alt="${esc(s.charRef.label || "")}" loading="lazy" />
-            <div class="media-placeholder">${esc(s.charRef.label || "IMAGE")}</div>
-          </div>
-        </div>`;
+    if (s.startframes) {
+      const sfDesc = s.startframes.description ? `<p class="subsection__subtitle">${esc(s.startframes.description)}</p>` : "";
+      if (s.startframes.halfImage) {
+        const fn = s.startframes.halfImage.split("/").pop();
+        const ph = fn ? fn + " をここに配置" : "IMAGE";
+        startframesHtml = `
+          <div class="subsection fade-in">
+            <h4 class="subsection__title">${esc(s.startframes.title)}</h4>
+            ${sfDesc}
+            <div class="half-media">
+              <img class="half-media__img" data-src="${esc(s.startframes.halfImage)}" alt="${esc(s.startframes.title)}" loading="lazy" />
+              <div class="media-placeholder">${esc(ph)}</div>
+            </div>
+          </div>`;
+      } else if (s.startframes.singleImage) {
+        const fn = s.startframes.singleImage.split("/").pop();
+        const ph = fn ? fn + " をここに配置" : "IMAGE";
+        startframesHtml = `
+          <div class="subsection fade-in">
+            <h4 class="subsection__title">${esc(s.startframes.title)}</h4>
+            ${sfDesc}
+            <div class="single-media">
+              <img class="single-media__image" data-src="${esc(s.startframes.singleImage)}" alt="${esc(s.startframes.title)}" loading="lazy" style="aspect-ratio:16/9;object-fit:contain" />
+              <div class="media-placeholder">${esc(ph)}</div>
+            </div>
+          </div>`;
+      } else if (s.startframes.items) {
+        const itemsHtml = s.startframes.items.map(item => `
+          <div class="gallery-item">
+            <img class="gallery-item__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy" />
+            <div class="media-placeholder">${esc(item.label || "IMAGE")}</div>
+          </div>`).join("");
+        startframesHtml = `
+          <div class="subsection fade-in">
+            <h4 class="subsection__title">${esc(s.startframes.title)}</h4>
+            <div class="gallery-grid">${itemsHtml}</div>
+          </div>`;
+      }
     }
 
     // AE仕上げ
     let aeTimelineHtml = "";
     if (s.aeTimeline) {
+      const aeDesc = s.aeTimeline.description ? `<p class="subsection__subtitle">${esc(s.aeTimeline.description)}</p>` : "";
       aeTimelineHtml = `
         <div class="subsection fade-in">
           <h4 class="subsection__title">${esc(s.aeTimeline.title)}</h4>
+          ${aeDesc}
           <div class="single-media">
             <img class="single-media__image" data-src="${esc(s.aeTimeline.src)}" alt="${esc(s.aeTimeline.label || "")}" loading="lazy" />
             <div class="media-placeholder">${esc(s.aeTimeline.label || "IMAGE")}</div>
           </div>
+        </div>`;
+    }
+
+    // FAILMAP
+    let failmapHtml = "";
+    if (s.failmap) {
+      const fmDesc = s.failmap.description ? `<p class="subsection__subtitle">${esc(s.failmap.description)}</p>` : "";
+      let fmImageHtml = "";
+      if (s.failmap.halfImage) {
+        const fn = s.failmap.halfImage.split("/").pop();
+        const ph = fn ? fn + " をここに配置" : "IMAGE";
+        fmImageHtml = `
+          <div class="half-media">
+            <img class="half-media__img" data-src="${esc(s.failmap.halfImage)}" alt="${esc(s.failmap.title)}" loading="lazy" />
+            <div class="media-placeholder">${esc(ph)}</div>
+          </div>`;
+      }
+      failmapHtml = `
+        <div class="subsection fade-in">
+          <h4 class="subsection__title">${esc(s.failmap.title)}</h4>
+          ${fmDesc}
+          ${fmImageHtml}
         </div>`;
     }
 
@@ -430,12 +537,13 @@
       </div>
       <p class="case-description fade-in">${nl2br(esc(s.description))}</p>
       ${finalHtml}
+      ${flowImageHtml}
       ${hooksHtml}
       ${storyboardHtml}
       ${blockingHtml}
       ${startframesHtml}
-      ${charRefHtml}
       ${aeTimelineHtml}
+      ${failmapHtml}
       ${detailsHtml}
     `, true);
   };
@@ -826,44 +934,19 @@
     // --- フック動画: 表示中だけ再生（IntersectionObserver） ---
     const hookVideos = document.querySelectorAll('video[data-hook-video]');
     if (hookVideos.length && "IntersectionObserver" in window) {
-      // 横スクロールコンテナごとにObserverを作成
-      const scrollContainers = new Set();
-      hookVideos.forEach(v => {
-        const container = v.closest('.horizontal-scroll, .hscroll');
-        if (container) scrollContainers.add(container);
-      });
-
-      // 各コンテナ内のフック動画を監視
-      scrollContainers.forEach(container => {
-        const hookObs = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            const v = e.target;
-            if (e.isIntersecting) {
-              try { v.play().catch(function () { }); } catch (err) { /* ignore */ }
-            } else {
-              v.pause();
-              v.currentTime = 0;
-            }
-          });
-        }, { root: container, threshold: 0.6 });
-
-        // このコンテナ内のフック動画だけ監視
-        container.querySelectorAll('video[data-hook-video]').forEach(v => {
-          hookObs.observe(v);
-        });
-      });
-
-      // viewport離脱時も停止（ページ外スクロール対策）
-      const vpObs = new IntersectionObserver((entries) => {
+      // viewport内で60%以上見えたら再生、外れたら停止＋巻き戻し
+      const hookObs = new IntersectionObserver((entries) => {
         entries.forEach(e => {
-          if (!e.isIntersecting) {
-            const v = e.target;
+          const v = e.target;
+          if (e.isIntersecting) {
+            try { v.play().catch(function () { }); } catch (err) { /* ignore */ }
+          } else {
             v.pause();
             v.currentTime = 0;
           }
         });
-      }, { threshold: 0 });
-      hookVideos.forEach(v => vpObs.observe(v));
+      }, { threshold: 0.6 });
+      hookVideos.forEach(v => hookObs.observe(v));
     }
   }
 

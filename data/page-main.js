@@ -31,6 +31,33 @@ const PAGE = {
             ]
         },
 
+        /* ----- 制作設計（概要テキスト） ----- */
+        {
+            type: "process-overview",
+            id: "process-design",
+            title: "再現性を支える制作設計",
+            paragraphs: [
+                "フックの検証からAI映像化、AEでの仕上げまでを、\n一貫した流れとして設計しています。",
+                "属人的な制作ではなく、同じ品質を再現できる構造を重視しています。"
+            ]
+        },
+
+        /* ----- 制作フロー図 ----- */
+        {
+            type: "wide-image",
+            id: "process-diagram",
+            src: "assets/cases/case01/workflow_diagram.png",
+            alt: "制作フロー図"
+        },
+
+        /* ----- 制作ツール図 ----- */
+        {
+            type: "wide-image",
+            id: "tools-diagram",
+            src: "assets/cases/case01/tools_overview.png",
+            alt: "制作環境と使用ツール"
+        },
+
         /* ----- Workflow ----- */
         {
             type: "workflow",
@@ -66,65 +93,62 @@ const PAGE = {
                 ratio: "9/16"
             },
 
-            // フック比較（5バリエーション）
+            // 制作フロー画像（最終動画の直下に表示）
+            flowImage: {
+                title: "再現性を重視した制作フロー",
+                src: "assets/cases/case01/case01_flow.png",
+                label: "制作フロー（case01_flow.png）"
+            },
+
+            // フック比較
             hooks: {
-                title: "フック比較（5バリエーション）",
+                title: "フック比較",
+                subtitle: "最初の3秒の視聴維持率を最大化するため、複数パターンを作成・比較",
                 items: [
-                    { src: "assets/cases/case01/CASE01_HOOK_01.mp4", type: "FOMO型（CASE01_HOOK_01.mp4）", intent: "「逃すと損」という不安を刺激" },
-                    { src: "assets/cases/case01/CASE01_HOOK_02.mp4", type: "UGC型（CASE01_HOOK_02.mp4）", intent: "実際の利用者の声を前面に" },
-                    { src: "assets/cases/case01/CASE01_HOOK_03.mp4", type: "ベネフィット型（CASE01_HOOK_03.mp4）", intent: "得られる価値を明示" },
-                    { src: "assets/cases/case01/CASE01_HOOK_04.mp4", type: "権威型（CASE01_HOOK_04.mp4）", intent: "信頼性を前面に" },
-                    { src: "assets/cases/case01/CASE01_HOOK_05.mp4", type: "疑問型（CASE01_HOOK_05.mp4）", intent: "問いかけで興味を引く" }
+                    { src: "assets/cases/case01/CASE01_HOOK_01.mp4", type: "FOMO", intent: "不安を喚起し、「今やらないと損」という防衛的な動機で視聴を引き止める" },
+                    { src: "assets/cases/case01/CASE01_HOOK_02.mp4", type: "UGC", intent: "共感しやすい構造で安心感を与え、前向きな動機で視聴を継続させる" },
+                    { src: "assets/cases/case01/CASE01_HOOK_03.mp4", type: "スクロール阻害", intent: "視聴者の状況を再現し、メタ的な違和感でスクロールを止める" },
+                    { src: "assets/cases/case01/CASE01_HOOK_04.mp4", type: "AI違和感", intent: "あえて非現実的な世界観から始め、違和感によって注意を引く" },
+                    { src: "assets/cases/case01/CASE01_HOOK_05.mp4", type: "男性＋データ提示", intent: "性別差による印象変化と、具体的な数値で信頼性を補強する" }
                 ],
-                decision: "UGC型を採用",
-                reason: "実際の利用者の声が最も信頼性が高く、スクロール環境でも止まりやすいと判断しました。"
+                decision: "UGCを採用",
+                reason: "運営メンバーにも見てもらい複数パターンを検証した結果、前向きな共感で視聴を維持できるUGC形式を採用"
             },
 
-            // ストーリーボード
+            // 流れと構造を決める（カット割り決め）
             storyboard: {
-                title: "俯瞰ストーリーボード",
-                items: [
-                    { src: "assets/cases/case01/CASE01_STORYBOARD_01.png", label: "ストーリーボード01（CASE01_STORYBOARD_01.png）" },
-                    { src: "assets/cases/case01/CASE01_STORYBOARD_02.png", label: "ストーリーボード02（CASE01_STORYBOARD_02.png）" },
-                    { src: "assets/cases/case01/CASE01_STORYBOARD_03.png", label: "ストーリーボード03（CASE01_STORYBOARD_03.png）" },
-                    { src: "assets/cases/case01/CASE01_STORYBOARD_04.png", label: "ストーリーボード04（CASE01_STORYBOARD_04.png）" },
-                    { src: "assets/cases/case01/CASE01_STORYBOARD_05.png", label: "ストーリーボード05（CASE01_STORYBOARD_05.png）" },
-                    { src: "assets/cases/case01/CASE01_STORYBOARD_06.png", label: "ストーリーボード06（CASE01_STORYBOARD_06.png）" }
-                ]
+                title: "流れと構造を決める（カット割り決め）",
+                description: "構図と動線を整理し、動画の骨格を先に決める",
+                singleImage: "assets/cases/case01/case01_cut_structure.png"
             },
 
-            // ブロッキング
+            // 一貫性を高める（主体モデルの当て込み）
             blocking: {
-                title: "ブロッキング/構図証明",
-                items: [
-                    { src: "assets/cases/case01/CASE01_BLOCKING_01.png", label: "ブロッキング01（CASE01_BLOCKING_01.png）" },
-                    { src: "assets/cases/case01/CASE01_BLOCKING_02.png", label: "ブロッキング02（CASE01_BLOCKING_02.png）" },
-                    { src: "assets/cases/case01/CASE01_BLOCKING_03.png", label: "ブロッキング03（CASE01_BLOCKING_03.png）" }
-                ]
+                title: "一貫性を高める（主体モデルの当て込み）",
+                description: "参照するモデル情報を固定し、カット間のズレを防ぐ",
+                singleImage: "assets/cases/case01/case01_blocking.png"
             },
 
-            // スタートフレーム
+            // 動きを成立させる（開始・終了フレーム固定）
             startframes: {
-                title: "スタートフレーム定義",
-                items: [
-                    { src: "assets/cases/case01/CASE01_STARTFRAME_01.png", label: "スタートフレーム01（CASE01_STARTFRAME_01.png）" },
-                    { src: "assets/cases/case01/CASE01_STARTFRAME_02.png", label: "スタートフレーム02（CASE01_STARTFRAME_02.png）" },
-                    { src: "assets/cases/case01/CASE01_STARTFRAME_03.png", label: "スタートフレーム03（CASE01_STARTFRAME_03.png）" }
-                ]
+                title: "動きを成立させる（開始・終了フレーム固定）",
+                description: "動画の始点と終点を定義し、自然につながるようにする",
+                halfImage: "assets/cases/case01/case01_start_end.png"
             },
 
-            // キャラクター参考
-            charRef: {
-                title: "キャラクター参考",
-                src: "assets/cases/case01/CASE01_CHAR_REF.png",
-                label: "キャラクター参考（CASE01_CHAR_REF.png）"
-            },
-
-            // AE仕上げ
+            // 広告として成立させる（AE仕上げ）
             aeTimeline: {
-                title: "AE仕上げ証明",
+                title: "広告として成立させる（AE仕上げ）",
+                description: "テンポ・視線誘導・情報密度を調整し、視聴を維持できる形に仕上げる",
                 src: "assets/cases/case01/CASE01_AE_TIMELINE.png",
                 label: "AEタイムライン（CASE01_AE_TIMELINE.png）"
+            },
+
+            // ノウハウの蓄積（FAILMAP）
+            failmap: {
+                title: "ノウハウの蓄積（自作ツール:FAILMAP）",
+                description: "失敗・成功の要因をログ化し、次回以降の再現性を更に高める",
+                halfImage: "assets/cases/case01/case01_failmap.png"
             },
 
             // 詳細ドロップダウン
