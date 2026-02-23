@@ -593,8 +593,6 @@ strong {
             rgba(0, 0, 0, .40) 0%,
             rgba(0, 0, 0, .18) 35%,
             rgba(0, 0, 0, 0) 60%);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
