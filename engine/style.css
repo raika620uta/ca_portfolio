@@ -220,7 +220,7 @@ strong {
 
 /* テキストブロック：左揃え・中央配置 */
 .profile-intro__text {
-    max-width: 520px;
+    max-width: 560px;
     margin: 0 auto;
     padding: 0 24px;
 }
@@ -243,34 +243,37 @@ strong {
 .intro__items {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
 }
 
 .intro__item {
     display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 0 20px;
+    grid-template-columns: 10em 1fr;
+    /* 左カラム固定 / 全項目が縦で揃う */
+    gap: 0 16px;
     align-items: baseline;
 }
 
-/* トピック名（— できること） */
+/* トピック名（— できること）：シアン系アクセント */
 .intro__item-title {
-    font-size: 12px;
-    font-weight: 600;
-    color: #444;
+    font-size: 11px;
+    font-weight: 500;
+    color: #5ba3a0;
+    /* 落ち着いたシアン：主張しすぎない */
     margin: 0;
     white-space: nowrap;
-    padding-top: 1px;
-    /* body の行頭と視覚的に揃える */
+    padding-top: 2px;
 }
 
-/* 本文 */
+/* 本文：読みやすさ優先 */
 .intro__item-body {
     font-size: 13px;
     font-weight: 400;
-    color: #888;
-    line-height: 1.8;
+    color: #777;
+    line-height: 1.75;
     margin: 0;
+    max-width: 52ch;
+    /* 1行の長さを制限して折り返しを読みやすく */
 }
 
 
