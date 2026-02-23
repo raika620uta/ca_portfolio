@@ -114,11 +114,9 @@
   renderers["hero-simple"] = function (s) {
     const titleHtml = s.title ? `<h1 class="hero__title">${nl2br(esc(s.title))}</h1>` : "";
     const subtitleHtml = s.subtitle ? `<p class="hero__subtitle">${nl2br(esc(s.subtitle))}</p>` : "";
-    return `<section class="hero-simple fade-in">
-      <div class="container">
-        ${titleHtml}
-        ${subtitleHtml}
-      </div>
+    return `<section class="hero-simple fade-in" id="${s.id || ""}">
+      ${titleHtml}
+      ${subtitleHtml}
     </section>`;
   };
 
@@ -824,12 +822,10 @@
     const bgClass = (isWhite || idx % 2 === 1) ? " section--white" : "";
     const numHtml = s.number ? `<p class="section__number">${esc(s.number)}</p>` : "";
     const titleHtml = s.title ? `<h2 class="section__title">${esc(s.title)}</h2>` : "";
-    const leadHtml = s.lead ? `<p class="section__lead">${raw(s.lead)}</p>` : "";
+    const leadHtml = s.lead ? `<p class="section__lead">${raw(nl2br(esc(s.lead)))}</p>` : "";
 
-    return `<section class="section${bgClass}" id="${s.id || ""}">
-      <div class="container">
-        ${numHtml}${titleHtml}${leadHtml}${innerHtml}
-      </div>
+    return `<section class="section-container fade-in ${bgClass}" id="${s.id || ""}">
+      ${numHtml}${titleHtml}${leadHtml}${innerHtml}
     </section>`;
   }
 
