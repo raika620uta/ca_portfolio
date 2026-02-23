@@ -584,14 +584,17 @@ strong {
     opacity: 0
 }
 
-/* 擬似ポップアップ暗幕（::after） */
+/* 擬似ポップアップ暗幕（下部のみ薄いグラデーション） */
 .other-works__item::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(10, 10, 10, .55);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, .40) 0%,
+            rgba(0, 0, 0, .18) 35%,
+            rgba(0, 0, 0, 0) 60%);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
@@ -599,7 +602,7 @@ strong {
 }
 
 .other-works__item:hover::after {
-    opacity: 1
+    opacity: 0.9
 }
 
 /* キャプション：暗幕の上に表示（2段構成） */
