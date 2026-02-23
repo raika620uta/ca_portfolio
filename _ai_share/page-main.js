@@ -203,30 +203,36 @@ const PAGE = {
                     id: "video",
                     title: "Video / Motion",
                     items: [
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_01.mp4", label: "VIDEO_01（OTHER_VIDEO_01.mp4）" },
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_02.mp4", label: "VIDEO_02（OTHER_VIDEO_02.mp4）" },
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_03.mp4", label: "VIDEO_03（OTHER_VIDEO_03.mp4）" },
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_04.mp4", label: "VIDEO_04（OTHER_VIDEO_04.mp4）" }
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_01.mp4", label: "VIDEO_01（OTHER_VIDEO_01.mp4）", caption: { title: "Video 01", body: "モーショングラフィックス" } },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_02.mp4", label: "VIDEO_02（OTHER_VIDEO_02.mp4）", caption: { title: "Video 02", body: "タイポグラフィ演出" } },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_03.mp4", label: "VIDEO_03（OTHER_VIDEO_03.mp4）", caption: { title: "Video 03", body: "プロモーション映像" } },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_04.mp4", label: "VIDEO_04（OTHER_VIDEO_04.mp4）", caption: { title: "Video 04", body: "イベント映像" } },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_05.mp4", label: "VIDEO_05（OTHER_VIDEO_05.mp4）", caption: { title: "Video 05", body: "ショートムービー" } },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_06.mp4", label: "VIDEO_06（OTHER_VIDEO_06.mp4）", caption: { title: "Video 06", body: "エフェクト実験" } }
                     ]
                 },
                 {
                     id: "ui",
                     title: "UI / Graphic",
                     items: [
-                        { type: "image", src: "assets/other/ui/OTHER_UI_01.png", label: "UI_01（OTHER_UI_01.png）" },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_02.png", label: "UI_02（OTHER_UI_02.png）" },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_03.png", label: "UI_03（OTHER_UI_03.png）" },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_04.png", label: "UI_04（OTHER_UI_04.png）" }
+                        { type: "image", src: "assets/other/ui/OTHER_UI_01.png", label: "UI_01（OTHER_UI_01.png）", caption: { title: "UI 01", body: "ダッシュボードUI" } },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_02.png", label: "UI_02（OTHER_UI_02.png）", caption: { title: "UI 02", body: "モバイルアプリUI" } },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_03.png", label: "UI_03（OTHER_UI_03.png）", caption: { title: "UI 03", body: "ランディングページ" } },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_04.png", label: "UI_04（OTHER_UI_04.png）", caption: { title: "UI 04", body: "グラフィックデザイン" } },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_05.png", label: "UI_05（OTHER_UI_05.png）", caption: { title: "UI 05", body: "インフォグラフィック" } },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_06.png", label: "UI_06（OTHER_UI_06.png）", caption: { title: "UI 06", body: "タイポグラフィ" } }
                     ]
                 },
                 {
                     id: "system",
                     title: "Apps / Systems",
                     items: [
-                        { type: "image", src: "assets/other/system/OTHER_SYS_01.png", label: "SYS_01（OTHER_SYS_01.png）" },
-                        { type: "image", src: "assets/other/system/OTHER_SYS_02.png", label: "SYS_02（OTHER_SYS_02.png）" },
-                        { type: "image", src: "assets/other/system/OTHER_SYS_03.png", label: "SYS_03（OTHER_SYS_03.png）" },
-                        { type: "image", src: "assets/other/system/OTHER_SYS_04.png", label: "SYS_04（OTHER_SYS_04.png）" }
+                        { type: "image", src: "assets/other/system/OTHER_SYS_01.png", label: "SYS_01（OTHER_SYS_01.png）", caption: { title: "System 01", body: "自動化ツール" } },
+                        { type: "image", src: "assets/other/system/OTHER_SYS_02.png", label: "SYS_02（OTHER_SYS_02.png）", caption: { title: "System 02", body: "データ管理システム" } },
+                        { type: "image", src: "assets/other/system/OTHER_SYS_03.png", label: "SYS_03（OTHER_SYS_03.png）", caption: { title: "System 03", body: "APIインテグレーション" } },
+                        { type: "image", src: "assets/other/system/OTHER_SYS_04.png", label: "SYS_04（OTHER_SYS_04.png）", caption: { title: "System 04", body: "ワークフロー設計" } },
+                        { type: "image", src: "assets/other/system/OTHER_SYS_05.png", label: "SYS_05（OTHER_SYS_05.png）", caption: { title: "System 05", body: "プロトタイプ開発" } },
+                        { type: "image", src: "assets/other/system/OTHER_SYS_06.png", label: "SYS_06（OTHER_SYS_06.png）", caption: { title: "System 06", body: "監視ダッシュボード" } }
                     ]
                 }
             ]

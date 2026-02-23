@@ -632,8 +632,12 @@
         const owPlaceholder = owFileName ? owFileName + " をここに配置" : (item.label || (item.type === "video" ? "VIDEO" : "IMAGE"));
         const ratioVal = item.ratio || item.aspect;
         const ratioStyle = ratioVal && ratioVal !== "auto" ? ` style="aspect-ratio:${ratioVal.replace(":", "/")}"` : "";
-        const caption = item.label || (cat.title + " " + String(i + 1).padStart(2, "0"));
-        const captionHtml = `<div class="other-works__caption">${esc(caption)}</div>`;
+        let captionHtml = "";
+        if (item.caption) {
+          const cTitle = item.caption.title ? `<div class="other-works__caption-title">${esc(item.caption.title)}</div>` : "";
+          const cBody = item.caption.body ? `<div class="other-works__caption-body">${esc(item.caption.body)}</div>` : "";
+          captionHtml = `<div class="other-works__caption">${cTitle}${cBody}</div>`;
+        }
         if (item.type === "video") {
           return `<div class="other-works__item fade-in">
             <video class="other-works__video" data-src="${esc(item.src)}" controls playsinline preload="metadata"${ratioStyle}></video>
