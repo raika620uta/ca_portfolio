@@ -201,6 +201,8 @@ strong {
 
 .hero-line {
     display: block;
+    font-weight: 900;
+    /* 強制的に極太を維持 */
 }
 
 .hero__subtitle {
