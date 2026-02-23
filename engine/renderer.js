@@ -112,7 +112,14 @@
 
   /* ----- hero-simple ----- */
   renderers["hero-simple"] = function (s) {
-    const titleHtml = s.title ? `<h1 class="hero__title">${nl2br(esc(s.title))}</h1>` : "";
+    let titleHtml = "";
+    if (s.title) {
+      if (Array.isArray(s.title)) {
+        titleHtml = `<h1 class="hero__title">${s.title.map(line => `<span class="hero-line">${esc(line)}</span>`).join("")}</h1>`;
+      } else {
+        titleHtml = `<h1 class="hero__title">${nl2br(esc(s.title))}</h1>`;
+      }
+    }
     const subtitleHtml = s.subtitle ? `<p class="hero__subtitle">${nl2br(esc(s.subtitle))}</p>` : "";
     return `<section class="hero-simple fade-in" id="${s.id || ""}">
       ${titleHtml}

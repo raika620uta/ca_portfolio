@@ -13,7 +13,7 @@ const PAGE = {
         {
             type: "hero-simple",
             id: "hero",
-            title: "AIガチャからの脱却。<br>クリエイティブの流れにAIを組み込む。",
+            title: ["AIガチャからの脱却。", "クリエイティブの流れにAIを組み込む。"],
             subtitle: "再現性のある制作フローへ"
         },
 

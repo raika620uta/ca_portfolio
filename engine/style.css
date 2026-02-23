@@ -199,6 +199,10 @@ strong {
     overflow-wrap: break-word;
 }
 
+.hero-line {
+    display: block;
+}
+
 .hero__subtitle {
     font-size: clamp(15px, 2.5vw, 18px);
     font-weight: 400;
