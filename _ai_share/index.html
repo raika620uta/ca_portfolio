@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ポートフォリオ</title>
+  <meta name="description" content="">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="engine/style.css" id="main-css">
+</head>
+
+<body>
+  <!-- ヘッダー・ナビ・メイン・フッターは renderer.js が自動生成 -->
+  <header id="site-header"></header>
+  <nav id="site-nav"></nav>
+  <main id="app"></main>
+  <footer id="site-footer"></footer>
+
+  <!-- キャッシュバスティング: SITE_VERSIONを使って動的にクエリパラメータを付与 -->
+  <script>
+    (function () {
+      // 1. data/site.js を読み込み
+      const siteScript = document.createElement('script');
+      siteScript.src = 'data/site.js';
+      siteScript.onload = function () {
+        const v = window.SITE && window.SITE.SITE_VERSION ? window.SITE.SITE_VERSION : 'default';
+
+        // 2. CSSにバージョンパラメータを付与
+        const cssLink = document.getElementById('main-css');
+        if (cssLink) {
+          cssLink.href = 'engine/style.css?v=' + v;
+        }
+
+        // 3. 残りのJSファイルを順番に読み込み
+        const scripts = [
+          'data/page-main.js?v=' + v,
+          'engine/renderer.js?v=' + v
+        ];
+
+        scripts.forEach(function (src, index) {
+          const script = document.createElement('script');
+          script.src = src;
+          if (index === scripts.length - 1) {
+            // 最後のスクリプト（renderer.js）が読み込まれたら初期化
+            script.onload = function () {
+              if (window.initRenderer) window.initRenderer();
+            };
+          }
+          document.body.appendChild(script);
+        });
+      };
+      document.body.appendChild(siteScript);
+    })();
+  </script>
+</body>
+
+</html>
