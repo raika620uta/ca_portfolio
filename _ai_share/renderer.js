@@ -317,7 +317,7 @@
 
     return `
       <section class="section-container fade-in" id="${esc(s.id || "")}">
-        <div class="reveal-block">
+        <div class="section-heading">
           ${headingHtml}
           ${subHtml}
           ${titleHtml}
@@ -1026,18 +1026,18 @@
       owVideos.forEach(v => { v.muted = true; owObs.observe(v); });
     }
 
-    // --- Scene Change Reveal: 黒帯スライド演出の発火 ---
-    const revealBlocks = document.querySelectorAll('.reveal-block');
-    if (revealBlocks.length && "IntersectionObserver" in window) {
-      const revealObs = new IntersectionObserver((entries) => {
+    // --- Section Heading Reveal: 右から伸びるアンダーライン演出の発火 ---
+    const headingBlocks = document.querySelectorAll('.section-heading');
+    if (headingBlocks.length && "IntersectionObserver" in window) {
+      const headingObs = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
-            e.target.classList.add('is-active');
-            revealObs.unobserve(e.target); // 1回のみ実行
+            e.target.classList.add('is-inview');
+            headingObs.unobserve(e.target); // 1回のみ実行
           }
         });
-      }, { threshold: 0.5 }); // 50%見えたら発火
-      revealBlocks.forEach(b => revealObs.observe(b));
+      }, { threshold: 0.3 }); // 30%見えたら発火
+      headingBlocks.forEach(b => headingObs.observe(b));
     }
   }
 
