@@ -1029,11 +1029,32 @@
             v.currentTime = 0; // 画面外でリセット
           }
         });
-      }, { threshold: 0.1 }); // 少しでも見えたら準備、10%で見え始めたら再生
+      }, { threshold: 0.1 });
       owVideos.forEach(v => {
-        v.muted = true; // 初期状態でも強制
+        v.muted = true;
         owObs.observe(v);
       });
+    }
+
+    // --- Other Works 画像: 表示中だけ読み込み開始 ---
+    const owImages = document.querySelectorAll('img.other-works__image');
+    if (owImages.length && "IntersectionObserver" in window) {
+      const imgObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const img = e.target;
+            if (!img.src && img.dataset.src) {
+              img.src = img.dataset.src;
+              img.onload = () => {
+                // 読み込み完了後に枠を表示
+                img.closest('.other-works__item').classList.add('has-image');
+              };
+            }
+            imgObs.unobserve(img); // 一度読み込んだら監視終了
+          }
+        });
+      }, { threshold: 0.1 });
+      owImages.forEach(img => imgObs.observe(img));
     }
 
     // --- Section Heading Reveal: 右から伸びるアンダーライン演出の発火 ---
