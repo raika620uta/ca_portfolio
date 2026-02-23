@@ -589,15 +589,31 @@ strong {
     opacity: 0
 }
 
-/* 擬似ポップアップ暗幕（下部のみ薄いグラデーション） */
+/* 全体の白ハイライト */
+.other-works__item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.06);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 1;
+    pointer-events: none
+}
+
+.other-works__item:hover::before {
+    opacity: 1
+}
+
+/* 擬似ポップアップ暗幕（下部のみ薄いグラデーション：さらに弱体化） */
 .other-works__item::after {
     content: "";
     position: absolute;
     inset: 0;
     background: linear-gradient(to top,
-            rgba(0, 0, 0, .40) 0%,
-            rgba(0, 0, 0, .18) 35%,
-            rgba(0, 0, 0, 0) 60%);
+            rgba(0, 0, 0, .28) 0%,
+            rgba(0, 0, 0, .12) 35%,
+            rgba(0, 0, 0, 0) 65%);
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
