@@ -87,6 +87,7 @@ const PAGE = {
             // フック比較
             hooks: {
                 title: "01 フック比較　　ー最初がすべて。",
+                purpose: "視聴維持率を最大化するための最適な導入パターンを検証",
                 subtitle: "TikTokは冒頭数秒のフックが視聴維持率に直結するため、複数パターンを作成し、比較・検証を行っています",
                 items: [
                     { src: "assets/cases/case01/CASE01_HOOK_01.mp4", type: "FOMO", intent: "不安を喚起し、「今やらないと損」という防衛的な動機で視聴を引き止める" },
@@ -102,6 +103,7 @@ const PAGE = {
             // 流れと構造を決める（カット割り決め）
             storyboard: {
                 title: "02 流れと構造を決める（カット割り決め）",
+                purpose: "生成の不確実性を排除し、再現可能な構造へ分解",
                 description: "従来の「プロンプト→最終ルック生成」は結果依存で再現性が低い。\n余分な視覚情報を除いたワイヤーフレームで構造を確定。`",
                 singleImage: "assets/cases/case01/case01_cut_structure.png"
             },
@@ -109,6 +111,7 @@ const PAGE = {
             // 一貫性を高める（主体モデルの当て込み）
             blocking: {
                 title: "03 一貫性を高める（主体モデルの当て込み）",
+                purpose: "カット間の人物ブレを防ぎ、一貫性を担保",
                 description: "参照するモデル情報を固定し、カット間のズレを防ぐ",
                 singleImage: "assets/cases/case01/case01_blocking.png"
             },
@@ -116,6 +119,7 @@ const PAGE = {
             // 動きを成立させる（開始・終了フレーム固定）
             startframes: {
                 title: "04 動きを成立させる（開始・終了フレーム固定）",
+                purpose: "動きの破綻を防ぎ、自然な連続性を生成",
                 description: "動画の始点と終点を定義し、自然につながるようにする",
                 halfImage: "assets/cases/case01/case01_start_end.png"
             },
@@ -123,6 +127,7 @@ const PAGE = {
             // 広告として成立させる（AE仕上げ）
             aeTimeline: {
                 title: "05 広告として成立させる（AE仕上げ）",
+                purpose: "AI素材を視線誘導・情報整理・テンポ設計により広告品質へ変換",
                 description: "テンポ・視線誘導・情報密度を調整し、視聴を維持できる形に仕上げる",
                 src: "assets/cases/case01/CASE01_AE_TIMELINE.png",
                 label: "AEタイムライン（CASE01_AE_TIMELINE.png）"

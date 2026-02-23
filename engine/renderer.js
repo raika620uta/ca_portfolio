@@ -405,11 +405,13 @@
           <p class="hook-decision__reason">${esc(s.hooks.reason)}</p>
         </div>` : "";
 
+      const purposeHtml = s.hooks.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.hooks.purpose)}</p>` : "";
       const subtitleHtml = s.hooks.subtitle ? `<p class="subsection__subtitle">${esc(s.hooks.subtitle)}</p>` : "";
 
       hooksHtml = `
         <div class="subsection fade-in">
           <h4 class="subsection__title">${esc(s.hooks.title)}</h4>
+          ${purposeHtml}
           ${subtitleHtml}
           <div class="hooks-grid">${hookTilesHtml}</div>
           ${decisionHtml}
@@ -422,10 +424,12 @@
       if (s.storyboard.singleImage) {
         const fn = s.storyboard.singleImage.split("/").pop();
         const ph = fn ? fn + " をここに配置" : "IMAGE";
+        const purposeHtml = s.storyboard.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.storyboard.purpose)}</p>` : "";
         const desc = s.storyboard.description ? `<p class="subsection__subtitle">${esc(s.storyboard.description)}</p>` : "";
         storyboardHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.storyboard.title)}</h4>
+            ${purposeHtml}
             ${desc}
             <div class="single-media">
               <img class="single-media__image" data-src="${esc(s.storyboard.singleImage)}" alt="${esc(s.storyboard.title)}" loading="lazy" style="aspect-ratio:16/9;object-fit:contain" />
@@ -438,9 +442,11 @@
             <img class="gallery-item__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy" />
             <div class="media-placeholder">${esc(item.label || "IMAGE")}</div>
           </div>`).join("");
+        const purposeHtml = s.storyboard.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.storyboard.purpose)}</p>` : "";
         storyboardHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.storyboard.title)}</h4>
+            ${purposeHtml}
             <div class="horizontal-scroll hscroll">${itemsHtml}</div>
           </div>`;
       }
@@ -452,10 +458,12 @@
       if (s.blocking.singleImage) {
         const fn = s.blocking.singleImage.split("/").pop();
         const ph = fn ? fn + " をここに配置" : "IMAGE";
+        const purposeHtml = s.blocking.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.blocking.purpose)}</p>` : "";
         const desc = s.blocking.description ? `<p class="subsection__subtitle">${esc(s.blocking.description)}</p>` : "";
         blockingHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.blocking.title)}</h4>
+            ${purposeHtml}
             ${desc}
             <div class="single-media">
               <img class="single-media__image" data-src="${esc(s.blocking.singleImage)}" alt="${esc(s.blocking.title)}" loading="lazy" style="aspect-ratio:16/9;object-fit:contain" />
@@ -468,9 +476,11 @@
             <img class="gallery-item__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy" />
             <div class="media-placeholder">${esc(item.label || "IMAGE")}</div>
           </div>`).join("");
+        const purposeHtml = s.blocking.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.blocking.purpose)}</p>` : "";
         blockingHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.blocking.title)}</h4>
+            ${purposeHtml}
             <div class="gallery-grid">${itemsHtml}</div>
           </div>`;
       }
@@ -483,9 +493,11 @@
       if (s.startframes.halfImage) {
         const fn = s.startframes.halfImage.split("/").pop();
         const ph = fn ? fn + " をここに配置" : "IMAGE";
+        const purposeHtml = s.startframes.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.startframes.purpose)}</p>` : "";
         startframesHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.startframes.title)}</h4>
+            ${purposeHtml}
             ${sfDesc}
             <div class="half-media">
               <img class="half-media__img" data-src="${esc(s.startframes.halfImage)}" alt="${esc(s.startframes.title)}" loading="lazy" />
@@ -495,9 +507,11 @@
       } else if (s.startframes.singleImage) {
         const fn = s.startframes.singleImage.split("/").pop();
         const ph = fn ? fn + " をここに配置" : "IMAGE";
+        const purposeHtml = s.startframes.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.startframes.purpose)}</p>` : "";
         startframesHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.startframes.title)}</h4>
+            ${purposeHtml}
             ${sfDesc}
             <div class="single-media">
               <img class="single-media__image" data-src="${esc(s.startframes.singleImage)}" alt="${esc(s.startframes.title)}" loading="lazy" style="aspect-ratio:16/9;object-fit:contain" />
@@ -510,9 +524,11 @@
             <img class="gallery-item__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy" />
             <div class="media-placeholder">${esc(item.label || "IMAGE")}</div>
           </div>`).join("");
+        const purposeHtml = s.startframes.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.startframes.purpose)}</p>` : "";
         startframesHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.startframes.title)}</h4>
+            ${purposeHtml}
             <div class="gallery-grid">${itemsHtml}</div>
           </div>`;
       }
@@ -530,18 +546,21 @@
         aeMediaHtml = `
           <div class="wide-video-wrap">
             <video class="wide-video" data-src="${esc(s.aeTimeline.src)}" data-autoplay-video="1" muted loop playsinline preload="metadata"${ratioStyle}></video>
-            <div class="media-placeholder" style="aspect-ratio:${esc(s.aeTimeline.ratio || '16/9')}">${esc(aePh)}</div>
+            <div class="media-placeholder" style="aspect-ratio:${esc(s.aeTimeline.ratio || '1920/540')}">${esc(aePh)}</div>
           </div>`;
       } else {
+        const ratioStyle = ` style="aspect-ratio: 1920/540; width: 100%; object-fit: contain;"`;
         aeMediaHtml = `
-          <div class="single-media">
+          <div class="single-media" ${ratioStyle}>
             <img class="single-media__image" data-src="${esc(s.aeTimeline.src)}" alt="${esc(s.aeTimeline.label || "")}" loading="lazy" />
             <div class="media-placeholder">${esc(aePh)}</div>
           </div>`;
       }
+      const purposeHtml = s.aeTimeline.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.aeTimeline.purpose)}</p>` : "";
       aeTimelineHtml = `
         <div class="subsection fade-in">
           <h4 class="subsection__title">${esc(s.aeTimeline.title)}</h4>
+          ${purposeHtml}
           ${aeDesc}
           ${aeMediaHtml}
         </div>`;
