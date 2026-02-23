@@ -172,27 +172,26 @@ strong {
 
 /* ===== Profile Intro ===== */
 .profile-intro {
-    padding: 120px 0 100px;
-    text-align: center;
+    padding: 100px 0 80px;
 }
 
-.profile-intro__inner {
-    display: inline-flex;
+/* 上部：画像 + 名前（中央寄せ） */
+.profile-intro__top {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
+    margin-bottom: 56px;
 }
 
 .intro__image-wrap {
-    width: 80px;
-    height: 80px;
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
     overflow: hidden;
     background: #D8D8D8;
-    /* 画像未設定時のプレースホルダー */
 }
 
-/* 画像読み込み失敗時も丸を維持 */
 .intro__image-wrap--fallback {
     background: #D8D8D8;
 }
@@ -205,35 +204,75 @@ strong {
 }
 
 .intro__name {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
-    letter-spacing: 0.1em;
-    color: #111;
+    letter-spacing: 0.08em;
+    color: #333;
     margin: 0;
 }
 
 .intro__affiliation {
-    font-size: 12px;
+    font-size: 11px;
     color: #aaa;
     letter-spacing: 0.03em;
     margin: 0;
 }
 
-.intro__email {
+/* テキストブロック：左揃え・中央配置 */
+.profile-intro__text {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* headline（2行） */
+.intro__headline {
+    margin-bottom: 48px;
+}
+
+.intro__headline-line {
+    display: block;
+    font-size: clamp(18px, 2.5vw, 22px);
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    color: #111;
+}
+
+/* items 一覧 */
+.intro__items {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.intro__item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0 20px;
+    align-items: baseline;
+}
+
+/* トピック名（— できること） */
+.intro__item-title {
     font-size: 12px;
-    color: #bbb;
-    letter-spacing: 0.02em;
+    font-weight: 600;
+    color: #444;
+    margin: 0;
+    white-space: nowrap;
+    padding-top: 1px;
+    /* body の行頭と視覚的に揃える */
+}
+
+/* 本文 */
+.intro__item-body {
+    font-size: 13px;
+    font-weight: 400;
+    color: #888;
+    line-height: 1.8;
     margin: 0;
 }
 
-.intro__copy {
-    font-size: 13px;
-    color: #888;
-    letter-spacing: 0.02em;
-    line-height: 1.7;
-    margin: 8px 0 0;
-    /* copyの上に少し余白を入れて区切り感を出す */
-}
 
 /* ===== Hero ===== */
 .hero-simple {

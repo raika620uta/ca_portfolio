@@ -106,21 +106,37 @@
 
   /* ----- profile-intro ----- */
   renderers["profile-intro"] = function (s) {
+    // 上部：画像 + 名前（中央寄せ）
     const imgHtml = `<div class="intro__image-wrap">
         <img src="${esc(s.image || "")}" alt="" class="intro__image"
              onerror="this.style.display='none';this.parentNode.classList.add('intro__image-wrap--fallback')">
       </div>`;
     const nameHtml = s.name ? `<p class="intro__name">${esc(s.name)}</p>` : "";
     const affHtml = s.affiliation ? `<p class="intro__affiliation">${esc(s.affiliation)}</p>` : "";
-    const emailHtml = s.email ? `<p class="intro__email">${esc(s.email)}</p>` : "";
-    const copyHtml = s.copy ? `<p class="intro__copy">${esc(s.copy)}</p>` : "";
+
+    // headline（2行、左揃えブロック）
+    const headlineHtml = (s.headline && s.headline.length)
+      ? `<div class="intro__headline">${s.headline.map(l => `<span class="intro__headline-line">${esc(l)}</span>`).join("")}</div>`
+      : "";
+
+    // items ループ
+    const itemsHtml = (s.items && s.items.length)
+      ? `<div class="intro__items">${s.items.map(it => `
+          <div class="intro__item">
+            <p class="intro__item-title">— ${esc(it.title)}</p>
+            <p class="intro__item-body">${nl2br(esc(it.body))}</p>
+          </div>`).join("")}</div>`
+      : "";
+
     return `<section class="profile-intro" id="${esc(s.id || "")}">
-      <div class="profile-intro__inner">
+      <div class="profile-intro__top">
         ${imgHtml}
         ${nameHtml}
         ${affHtml}
-        ${emailHtml}
-        ${copyHtml}
+      </div>
+      <div class="profile-intro__text">
+        ${headlineHtml}
+        ${itemsHtml}
       </div>
     </section>`;
   };

@@ -16,8 +16,32 @@ const PAGE = {
             image: "assets/common/profile.png",
             name: "外川 蓮 / TOGAWA REN",
             affiliation: "京都精華大学 メディア表現学部 イメージ表現専攻 2年",
-            email: "raika620uta@gmail.com",
-            copy: "AIと手作業を行き来しながら、最後は自分の手で整えます。"
+            headline: [
+                "AIを制作フローに組み込み、",
+                "再現可能な形でアウトプットを作る。"
+            ],
+            items: [
+                {
+                    title: "できること",
+                    body: "AI生成からAfter Effectsでの仕上げまで、一貫した動画制作。\n目的に応じてツールを横断し、足りない部分は自作で補いながら\n制作を進めます。"
+                },
+                {
+                    title: "大切にしていること",
+                    body: "制作を仕組みに落とし込み、安定して回せる形にすること。"
+                },
+                {
+                    title: "興味・関心",
+                    body: "映像制作 / UI設計 / コーディング"
+                },
+                {
+                    title: "趣味",
+                    body: "ドラム / チワワ"
+                },
+                {
+                    title: "連絡先",
+                    body: "raika620uta@gmail.com"
+                }
+            ]
         },
 
         /* ----- HERO ----- */
