@@ -121,14 +121,14 @@ strong {
 }
 
 /* ===== Section Heading Detail (アンダーライン演出) ===== */
+/* 基本クラス: アニメーションの共通ロジックを定義 */
 .section-heading {
     position: relative;
     display: block;
     width: 100%;
     color: #111 !important;
-    padding-bottom: 14px;
-    /* 10px gap + 4px height */
-    margin-bottom: 32px
+    padding-bottom: 12px;
+    margin-bottom: 32px;
 }
 
 .section-heading::after {
@@ -137,16 +137,36 @@ strong {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 4px;
-    background: #111 !important;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
-    pointer-events: none
+    pointer-events: none;
+    z-index: 1;
 }
 
 .section-heading.is-inview::after {
-    transform: scaleX(1)
+    transform: scaleX(1);
+}
+
+/* 強 (章タイトル専用): 黒 4px */
+.underline--major::after {
+    height: 4px;
+    background: #111 !important;
+    opacity: 1;
+}
+
+/* 中 (サブ見出し): グレー 2px */
+.underline--mid::after {
+    height: 2px;
+    background: #BDBDBD !important;
+    opacity: 0.9;
+}
+
+/* 弱 (コンテンツ区切り): 薄グレー 1px */
+.underline--minor::after {
+    height: 1px;
+    background: #E6E6E6 !important;
+    opacity: 0.85;
 }
 
 /* ===== Hero ===== */
