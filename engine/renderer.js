@@ -309,7 +309,7 @@
 
   /* ----- content-bridge（セクション間の中継テキスト） ----- */
   renderers["content-bridge"] = function (s) {
-    const headingHtml = s.heading ? `<h2 class="bridge__heading">${esc(s.heading)}</h2>` : "";
+    const headingHtml = s.heading ? `<h2 class="bridge__heading section-heading">${esc(s.heading)}</h2>` : "";
     const subHtml = s.sub ? `<p class="bridge__sub">${esc(s.sub)}</p>` : "";
     const titleHtml = s.title ? `<h3 class="bridge__title">${esc(s.title)}</h3>` : "";
     const textHtml = s.text ? `<p class="bridge__text">${nl2br(esc(s.text))}</p>` : "";
@@ -317,13 +317,11 @@
 
     return `
       <section class="section-container fade-in" id="${esc(s.id || "")}">
-        <div class="section-heading">
-          ${headingHtml}
-          ${subHtml}
-          ${titleHtml}
-          ${leadHtml}
-          ${textHtml}
-        </div>
+        ${headingHtml}
+        ${subHtml}
+        ${titleHtml}
+        ${leadHtml}
+        ${textHtml}
       </section>`;
   };
 
@@ -656,7 +654,7 @@
 
       return `
         <div class="other-works__category fade-in">
-          <h4 class="other-works__category-title">${esc(cat.title)}</h4>
+          <h4 class="other-works__category-title section-heading">${esc(cat.title)}</h4>
           <div class="other-works__grid">${itemsHtml}</div>
         </div>`;
     }).join("");
@@ -824,7 +822,7 @@
   function sectionWrap(s, idx, innerHtml, isWhite) {
     const bgClass = (isWhite || idx % 2 === 1) ? " section--white" : "";
     const numHtml = s.number ? `<p class="section__number">${esc(s.number)}</p>` : "";
-    const titleHtml = s.title ? `<h2 class="section__title">${esc(s.title)}</h2>` : "";
+    const titleHtml = s.title ? `<h2 class="section__title section-heading">${esc(s.title)}</h2>` : "";
     const leadHtml = s.lead ? `<p class="section__lead">${raw(nl2br(esc(s.lead)))}</p>` : "";
 
     return `<section class="section-container fade-in ${bgClass}" id="${s.id || ""}">
