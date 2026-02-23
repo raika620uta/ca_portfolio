@@ -188,7 +188,7 @@ const PAGE = {
                 src: "assets/cases/case03/CASE03_REMOTION_FLOW.mp4",
                 label: "CASE03_REMOTION_FLOW.mp4",
                 autoplay: true,
-                ratio: "1920/540"
+                ratio: "16/9"
             },
 
             details: {
