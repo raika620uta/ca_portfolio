@@ -656,9 +656,12 @@
         }
       }).join("");
 
+      const policyHtml = cat.policy ? `<p class="other-works__category-policy">${esc(cat.policy)}</p>` : "";
+
       return `
         <div class="other-works__category fade-in">
           <h4 class="other-works__category-title section-heading underline--mid">${esc(cat.title)}</h4>
+          ${policyHtml}
           <div class="other-works__grid">${itemsHtml}</div>
         </div>`;
     }).join("");

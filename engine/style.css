@@ -1182,8 +1182,29 @@ strong {
 .other-works__category-title {
     font-size: var(--font-size-lg);
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     color: #111 !important
+}
+
+.other-works__category-policy {
+    font-size: var(--font-size-base);
+    font-weight: 400;
+    color: #333;
+    line-height: 1.8;
+    margin: 0 0 24px;
+    max-width: 500px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition-delay: 0.1s;
+    /* ラインの後にふわっと出す */
+}
+
+/* 親要素が view されたら表示 */
+.other-works__category.is-inview .other-works__category-policy,
+.other-works__category.fade-in.is-inview .other-works__category-policy {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .other-works__video {

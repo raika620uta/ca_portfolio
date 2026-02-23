@@ -209,6 +209,7 @@ const PAGE = {
                 {
                     id: "video",
                     title: "Video / Motion",
+                    policy: "テンポとグラフィックで視線を設計し、心地よく伝わる映像を追求しています。",
                     items: [
                         { type: "video", src: "assets/other/video/OTHER_VIDEO_01.mp4", label: "VIDEO_01（OTHER_VIDEO_01.mp4）", caption: { title: "Video 01", body: "モーショングラフィックス" } },
                         { type: "video", src: "assets/other/video/OTHER_VIDEO_02.mp4", label: "VIDEO_02（OTHER_VIDEO_02.mp4）", caption: { title: "Video 02", body: "タイポグラフィ演出" } },
@@ -221,6 +222,7 @@ const PAGE = {
                 {
                     id: "ui",
                     title: "UI / Interface",
+                    policy: "ユーザーの行動を起点に、迷わせない設計と新しい体験を両立させます。",
                     items: [
                         { type: "image", src: "assets/other/ui/OTHER_UI_01.png", label: "UI_01（OTHER_UI_01.png）", caption: { title: "UI 01", body: "ダッシュボードUI" } },
                         { type: "image", src: "assets/other/ui/OTHER_UI_02.png", label: "UI_02（OTHER_UI_02.png）", caption: { title: "UI 02", body: "モバイルアプリUI" } },
@@ -233,6 +235,7 @@ const PAGE = {
                 {
                     id: "graphic",
                     title: "Graphic Design",
+                    policy: "余白と視線誘導を軸に、意図が伝わるビジュアルを設計します。",
                     items: [
                         { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_01.png", label: "GRAPHIC_01", caption: { title: "Graphic 01", body: "タイポグラフィポスター" } },
                         { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_02.png", label: "GRAPHIC_02", caption: { title: "Graphic 02", body: "インフォグラフィック設計" } },
@@ -245,6 +248,7 @@ const PAGE = {
                 {
                     id: "system",
                     title: "Apps / Systems",
+                    policy: "使われる前提で、シンプルかつ再利用可能な設計を心がけています。",
                     items: [
                         { type: "image", src: "assets/other/system/OTHER_SYS_01.png", label: "SYS_01（OTHER_SYS_01.png）", caption: { title: "System 01", body: "自動化ツール" } },
                         { type: "image", src: "assets/other/system/OTHER_SYS_02.png", label: "SYS_02（OTHER_SYS_02.png）", caption: { title: "System 02", body: "データ管理システム" } },
