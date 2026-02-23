@@ -13,7 +13,7 @@ const PAGE = {
         {
             type: "profile-intro",
             id: "intro",
-            image: "assets/profile.jpg",
+            image: "assets/common/profile.png",
             name: "外川 蓮 / TOGAWA REN",
             copy: "AIと手作業を行き来しながら、最後は自分の手で整えます。"
         },
