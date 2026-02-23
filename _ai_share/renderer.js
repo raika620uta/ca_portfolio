@@ -631,12 +631,16 @@
         const owPlaceholder = owFileName ? owFileName + " をここに配置" : (item.label || (item.type === "video" ? "VIDEO" : "IMAGE"));
         const ratioVal = item.ratio || item.aspect;
         const ratioStyle = ratioVal && ratioVal !== "auto" ? ` style="aspect-ratio:${ratioVal.replace(":", "/")}"` : "";
+
         let captionHtml = "";
         if (item.caption) {
           const cTitle = item.caption.title ? `<div class="other-works__caption-title">${esc(item.caption.title)}</div>` : "";
           const cBody = item.caption.body ? `<div class="other-works__caption-body">${esc(item.caption.body)}</div>` : "";
-          captionHtml = `<div class="other-works__caption">${cTitle}${cBody}</div>`;
+          captionHtml = `<div class="other-works__caption">
+            <div class="other-works__caption-inner">${cTitle}${cBody}</div>
+          </div>`;
         }
+
         if (item.type === "video") {
           return `<div class="other-works__item fade-in">
             <video class="other-works__video" data-src="${esc(item.src)}" muted loop playsinline preload="metadata"${ratioStyle}></video>
@@ -1012,16 +1016,24 @@
         entries.forEach(e => {
           const v = e.target;
           if (e.isIntersecting) {
-            v.muted = true; // muted念押し
+            v.muted = true; // 強制ミュート
             if (!v.src && v.dataset.src) { v.src = v.dataset.src; v.load(); }
-            try { v.play().catch(function () { }); } catch (err) { /* ignore */ }
+            try {
+              const playPromise = v.play();
+              if (playPromise !== undefined) {
+                playPromise.catch(() => { /* 自動再生ブロック対応 */ });
+              }
+            } catch (err) { /* ignore */ }
           } else {
             v.pause();
-            v.currentTime = 0;
+            v.currentTime = 0; // 画面外でリセット
           }
         });
-      }, { threshold: 0.6 });
-      owVideos.forEach(v => { v.muted = true; owObs.observe(v); });
+      }, { threshold: 0.1 }); // 少しでも見えたら準備、10%で見え始めたら再生
+      owVideos.forEach(v => {
+        v.muted = true; // 初期状態でも強制
+        owObs.observe(v);
+      });
     }
 
     // --- Section Heading Reveal: 右から伸びるアンダーライン演出の発火 ---
