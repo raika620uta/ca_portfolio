@@ -220,14 +220,26 @@ const PAGE = {
                 },
                 {
                     id: "ui",
-                    title: "UI / Graphic",
+                    title: "UI / Interface",
                     items: [
                         { type: "image", src: "assets/other/ui/OTHER_UI_01.png", label: "UI_01（OTHER_UI_01.png）", caption: { title: "UI 01", body: "ダッシュボードUI" } },
                         { type: "image", src: "assets/other/ui/OTHER_UI_02.png", label: "UI_02（OTHER_UI_02.png）", caption: { title: "UI 02", body: "モバイルアプリUI" } },
                         { type: "image", src: "assets/other/ui/OTHER_UI_03.png", label: "UI_03（OTHER_UI_03.png）", caption: { title: "UI 03", body: "ランディングページ" } },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_04.png", label: "UI_04（OTHER_UI_04.png）", caption: { title: "UI 04", body: "グラフィックデザイン" } },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_05.png", label: "UI_05（OTHER_UI_05.png）", caption: { title: "UI 05", body: "インフォグラフィック" } },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_06.png", label: "UI_06（OTHER_UI_06.png）", caption: { title: "UI 06", body: "タイポグラフィ" } }
+                        { type: "image", src: "assets/other/ui/OTHER_UI_04.png", label: "UI_04（OTHER_UI_04.png）", caption: { title: "UI 04", body: "管理画面プロトタイプ" } },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_05.png", label: "UI_05（OTHER_UI_05.png）", caption: { title: "UI 05", body: "デザインシステム設計" } },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_06.png", label: "UI_06（OTHER_UI_06.png）", caption: { title: "UI 06", body: "コンポーネントライブラリ" } }
+                    ]
+                },
+                {
+                    id: "graphic",
+                    title: "Graphic Design",
+                    items: [
+                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_01.png", label: "GRAPHIC_01", caption: { title: "Graphic 01", body: "タイポグラフィポスター" } },
+                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_02.png", label: "GRAPHIC_02", caption: { title: "Graphic 02", body: "インフォグラフィック設計" } },
+                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_03.png", label: "GRAPHIC_03", caption: { title: "Graphic 03", body: "ビジュアルアイデンティティ" } },
+                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_04.png", label: "GRAPHIC_04", caption: { title: "Graphic 04", body: "ブランドブックレイアウト" } },
+                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_05.png", label: "GRAPHIC_05", caption: { title: "Graphic 05", body: "展示会キービジュアル" } },
+                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_06.png", label: "GRAPHIC_06", caption: { title: "Graphic 06", body: "広告バナー展開" } }
                     ]
                 },
                 {
