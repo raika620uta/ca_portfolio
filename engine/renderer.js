@@ -42,12 +42,6 @@
           <p class="site-header__label">AI Team向け</p>
         </div>
       </div>
-      <div class="site-header__info">
-        <p class="site-header__name">${esc(p.name)}</p>
-        <p class="site-header__affiliation">${esc(p.affiliation)}</p>
-        <p class="site-header__email">Mail: ${esc(p.email)}</p>
-        <p class="site-header__updated">Last Updated: ${updated}</p>
-      </div>
     </div>`;
   }
 
@@ -117,11 +111,15 @@
              onerror="this.style.display='none';this.parentNode.classList.add('intro__image-wrap--fallback')">
       </div>`;
     const nameHtml = s.name ? `<p class="intro__name">${esc(s.name)}</p>` : "";
+    const affHtml = s.affiliation ? `<p class="intro__affiliation">${esc(s.affiliation)}</p>` : "";
+    const emailHtml = s.email ? `<p class="intro__email">${esc(s.email)}</p>` : "";
     const copyHtml = s.copy ? `<p class="intro__copy">${esc(s.copy)}</p>` : "";
     return `<section class="profile-intro" id="${esc(s.id || "")}">
       <div class="profile-intro__inner">
         ${imgHtml}
         ${nameHtml}
+        ${affHtml}
+        ${emailHtml}
         ${copyHtml}
       </div>
     </section>`;

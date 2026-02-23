@@ -15,6 +15,8 @@ const PAGE = {
             id: "intro",
             image: "assets/common/profile.png",
             name: "外川 蓮 / TOGAWA REN",
+            affiliation: "京都精華大学 メディア表現学部 イメージ表現専攻 2年",
+            email: "raika620uta@gmail.com",
             copy: "AIと手作業を行き来しながら、最後は自分の手で整えます。"
         },
 
