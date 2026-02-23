@@ -566,9 +566,9 @@ strong {
 }
 
 .other-works__item:hover {
-    transform: scale(1.12);
-    z-index: 10;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, .25)
+    transform: scale(1.18);
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .3)
 }
 
 .other-works__image,
@@ -579,23 +579,41 @@ strong {
     display: none
 }
 
-/* ホバー時にプレースホルダーを非表示にしてcaptionを優先 */
+/* ホバー時にプレースホルダーを非表示 */
 .other-works__item:hover .media-placeholder {
     opacity: 0
 }
 
-/* キャプション：ホバーで下からふわっと表示（2段構成） */
+/* 擬似ポップアップ暗幕（::after） */
+.other-works__item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, .55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1
+}
+
+.other-works__item:hover::after {
+    opacity: 1
+}
+
+/* キャプション：暗幕の上に表示（2段構成） */
 .other-works__caption {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 10px 12px;
-    background: linear-gradient(transparent, rgba(0, 0, 0, .75));
+    padding: 14px 14px;
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(8px);
     transition: opacity 0.3s ease, transform 0.3s ease;
-    pointer-events: none
+    pointer-events: none;
+    z-index: 2
 }
 
 .other-works__item:hover .other-works__caption {
@@ -604,18 +622,18 @@ strong {
 }
 
 .other-works__caption-title {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     color: #fff;
     line-height: 1.3
 }
 
 .other-works__caption-body {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
-    color: rgba(255, 255, 255, .8);
-    margin-top: 2px;
-    line-height: 1.4
+    color: rgba(255, 255, 255, .75);
+    margin-top: 4px;
+    line-height: 1.5
 }
 
 /* --- contact --- */

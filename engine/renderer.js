@@ -640,7 +640,7 @@
         }
         if (item.type === "video") {
           return `<div class="other-works__item fade-in">
-            <video class="other-works__video" data-src="${esc(item.src)}" controls playsinline preload="metadata"${ratioStyle}></video>
+            <video class="other-works__video" data-src="${esc(item.src)}" muted loop playsinline preload="metadata"${ratioStyle}></video>
             <div class="media-placeholder media-placeholder--vertical">${esc(owPlaceholder)}</div>
             ${captionHtml}
           </div>`;
@@ -1006,6 +1006,25 @@
         });
       }, { threshold: 0.4 });
       autoVideos.forEach(v => autoObs.observe(v));
+    }
+
+    // --- Other Works 動画: 表示中だけ自動再生（muted + loop） ---
+    const owVideos = document.querySelectorAll('video.other-works__video');
+    if (owVideos.length && "IntersectionObserver" in window) {
+      const owObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          const v = e.target;
+          if (e.isIntersecting) {
+            v.muted = true; // muted念押し
+            if (!v.src && v.dataset.src) { v.src = v.dataset.src; v.load(); }
+            try { v.play().catch(function () { }); } catch (err) { /* ignore */ }
+          } else {
+            v.pause();
+            v.currentTime = 0;
+          }
+        });
+      }, { threshold: 0.6 });
+      owVideos.forEach(v => { v.muted = true; owObs.observe(v); });
     }
   }
 
