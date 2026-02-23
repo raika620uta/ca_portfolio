@@ -11,35 +11,16 @@ const PAGE = {
         /* ----- HERO ----- */
         {
             type: "hero-simple",
-            tagline: "少人数で、\n縦型動画を量産する必要がありました。",
-            paragraphs: [
-                "時間も、クレジットも限られている。\nそれでも、スクロールに耐えられる質は落とせない。",
-                "その中で、\nAIをどう使えば、再現性を持って制作を回せるのか。\nその試行錯誤をまとめています。"
-            ]
+            title: "AIガチャからの脱却。\n再現性で、クリエイティブを加速させる。",
+            subtitle: "AIの進化により、アウトプットの品質は徐々に収束していく。\nその中で差が生まれるのは「何を作るか」ではなく「どう作るか」だと考えています。\n\n本ポートフォリオでは、完成物ではなく、\n再現可能な制作プロセスとその設計に焦点を当てています。"
         },
 
-        /* ----- Context ----- */
+        /* ----- Workflow見出し + フロー図 ----- */
         {
-            type: "content",
-            id: "context",
-            title: "Context",
-            paragraphs: [
-                "現在、学生3人で縦型コンテンツの制作を行っています。",
-                "新しいアプリ内で公開される動画のため、高速スクロール環境に耐えるフックと、一定の制作本数が同時に求められます。",
-                "制作時間も限られています。クレジットも無限ではありません。",
-                "その制約の中で、AIを\"生成ツール\"としてではなく、制作工程の一部として扱えないかと考えました。"
-            ]
-        },
-
-        /* ----- 制作設計（概要テキスト） ----- */
-        {
-            type: "process-overview",
-            id: "process-design",
-            title: "再現性を支える制作設計",
-            paragraphs: [
-                "フックの検証からAI映像化、AEでの仕上げまでを、\n一貫した流れとして設計しています。",
-                "属人的な制作ではなく、同じ品質を再現できる構造を重視しています。"
-            ]
+            type: "content-bridge",
+            heading: "WORK-FLOW",
+            sub: "フック検証からAI映像化、AE仕上げまでを再現性重視で制作",
+            text: "制作物だけでなく、\"同じ品質をもう一度作れるか\" を重視しています。"
         },
 
         /* ----- 制作フロー図 ----- */
@@ -50,6 +31,14 @@ const PAGE = {
             alt: "制作フロー図"
         },
 
+        /* ----- 制作体制・使用ツール見出し + ツール図 ----- */
+        {
+            type: "content-bridge",
+            heading: "TOOLS",
+            sub: "このフローを回すための制作環境を整理",
+            text: "目的に応じて、以下の4つのツール群を使い分けています。"
+        },
+
         /* ----- 制作ツール図 ----- */
         {
             type: "wide-image",
@@ -58,22 +47,12 @@ const PAGE = {
             alt: "制作環境と使用ツール"
         },
 
-        /* ----- Workflow ----- */
+        /* ----- Cases見出し ----- */
         {
-            type: "workflow",
-            id: "workflow",
-            title: "Workflow",
-            lead: "再現性を持たせるための制作フロー",
-            intro: "AIを使えば映像は作れます。でも、それだけでは安定しません。",
-            steps: [
-                { label: "仮説設計", text: "フック・訴求の整理" },
-                { label: "構図・動線", text: "3Dで整理" },
-                { label: "AI素材生成", text: "" },
-                { label: "素材の分解・選定", text: "" },
-                { label: "AE再設計", text: "" },
-                { label: "改善ログ", text: "FAILMAP" }
-            ],
-            note: "ガチャ的な生成に頼らず、構造を持った制作を目指しています。"
+            type: "content-bridge",
+            heading: "CASES",
+            sub: "ここからは実例で、フローが機能していることを示します",
+            text: "以降はケースごとに、検証→制作→仕上げの実例を載せます。"
         },
 
         /* ----- Case 01: 就活コミュニティ（メインケース） ----- */
@@ -81,8 +60,8 @@ const PAGE = {
             type: "case-detailed",
             id: "case01",
             number: "01",
-            title: "就活コミュニティ",
-            description: "28卒向け就活コミュニティの募集動画。\n\n不安ではなく「得られるもの」にフォーカスし、ベネフィット型のフックを設計しました。",
+            title: "TikTok縦型動画 AI x AfterEffects",
+            description: "28卒向け就活コミュニティの募集動画。\n不安ではなく「得られるもの」にフォーカスし、ベネフィット型のフックを設計しました。",
 
             // 最終動画
             final: {
@@ -95,15 +74,15 @@ const PAGE = {
 
             // 制作フロー画像（最終動画の直下に表示）
             flowImage: {
-                title: "再現性を重視した制作フロー",
+                title: "以下の制作フローの中で、再現性に直結する工程をいくつかピックアップして紹介します。",
                 src: "assets/cases/case01/case01_flow.png",
                 label: "制作フロー（case01_flow.png）"
             },
 
             // フック比較
             hooks: {
-                title: "フック比較",
-                subtitle: "最初の3秒の視聴維持率を最大化するため、複数パターンを作成・比較",
+                title: "01 フック比較　　ー最初がすべて。",
+                subtitle: "TikTokは冒頭数秒のフックが視聴維持率に直結するため、複数パターンを作成し、比較・検証を行っています",
                 items: [
                     { src: "assets/cases/case01/CASE01_HOOK_01.mp4", type: "FOMO", intent: "不安を喚起し、「今やらないと損」という防衛的な動機で視聴を引き止める" },
                     { src: "assets/cases/case01/CASE01_HOOK_02.mp4", type: "UGC", intent: "共感しやすい構造で安心感を与え、前向きな動機で視聴を継続させる" },
@@ -117,28 +96,28 @@ const PAGE = {
 
             // 流れと構造を決める（カット割り決め）
             storyboard: {
-                title: "流れと構造を決める（カット割り決め）",
-                description: "構図と動線を整理し、動画の骨格を先に決める",
+                title: "02 流れと構造を決める（カット割り決め）",
+                description: "従来の「プロンプト→最終ルック生成」は結果依存で再現性が低い。\n余分な視覚情報を除いたワイヤーフレームで構造を確定。`",
                 singleImage: "assets/cases/case01/case01_cut_structure.png"
             },
 
             // 一貫性を高める（主体モデルの当て込み）
             blocking: {
-                title: "一貫性を高める（主体モデルの当て込み）",
+                title: "03 一貫性を高める（主体モデルの当て込み）",
                 description: "参照するモデル情報を固定し、カット間のズレを防ぐ",
                 singleImage: "assets/cases/case01/case01_blocking.png"
             },
 
             // 動きを成立させる（開始・終了フレーム固定）
             startframes: {
-                title: "動きを成立させる（開始・終了フレーム固定）",
+                title: "04 動きを成立させる（開始・終了フレーム固定）",
                 description: "動画の始点と終点を定義し、自然につながるようにする",
                 halfImage: "assets/cases/case01/case01_start_end.png"
             },
 
             // 広告として成立させる（AE仕上げ）
             aeTimeline: {
-                title: "広告として成立させる（AE仕上げ）",
+                title: "05 広告として成立させる（AE仕上げ）",
                 description: "テンポ・視線誘導・情報密度を調整し、視聴を維持できる形に仕上げる",
                 src: "assets/cases/case01/CASE01_AE_TIMELINE.png",
                 label: "AEタイムライン（CASE01_AE_TIMELINE.png）"
@@ -146,7 +125,7 @@ const PAGE = {
 
             // ノウハウの蓄積（FAILMAP）
             failmap: {
-                title: "ノウハウの蓄積（自作ツール:FAILMAP）",
+                title: "+@ ノウハウの蓄積（自作ツール:FAILMAP）",
                 description: "失敗・成功の要因をログ化し、次回以降の再現性を更に高める",
                 halfImage: "assets/cases/case01/case01_failmap.png"
             },
@@ -180,23 +159,30 @@ const PAGE = {
 
         /* ----- Case 03: TOYOTA 北山区（実案件＋自動化） ----- */
         {
-            type: "case-standard",
+            type: "case-detailed",
             id: "case03",
             number: "03",
             title: "TOYOTA 北山区",
-            description: "TOYOTAインターンで制作した、京都市北山区店舗のPR映像。\n\n実際に公開されているアプリ内で使用されています。学生3人で、量と質を同時に求められる環境で制作を行いました。",
+            description: "学生個人で制作。\n\nAfter Effectsでテンプレートを設計し、Remotionでテキストを自動生成することで、制作の再現性と速度を両立しました。\n\n手作業と自動化を切り分けることで、少人数でも量産可能な制作フローを構築しています。",
 
-            media: [
-                { type: "video", src: "assets/cases/case03/CASE03_FINAL.mp4", label: "最終動画（CASE03_FINAL.mp4）" },
-                { type: "image", src: "assets/cases/case03/CASE03_APP_LINK.png", label: "アプリリンク（CASE03_APP_LINK.png）" },
-                { type: "image", src: "assets/cases/case03/CASE03_REMOTION_UI.png", label: "Remotion UI（CASE03_REMOTION_UI.png）" },
-                { type: "image", src: "assets/cases/case03/CASE03_AE_TEMPLATE.png", label: "AEテンプレート（CASE03_AE_TEMPLATE.png）" },
-                { type: "image", src: "assets/cases/case03/CASE03_AUTO_CAPTION_EXAMPLE.png", label: "自動字幕例（CASE03_AUTO_CAPTION_EXAMPLE.png）" }
-            ],
+            // 最終動画
+            final: {
+                type: "video",
+                src: "assets/cases/case03/CASE03_FINAL.mp4",
+                label: "最終動画（CASE03_FINAL.mp4）",
+                ratio: "9/16"
+            },
+
+            // 制作フロー図（Remotion × AE）
+            aeTimeline: {
+                title: "制作フロー図（Remotion × AE）",
+                src: "assets/cases/case03/CASE03_REMOTION_UI.png",
+                label: "RemotionとAEの連携"
+            },
 
             details: {
-                title: "自動化の必要性",
-                content: "90本以上の動画を、学生3人で制作する必要がありました。手作業では到底間に合いません。\n\nRemotion（React + TypeScript）を使用し、データ駆動型の動画生成システムを構築。AEテンプレートと組み合わせることで、データを入力するだけで動画が生成される仕組みを作りました。\n\n自動字幕生成、タイミング調整、エクスポートまでを自動化し、制作時間を大幅に短縮しています。"
+                title: "制作アプローチ",
+                content: "After Effectsで構成・レイアウトをテンプレート化し、映像の骨格を固定。\n\nテキスト部分はRemotionで自動生成することで、修正コストと制作時間を削減しました。\n\nすべてをAI任せにするのではなく、固定する部分と変化させる部分を分けることで、再現性のある制作を実現しています。"
             }
         },
 

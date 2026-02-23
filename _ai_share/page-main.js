@@ -159,23 +159,30 @@ const PAGE = {
 
         /* ----- Case 03: TOYOTA 北山区（実案件＋自動化） ----- */
         {
-            type: "case-standard",
+            type: "case-detailed",
             id: "case03",
             number: "03",
             title: "TOYOTA 北山区",
-            description: "TOYOTAインターンで制作した、京都市北山区店舗のPR映像。\n\n実際に公開されているアプリ内で使用されています。学生3人で、量と質を同時に求められる環境で制作を行いました。",
+            description: "学生個人で制作。\n\nAfter Effectsでテンプレートを設計し、Remotionでテキストを自動生成することで、制作の再現性と速度を両立しました。\n\n手作業と自動化を切り分けることで、少人数でも量産可能な制作フローを構築しています。",
 
-            media: [
-                { type: "video", src: "assets/cases/case03/CASE03_FINAL.mp4", label: "最終動画（CASE03_FINAL.mp4）" },
-                { type: "image", src: "assets/cases/case03/CASE03_APP_LINK.png", label: "アプリリンク（CASE03_APP_LINK.png）" },
-                { type: "image", src: "assets/cases/case03/CASE03_REMOTION_UI.png", label: "Remotion UI（CASE03_REMOTION_UI.png）" },
-                { type: "image", src: "assets/cases/case03/CASE03_AE_TEMPLATE.png", label: "AEテンプレート（CASE03_AE_TEMPLATE.png）" },
-                { type: "image", src: "assets/cases/case03/CASE03_AUTO_CAPTION_EXAMPLE.png", label: "自動字幕例（CASE03_AUTO_CAPTION_EXAMPLE.png）" }
-            ],
+            // 最終動画
+            final: {
+                type: "video",
+                src: "assets/cases/case03/CASE03_FINAL.mp4",
+                label: "最終動画（CASE03_FINAL.mp4）",
+                ratio: "9/16"
+            },
+
+            // 制作フロー図（Remotion × AE）
+            aeTimeline: {
+                title: "制作フロー図（Remotion × AE）",
+                src: "assets/cases/case03/CASE03_REMOTION_UI.png",
+                label: "RemotionとAEの連携"
+            },
 
             details: {
-                title: "自動化の必要性",
-                content: "90本以上の動画を、学生3人で制作する必要がありました。手作業では到底間に合いません。\n\nRemotion（React + TypeScript）を使用し、データ駆動型の動画生成システムを構築。AEテンプレートと組み合わせることで、データを入力するだけで動画が生成される仕組みを作りました。\n\n自動字幕生成、タイミング調整、エクスポートまでを自動化し、制作時間を大幅に短縮しています。"
+                title: "制作アプローチ",
+                content: "After Effectsで構成・レイアウトをテンプレート化し、映像の骨格を固定。\n\nテキスト部分はRemotionで自動生成することで、修正コストと制作時間を削減しました。\n\nすべてをAI任せにするのではなく、固定する部分と変化させる部分を分けることで、再現性のある制作を実現しています。"
             }
         },
 
