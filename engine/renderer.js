@@ -627,20 +627,24 @@
     const introHtml = s.intro ? `<p class="other-works__intro fade-in">${nl2br(esc(s.intro))}</p>` : "";
 
     const categoriesHtml = (s.categories || []).map(cat => {
-      const itemsHtml = (cat.items || []).map(item => {
+      const itemsHtml = (cat.items || []).map((item, i) => {
         const owFileName = item.src ? item.src.split("/").pop() : "";
         const owPlaceholder = owFileName ? owFileName + " をここに配置" : (item.label || (item.type === "video" ? "VIDEO" : "IMAGE"));
         const ratioVal = item.ratio || item.aspect;
         const ratioStyle = ratioVal && ratioVal !== "auto" ? ` style="aspect-ratio:${ratioVal.replace(":", "/")}"` : "";
+        const caption = item.label || (cat.title + " " + String(i + 1).padStart(2, "0"));
+        const captionHtml = `<div class="other-works__caption">${esc(caption)}</div>`;
         if (item.type === "video") {
           return `<div class="other-works__item fade-in">
             <video class="other-works__video" data-src="${esc(item.src)}" controls playsinline preload="metadata"${ratioStyle}></video>
             <div class="media-placeholder media-placeholder--vertical">${esc(owPlaceholder)}</div>
+            ${captionHtml}
           </div>`;
         } else {
           return `<div class="other-works__item fade-in">
             <img class="other-works__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy"${ratioStyle} />
             <div class="media-placeholder">${esc(owPlaceholder)}</div>
+            ${captionHtml}
           </div>`;
         }
       }).join("");
