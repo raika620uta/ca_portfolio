@@ -1022,6 +1022,20 @@
       }, { threshold: 0.6 });
       owVideos.forEach(v => { v.muted = true; owObs.observe(v); });
     }
+
+    // --- Scene Change Reveal: 黒帯スライド演出の発火 ---
+    const revealBlocks = document.querySelectorAll('.reveal-block');
+    if (revealBlocks.length && "IntersectionObserver" in window) {
+      const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-active');
+            revealObs.unobserve(e.target); // 1回のみ実行
+          }
+        });
+      }, { threshold: 0.5 }); // 50%見えたら発火
+      revealBlocks.forEach(b => revealObs.observe(b));
+    }
   }
 
   /* --- DOMContentLoaded で実行 --- */
