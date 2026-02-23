@@ -561,14 +561,15 @@ strong {
     border-radius: 2px;
     overflow: hidden;
     aspect-ratio: 16/9;
-    transition: transform 0.35s cubic-bezier(.25, .8, .25, 1), box-shadow 0.35s ease;
+    transition: transform 0.35s cubic-bezier(.25, .8, .25, 1), box-shadow 0.35s ease, border-radius 0.3s ease;
     z-index: 0
 }
 
 .other-works__item:hover {
     transform: scale(1.18);
-    z-index: 20;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, .3)
+    border-radius: 6px;
+    z-index: 30;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22)
 }
 
 .other-works__image,
@@ -603,18 +604,19 @@ strong {
     opacity: 0.9
 }
 
-/* キャプション：暗幕の上に表示（2段構成） */
+/* キャプション：タイル左下に固定配置（暗幕の上に表示） */
 .other-works__caption {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 14px 14px;
+    padding: 12px;
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none;
-    z-index: 2
+    z-index: 2;
+    text-align: left
 }
 
 .other-works__item:hover .other-works__caption {
@@ -626,15 +628,16 @@ strong {
     font-size: 14px;
     font-weight: 700;
     color: #fff;
-    line-height: 1.3
+    line-height: 1.2;
+    margin: 0
 }
 
 .other-works__caption-body {
     font-size: 12px;
     font-weight: 400;
     color: rgba(255, 255, 255, .75);
-    margin-top: 4px;
-    line-height: 1.5
+    margin: 4px 0 0 0;
+    line-height: 1.4
 }
 
 /* --- contact --- */
