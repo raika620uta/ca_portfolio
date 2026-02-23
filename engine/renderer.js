@@ -110,6 +110,23 @@
      ============================================= */
   const renderers = {};
 
+  /* ----- profile-intro ----- */
+  renderers["profile-intro"] = function (s) {
+    const imgHtml = `<div class="intro__image-wrap">
+        <img src="${esc(s.image || "")}" alt="" class="intro__image"
+             onerror="this.style.display='none';this.parentNode.classList.add('intro__image-wrap--fallback')">
+      </div>`;
+    const nameHtml = s.name ? `<p class="intro__name">${esc(s.name)}</p>` : "";
+    const copyHtml = s.copy ? `<p class="intro__copy">${esc(s.copy)}</p>` : "";
+    return `<section class="profile-intro" id="${esc(s.id || "")}">
+      <div class="profile-intro__inner">
+        ${imgHtml}
+        ${nameHtml}
+        ${copyHtml}
+      </div>
+    </section>`;
+  };
+
   /* ----- hero-simple ----- */
   renderers["hero-simple"] = function (s) {
     let titleHtml = "";

@@ -9,6 +9,15 @@ const PAGE = {
 
     sections: [
 
+        /* ----- PROFILE INTRO ----- */
+        {
+            type: "profile-intro",
+            id: "intro",
+            image: "assets/profile.jpg",
+            name: "外川 蓮 / TOGAWA REN",
+            copy: "AIと手作業を行き来しながら、最後は自分の手で整えます。"
+        },
+
         /* ----- HERO ----- */
         {
             type: "hero-simple",
