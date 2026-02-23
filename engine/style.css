@@ -24,9 +24,10 @@
     --font-size-lg: 18px;
     --font-size-xl: 22px;
     --font-size-2xl: 28px;
-    --line-height: 1.85;
+    --line-height: 1.6;
+    --section-gap: 80px;
     --max-width: 900px;
-    --section-padding: 72px 0;
+    --section-padding: 0;
     --border-radius: 8px;
     --border-radius-lg: 12px;
     --nav-height: 44px;
@@ -88,14 +89,43 @@ button:focus-visible {
     border-radius: 3px
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.3
+}
+
+p,
+div,
+span,
+li {
+    font-weight: 400
+}
+
 strong {
-    font-weight: 600
+    font-weight: 700
+}
+
+/* --- セクション共通ラップ --- */
+.section-container {
+    max-width: var(--max-width);
+    margin: 0 auto var(--section-gap);
+    width: calc(100% - 48px);
+    position: relative
 }
 
 /* ===== Hero ===== */
 .hero-simple {
-    padding: clamp(80px, 12vw, 120px) 0;
-    text-align: center
+    padding: clamp(80px, 12vw, 120px) 0 40px;
+    text-align: center;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    width: calc(100% - 48px)
 }
 
 .hero__title {
@@ -127,20 +157,22 @@ strong {
     font-size: clamp(22px, 3.5vw, 28px);
     font-weight: 700;
     letter-spacing: -0.01em;
-    color: var(--color-text);
-    margin-bottom: 6px
+    color: var(--color-accent);
+    /* アクセントカラーで見出しを強調 */
+    margin-bottom: 8px
 }
 
 .bridge__sub {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-light);
-    margin-bottom: 16px;
-    line-height: 1.5
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 12px;
+    line-height: 1.4
 }
 
 .bridge__title {
     font-size: var(--font-size-lg);
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-text);
     margin-bottom: 8px
 }
