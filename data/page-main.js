@@ -5,6 +5,7 @@
 
 const PAGE = {
     id: "main",
+    BUILD_ID: "20260224-03",
 
     sections: [
 
@@ -142,25 +143,27 @@ const PAGE = {
         },
 
         /* ----- Case 02: マウスメーカー（AE仕上げ） ----- */
-        {
-            type: "case-standard",
-            id: "case02",
-            number: "02",
-            title: "マウスメーカー",
-            lead: "プロダクト広告を想定した、AEでのモーション再構築とエフェクト仕上げの事例です。",
-            description: "プロダクト広告を想定した映像。\n\nクロマキー背景で生成した動きをAfter Effects上で抜き、ダイナミックなモーションに再構築しています。",
-
-            media: [
-                { type: "video", src: "assets/cases/case02/CASE02_FINAL.mp4", label: "最終動画（CASE02_FINAL.mp4）", role: "final", ratio: "9/16" },
-                { type: "video", src: "assets/cases/case02/CASE02_AI_ASSET_01.mp4", label: "AI素材（CASE02_AI_ASSET_01.mp4）", role: "other" },
-                { type: "image", src: "assets/cases/case02/CASE02_AE_TIMELINE.png", label: "AEタイムライン（CASE02_AE_TIMELINE.png）", role: "timeline" }
-            ],
-
-            details: {
-                title: "制作ブレイクダウン",
-                content: "AI生成時にクロマキー背景（グリーンバック）を指定し、動きのある素材を生成。After Effectsでクロマキー合成を行い、背景を抜き出しました。\n\n抜き出した素材に対して、カメラワーク、パーティクル、グローエフェクトを追加し、ダイナミックなモーションに仕上げています。AI素材をそのまま使うのではなく、AEでの再設計が重要です。"
-            }
-        },
+        /*
+                {
+                    type: "case-standard",
+                    id: "case02",
+                    number: "02",
+                    title: "マウスメーカー",
+                    lead: "プロダクト広告を想定した、AEでのモーション再構築とエフェクト仕上げの事例です。",
+                    description: "プロダクト広告を想定した映像。\n\nクロマキー背景で生成した動きをAfter Effects上で抜き、ダイナミックなモーションに再構築しています。",
+        
+                    media: [
+                        { type: "video", src: "assets/cases/case02/CASE02_FINAL.mp4", label: "最終動画（CASE02_FINAL.mp4）", role: "final", ratio: "9/16" },
+                        { type: "video", src: "assets/cases/case02/CASE02_AI_ASSET_01.mp4", label: "AI素材（CASE02_AI_ASSET_01.mp4）", role: "other" },
+                        { type: "image", src: "assets/cases/case02/CASE02_AE_TIMELINE.png", label: "AEタイムライン（CASE02_AE_TIMELINE.png）", role: "timeline" }
+                    ],
+        
+                    details: {
+                        title: "制作ブレイクダウン",
+                        content: "AI生成時にクロマキー背景（グリーンバック）を指定し、動きのある素材を生成。After Effectsでクロマキー合成を行い、背景を抜き出しました。\n\n抜き出した素材に対して、カメラワーク,パーティクル,グローエフェクトを追加し、ダイナミックなモーションに仕上げています。AI素材をそのまま使うのではなく、AEでの再設計が重要です。"
+                    }
+                },
+        */
 
         /* ----- Case 03: TOYOTA 北山区（実案件＋自動化） ----- */
         {
@@ -209,7 +212,7 @@ const PAGE = {
                 {
                     id: "video",
                     title: "Video / Motion",
-                    policy: "テンポとグラフィックで視線を設計し、心地よく伝わる映像を追求しています。",
+                    policy: "テンポとグラフィックの気持ちよさを軸に、視覚的に心地よい映像体験を設計しています。",
                     items: [
                         { type: "video", src: "assets/other/video/OTHER_VIDEO_01.mp4", label: "VIDEO_01（OTHER_VIDEO_01.mp4）", caption: { title: "Video 01", body: "モーショングラフィックス" } },
                         { type: "video", src: "assets/other/video/OTHER_VIDEO_02.mp4", label: "VIDEO_02（OTHER_VIDEO_02.mp4）", caption: { title: "Video 02", body: "タイポグラフィ演出" } },
@@ -222,7 +225,7 @@ const PAGE = {
                 {
                     id: "ui",
                     title: "UI / Interface",
-                    policy: "ユーザーの行動を起点に、迷わせない設計と新しい体験を両立させます。",
+                    policy: "ユーザーの行動を起点に、迷わず使える構造と新しさのバランスを設計しています。",
                     items: [
                         { type: "image", src: "assets/other/ui/OTHER_UI_01.png", label: "UI_01（OTHER_UI_01.png）", caption: { title: "UI 01", body: "ダッシュボードUI" } },
                         { type: "image", src: "assets/other/ui/OTHER_UI_02.png", label: "UI_02（OTHER_UI_02.png）", caption: { title: "UI 02", body: "モバイルアプリUI" } },
@@ -235,7 +238,7 @@ const PAGE = {
                 {
                     id: "graphic",
                     title: "Graphic Design",
-                    policy: "余白と視線誘導を軸に、意図が伝わるビジュアルを設計します。",
+                    policy: "余白と視線誘導をコントロールし、情報が自然に伝わるビジュアルを意識しています。",
                     items: [
                         { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_01.png", label: "GRAPHIC_01", caption: { title: "Graphic 01", body: "タイポグラフィポスター" } },
                         { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_02.png", label: "GRAPHIC_02", caption: { title: "Graphic 02", body: "インフォグラフィック設計" } },
@@ -248,14 +251,11 @@ const PAGE = {
                 {
                     id: "system",
                     title: "Apps / Systems",
-                    policy: "使われる前提で、シンプルかつ再利用可能な設計を心がけています。",
+                    policy: "使われることを前提に、シンプルで再利用可能な構造設計を行っています。",
                     items: [
                         { type: "image", src: "assets/other/system/OTHER_SYS_01.png", label: "SYS_01（OTHER_SYS_01.png）", caption: { title: "System 01", body: "自動化ツール" } },
                         { type: "image", src: "assets/other/system/OTHER_SYS_02.png", label: "SYS_02（OTHER_SYS_02.png）", caption: { title: "System 02", body: "データ管理システム" } },
-                        { type: "image", src: "assets/other/system/OTHER_SYS_03.png", label: "SYS_03（OTHER_SYS_03.png）", caption: { title: "System 03", body: "APIインテグレーション" } },
-                        { type: "image", src: "assets/other/system/OTHER_SYS_04.png", label: "SYS_04（OTHER_SYS_04.png）", caption: { title: "System 04", body: "ワークフロー設計" } },
-                        { type: "image", src: "assets/other/system/OTHER_SYS_05.png", label: "SYS_05（OTHER_SYS_05.png）", caption: { title: "System 05", body: "プロトタイプ開発" } },
-                        { type: "image", src: "assets/other/system/OTHER_SYS_06.png", label: "SYS_06（OTHER_SYS_06.png）", caption: { title: "System 06", body: "監視ダッシュボード" } }
+                        { type: "image", src: "assets/other/system/OTHER_SYS_03.png", label: "SYS_03（OTHER_SYS_03.png）", caption: { title: "System 03", body: "APIインテグレーション" } }
                     ]
                 }
             ]

@@ -23,6 +23,7 @@
   <nav id="site-nav"></nav>
   <main id="app"></main>
   <footer id="site-footer"></footer>
+  <div id="build-badge" class="build-badge">BUILD: 20260224-03</div>
 
   <!-- キャッシュバスティング: SITE_VERSIONを使って動的にクエリパラメータを付与 -->
   <script>
@@ -31,7 +32,8 @@
       const siteScript = document.createElement('script');
       siteScript.src = 'data/site.js';
       siteScript.onload = function () {
-        const v = window.SITE && window.SITE.SITE_VERSION ? window.SITE.SITE_VERSION : 'default';
+        // v = window.SITE && window.SITE.SITE_VERSION ? window.SITE.SITE_VERSION : 'default';
+        const v = "20260224-03";
 
         // 2. CSSにバージョンパラメータを付与
         const cssLink = document.getElementById('main-css');
