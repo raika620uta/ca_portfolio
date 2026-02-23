@@ -479,6 +479,52 @@ strong {
     object-fit: cover
 }
 
+/* ===== 横並びレイアウト（Case03等） ===== */
+.case-sidebyside {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    margin-top: 24px
+}
+
+.case-sidebyside__media {
+    flex: 0 0 auto;
+    width: 280px;
+    position: relative
+}
+
+.case-sidebyside__media .case-media__video {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 9/16;
+    object-fit: cover;
+    background: #111;
+    border-radius: var(--border-radius-lg);
+    display: none
+}
+
+.case-sidebyside__text {
+    flex: 1;
+    padding-top: 8px;
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+    color: #333;
+    white-space: pre-line
+}
+
+/* ===== 横長自動再生動画 ===== */
+.wide-video-wrap {
+    position: relative;
+    margin-top: 12px
+}
+
+.wide-video {
+    width: 100%;
+    display: none;
+    border-radius: 12px;
+    background: #111
+}
+
 .case-media__label {
     position: absolute;
     bottom: 12px;

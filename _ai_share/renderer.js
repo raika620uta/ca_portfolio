@@ -345,8 +345,26 @@
 
   /* ----- case-detailed（Case 01用の詳細レンダラー） ----- */
   renderers["case-detailed"] = function (s, idx) {
-    // 最終動画
-    const finalHtml = s.final ? renderMediaItem(s.final) : "";
+    // 最終動画（side-by-side 対応）
+    let finalHtml = "";
+    if (s.final) {
+      if (s.final.layout === "side-by-side" && s.final.sideText) {
+        const fn = s.final.src ? s.final.src.split("/").pop() : "";
+        const ph = fn ? fn + " をここに配置" : "VIDEO";
+        finalHtml = `
+          <div class="case-sidebyside fade-in">
+            <div class="case-sidebyside__media">
+              <video class="case-media__video" data-src="${esc(s.final.src)}" controls playsinline preload="metadata" style="aspect-ratio:${esc(s.final.ratio || '9/16')}"></video>
+              <div class="media-placeholder media-placeholder--vertical">${esc(ph)}</div>
+            </div>
+            <div class="case-sidebyside__text">
+              <p>${nl2br(esc(s.final.sideText))}</p>
+            </div>
+          </div>`;
+      } else {
+        finalHtml = renderMediaItem(s.final);
+      }
+    }
 
     // 制作フロー画像（最終動画の直下）
     let flowImageHtml = "";
@@ -501,18 +519,32 @@
       }
     }
 
-    // AE仕上げ
+    // AE仕上げ / 制作フロー（画像 or 自動再生MP4）
     let aeTimelineHtml = "";
     if (s.aeTimeline) {
       const aeDesc = s.aeTimeline.description ? `<p class="subsection__subtitle">${esc(s.aeTimeline.description)}</p>` : "";
+      const aeFn = s.aeTimeline.src ? s.aeTimeline.src.split("/").pop() : "";
+      const aePh = aeFn ? aeFn + " をここに配置" : (s.aeTimeline.type === "video" ? "VIDEO" : "IMAGE");
+      let aeMediaHtml;
+      if (s.aeTimeline.type === "video") {
+        const ratioStyle = s.aeTimeline.ratio ? ` style="aspect-ratio:${esc(s.aeTimeline.ratio)};width:100%;object-fit:contain"` : "";
+        aeMediaHtml = `
+          <div class="wide-video-wrap">
+            <video class="wide-video" data-src="${esc(s.aeTimeline.src)}" data-autoplay-video="1" muted loop playsinline preload="metadata"${ratioStyle}></video>
+            <div class="media-placeholder" style="aspect-ratio:${esc(s.aeTimeline.ratio || '16/9')}">${esc(aePh)}</div>
+          </div>`;
+      } else {
+        aeMediaHtml = `
+          <div class="single-media">
+            <img class="single-media__image" data-src="${esc(s.aeTimeline.src)}" alt="${esc(s.aeTimeline.label || "")}" loading="lazy" />
+            <div class="media-placeholder">${esc(aePh)}</div>
+          </div>`;
+      }
       aeTimelineHtml = `
         <div class="subsection fade-in">
           <h4 class="subsection__title">${esc(s.aeTimeline.title)}</h4>
           ${aeDesc}
-          <div class="single-media">
-            <img class="single-media__image" data-src="${esc(s.aeTimeline.src)}" alt="${esc(s.aeTimeline.label || "")}" loading="lazy" />
-            <div class="media-placeholder">${esc(s.aeTimeline.label || "IMAGE")}</div>
-          </div>
+          ${aeMediaHtml}
         </div>`;
     }
 
@@ -949,11 +981,12 @@
       tryLoadImage(0);
     });
 
-    // --- フック動画: 表示中だけ再生（IntersectionObserver） ---
-    const hookVideos = document.querySelectorAll('video[data-hook-video]');
-    if (hookVideos.length && "IntersectionObserver" in window) {
-      // viewport内で60%以上見えたら再生、外れたら停止＋巻き戻し
-      const hookObs = new IntersectionObserver((entries) => {
+    // --- 自動再生動画: 表示中だけ再生（IntersectionObserver） ---
+    // data-hook-video（フック比較）と data-autoplay-video（横長MP4等）を統合
+    const autoVideos = document.querySelectorAll('video[data-hook-video], video[data-autoplay-video]');
+    if (autoVideos.length && "IntersectionObserver" in window) {
+      // viewport内で40%以上見えたら再生、外れたら停止＋巻き戻し
+      const autoObs = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           const v = e.target;
           if (e.isIntersecting) {
@@ -963,8 +996,8 @@
             v.currentTime = 0;
           }
         });
-      }, { threshold: 0.6 });
-      hookVideos.forEach(v => hookObs.observe(v));
+      }, { threshold: 0.4 });
+      autoVideos.forEach(v => autoObs.observe(v));
     }
   }
 

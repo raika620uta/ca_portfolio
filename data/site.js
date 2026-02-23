@@ -17,9 +17,9 @@ const SITE = {
 
     /* --- プロフィール --- */
     profile: {
-        name: "名前（仮）",
-        affiliation: "○○大学 ○○学部 ○年",
-        email: "example@example.com"
+        name: "外川漣　　TOGAWA REN",
+        affiliation: "京都精華大学 メディア表現学部 イメージ表現専攻 ２年生",
+        email: "raika620uta@gmail.com"
     },
 
     /* --- ナビゲーション（ページ切替） --- */

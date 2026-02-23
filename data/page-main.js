@@ -163,21 +163,26 @@ const PAGE = {
             id: "case03",
             number: "03",
             title: "TOYOTA 北山区",
-            description: "学生個人で制作。\n\nAfter Effectsでテンプレートを設計し、Remotionでテキストを自動生成することで、制作の再現性と速度を両立しました。\n\n手作業と自動化を切り分けることで、少人数でも量産可能な制作フローを構築しています。",
+            description: "",
 
-            // 最終動画
+            // 最終動画（横並びレイアウト）
             final: {
                 type: "video",
                 src: "assets/cases/case03/CASE03_FINAL.mp4",
                 label: "最終動画（CASE03_FINAL.mp4）",
-                ratio: "9/16"
+                ratio: "9/16",
+                layout: "side-by-side",
+                sideText: "学生個人で制作。\n\nAfter Effectsでテンプレートを設計し、\nRemotionでテキストを自動生成。\n\n手作業と自動化を切り分けることで、\n再現性と制作速度を両立。"
             },
 
-            // 制作フロー図（Remotion × AE）
+            // 制作フロー（横長MP4 1920x540）
             aeTimeline: {
-                title: "制作フロー図（Remotion × AE）",
-                src: "assets/cases/case03/CASE03_REMOTION_UI.png",
-                label: "RemotionとAEの連携"
+                title: "制作フロー（Remotion × AE）",
+                type: "video",
+                src: "assets/cases/case03/CASE03_REMOTION_FLOW.mp4",
+                label: "CASE03_REMOTION_FLOW.mp4",
+                autoplay: true,
+                ratio: "1920/540"
             },
 
             details: {
