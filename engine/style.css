@@ -1584,3 +1584,90 @@ strong {
     margin: 0 auto;
     border-radius: 12px
 }
+
+/* ===== 課題 → Case ヘッダー構造 ===== */
+
+/* 課題ブロック全体 */
+.case-challenge {
+    padding: 40px 0 32px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    margin-bottom: 36px;
+}
+
+/* 「課題 01」ラベル */
+.case-challenge__label {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    color: #000;
+    opacity: 0.45;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+}
+
+/* メインタイトル「限られたリソースで〜」 */
+.case-challenge__title {
+    font-size: clamp(22px, 3.5vw, 34px);
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: #111;
+    margin: 0 0 20px;
+    max-width: 640px;
+}
+
+/* 説明文 */
+.case-challenge__desc {
+    font-size: clamp(13px, 1.5vw, 15px);
+    line-height: 1.9;
+    color: #555;
+    max-width: 520px;
+    margin: 0;
+}
+
+/* Case ラベル（「Case 01」）— 課題ラベルと同トーン */
+.case-number {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    color: #000;
+    opacity: 0.45;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+/* Case サブタイトル「TikTok縦型動画〜」 */
+.case-title {
+    font-size: clamp(16px, 2.2vw, 22px);
+    font-weight: 700;
+    line-height: 1.45;
+    color: #222;
+    margin: 0 0 24px;
+}
+
+/* case-header 全体のスペース */
+.case-header {
+    padding-bottom: 0;
+    margin-bottom: 8px;
+}
+
+/* 課題ブロックが存在する場合の調整 */
+.case-challenge+.case-header {
+    padding-top: 0;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+    .case-challenge {
+        padding: 28px 0 24px;
+        margin-bottom: 24px;
+    }
+
+    .case-challenge__title {
+        font-size: 20px;
+    }
+
+    .case-challenge__desc {
+        font-size: 13px;
+    }
+}

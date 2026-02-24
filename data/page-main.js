@@ -201,9 +201,16 @@ const PAGE = {
             type: "case-detailed",
             id: "case01",
             number: "01",
-            title: "TikTok縦型動画 AI x AfterEffects",
+            title: "TikTok縦型動画（AI × AfterEffects）",
 
-            // ① 冒頭定義文（一言で状況説明）
+            // 課題→Case ヘッダー構造
+            challenge: {
+                label: "課題 01",
+                title: "限られたリソースで、広告制作を成立させる",
+                description: "コミュニティ立ち上げ初期の広報担当として、\n限られたリソースでメンバーを集める必要がありました。"
+            },
+
+            // 制作説明（Case本体の導線として使う）
             lead: "少人数で縦型広告を量産するために、\nAIとAfterEffectsを組み合わせた制作フローを構築しました。",
             description: "28卒向け就活コミュニティの募集動画。\n不安ではなく「得られるもの」にフォーカスし、ベネフィット型のフックを設計しました。",
 

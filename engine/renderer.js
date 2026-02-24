@@ -681,7 +681,16 @@
         </details>`;
     }
 
+    // 課題→Case ヘッダー生成
+    const challengeHtml = s.challenge ? `
+      <div class="case-challenge fade-in">
+        <p class="case-challenge__label">${esc(s.challenge.label)}</p>
+        <h2 class="case-challenge__title">${esc(s.challenge.title)}</h2>
+        <p class="case-challenge__desc">${nl2br(esc(s.challenge.description))}</p>
+      </div>` : "";
+
     return sectionWrap(s, idx, `
+      ${challengeHtml}
       <div class="case-header fade-in">
         <div class="case-number">Case ${esc(s.number)}</div>
         <h3 class="case-title">${esc(s.title)}</h3>
@@ -697,6 +706,7 @@
       ${failmapHtml}
       ${detailsHtml}
     `, true);
+
   };
 
   /* ----- case-standard（Case 02/03用の標準レンダラー） ----- */
