@@ -1816,18 +1816,19 @@ strong {
     position: relative;
 }
 
-.case-hero-thumb__img {
-    width: 200px;
-    max-width: 100%;
+.case-hero-thumb__img,
+.case-hero-thumb__video {
+    width: 100%;
+    max-width: 480px;
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: 8px;
-    opacity: 0.9;
     display: block;
 }
 
 .case-hero-thumb__placeholder {
-    width: 200px;
+    width: 100%;
+    max-width: 480px;
     aspect-ratio: 16 / 9;
     border-radius: 8px;
     font-size: 11px;
@@ -1841,24 +1842,13 @@ strong {
     }
 
     .case-hero-thumb__img,
+    .case-hero-thumb__video,
     .case-hero-thumb__placeholder {
-        width: 160px;
+        max-width: 100%;
     }
 }
 
-/* サムネキャプション */
+/* キャプションは非表示（削除済みだが念のため） */
 .case-hero-thumb__caption {
-    font-size: 11px;
-    color: #aaa;
-    margin: 6px 0 0;
-    line-height: 1.4;
-}
-
-/* PC (769px+) でサムネ幅を 220px に */
-@media (min-width: 769px) {
-
-    .case-hero-thumb__img,
-    .case-hero-thumb__placeholder {
-        width: 220px;
-    }
+    display: none;
 }

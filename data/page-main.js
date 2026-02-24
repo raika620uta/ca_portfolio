@@ -348,10 +348,10 @@ const PAGE = {
                     "After Effectsでテンプレートを設計し、\nRemotionでテキスト生成を半自動化。\n\"質と量\"を同時に成立させる制作フローを組みました。"
                 ],
                 thumbnail: {
-                    src: "assets/cases/case03/case03_koto_app_1920x1080.jpg",
-                    alt: "KOTOアプリ内の掲載イメージ",
-                    caption: "KOTOアプリ内の掲載イメージ"
+                    src: "assets/cases/case03/case03_koto_app_1920x1080.mp4",
+                    alt: ""
                 },
+
                 links: [
                     { label: "KOTOアプリを見る", href: "#" },
                     { label: "京都市の取り組みを見る", href: "#" }

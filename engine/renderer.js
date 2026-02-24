@@ -718,16 +718,22 @@
       const parasHtml = (s.caseHeroText.paragraphs || [])
         .map(p => `<p>${nl2br(esc(p))}</p>`).join("");
 
-      // thumbnail（テキストブロック内の補助画像）
+      // thumbnail（テキストブロック内の補助メディア / jpg=img・mp4=video自動判別）
+      const thumbSrc = s.caseHeroText.thumbnail ? s.caseHeroText.thumbnail.src : "";
+      const thumbIsVideo = thumbSrc.toLowerCase().endsWith(".mp4");
+      const thumbMediaHtml = thumbIsVideo
+        ? `<video class="case-hero-thumb__video"
+              src="${esc(thumbSrc)}"
+              autoplay muted loop playsinline
+              style="aspect-ratio:16/9"></video>`
+        : `<img class="case-hero-thumb__img"
+              src="${esc(thumbSrc)}"
+              alt="${esc(s.caseHeroText.thumbnail ? (s.caseHeroText.thumbnail.alt || "") : "")}"
+              loading="lazy" />`;
       const thumbHtml = s.caseHeroText.thumbnail
         ? `<div class="case-hero-thumb">
-            <img class="case-hero-thumb__img"
-              src="${esc(s.caseHeroText.thumbnail.src)}"
-              alt="${esc(s.caseHeroText.thumbnail.alt || "")}"
-              loading="lazy" />
-            <div class="media-placeholder case-hero-thumb__placeholder">${esc(s.caseHeroText.thumbnail.src.split("/").pop())}</div>
-            ${s.caseHeroText.thumbnail.caption
-          ? `<p class="case-hero-thumb__caption">${esc(s.caseHeroText.thumbnail.caption)}</p>` : ""}
+            ${thumbMediaHtml}
+            <div class="media-placeholder case-hero-thumb__placeholder">${esc(thumbSrc.split("/").pop())}</div>
           </div>` : "";
 
 
