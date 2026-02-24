@@ -114,7 +114,7 @@ const PAGE = {
             heading: "CASES",
             sub: "制作実例",
             lead: "AIをどう使うかで、制作の構造は大きく変わる。\n以下では、異なる2つのアプローチを実例で示す。",
-            usageImg: true
+            usageImg: "assets/cases/cases_ai_usage_1920x1080.png"
         },
 
         /* ----- Case 01: 就活コミュニティ（メインケース） ----- */

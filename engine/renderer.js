@@ -398,11 +398,20 @@
     const textHtml = s.text ? `<p class="bridge__text">${nl2br(esc(s.text))}</p>` : "";
     const leadHtml = s.lead ? `<p class="section__lead">${raw(nl2br(esc(s.lead)))}</p>` : "";
 
-    // インフォグラフィックプレースホルダー（usageImg: true のときのみ表示）
-    const usageImgHtml = s.usageImg ? `
-      <div class="cases-usage-placeholder fade-in">
-        cases_ai_usage_1920x1080.png（他機に差替予定）
-      </div>` : "";
+    // インフォグラフィック（パスが入ったら実画像、true ならプレースホルダー）
+    let usageImgHtml = "";
+    if (typeof s.usageImg === "string") {
+      usageImgHtml = `
+        <div class="cases-usage-img fade-in">
+          <img src="${esc(s.usageImg)}" alt="AIの使い方の違い" style="width:100%;max-width:1000px;border-radius:var(--border-radius-lg);display:block;margin-bottom:48px;">
+        </div>`;
+    } else if (s.usageImg) {
+      usageImgHtml = `
+        <div class="cases-usage-placeholder fade-in">
+          cases_ai_usage_1920x1080.png（差替予定）
+        </div>`;
+    }
+
 
     return `
       <section class="section-container fade-in" id="${esc(s.id || "")}">
