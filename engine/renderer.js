@@ -740,14 +740,6 @@
         ? `<a class="case-hero-url" href="${esc(s.caseHeroText.url)}" target="_blank" rel="noopener">${esc(s.caseHeroText.url)}</a>`
         : "";
 
-      // links（動画直下のテキストリンク群）
-      const linksHtml = (s.caseHeroText.links || []).length > 0
-        ? `<div class="case-hero-links">
-            ${(s.caseHeroText.links).map(lk =>
-          `<a class="case-hero-link" href="${esc(lk.href || "#")}" target="_blank" rel="noopener">${esc(lk.label)}</a>`
-        ).join("")}
-          </div>` : "";
-
       caseHeroHtml = `
         <div class="case-hero fade-in">
           <div class="case-hero-media">
@@ -755,7 +747,6 @@
               controls playsinline preload="metadata"
               style="aspect-ratio:${esc(s.final.ratio || "9/16")}"></video>
             <div class="media-placeholder media-placeholder--vertical">${esc(ph)}</div>
-            ${linksHtml}
           </div>
           <div class="case-hero-text">
             ${metaHtml}

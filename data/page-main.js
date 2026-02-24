@@ -331,7 +331,7 @@ const PAGE = {
             type: "case-detailed",
             id: "case02",
             number: "02",
-            title: "TOYOTA 北山区",
+            title: "TOYOTA × 京都市：KOTOアプリ配信コンテンツ",
 
             // 課題→Case ヘッダー構造
             challenge: {
@@ -352,12 +352,7 @@ const PAGE = {
                     alt: ""
                 },
 
-                url: "https://koto-experio.jp/event/videos",
-
-                links: [
-                    { label: "KOTOアプリを見る", href: "https://koto-experio.jp/event/videos" },
-                    { label: "京都市の取り組みを見る", href: "#" }
-                ]
+                url: "https://koto-experio.jp/event/videos"
             },
 
 

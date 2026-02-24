@@ -1788,29 +1788,7 @@ strong {
     margin: 0 0 18px;
 }
 
-/* テキストリンク群（動画直下） */
-.case-hero-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 14px;
-}
 
-.case-hero-link {
-    font-size: 13px;
-    color: #2bc8bb;
-    text-decoration: none;
-    border: 1px solid #2bc8bb;
-    border-radius: 4px;
-    padding: 5px 12px;
-    transition: background 0.18s, color 0.18s;
-    white-space: nowrap;
-}
-
-.case-hero-link:hover {
-    background: #2bc8bb;
-    color: #fff;
-}
 
 /* サムネイル補助画像（margin-top:auto で右カラムの底に固定 → 左の 9:16 動画と下辺が揃う） */
 .case-hero-thumb {
