@@ -431,21 +431,19 @@ strong {
 }
 
 .hero__subtitle {
-    font-size: clamp(15px, 2.5vw, 18px);
+    font-size: clamp(14px, 2vw, 17px);
     font-weight: 400;
     line-height: 1.8;
     color: #777;
     max-width: 600px;
-    margin: 0 0 28px;
-    /* 誤導テキストとの間 */
-    text-align: center;
+    margin: 0 0 24px;
+    text-align: left;
 }
 
-/* 補助導線テキスト（サブコピー直下・WORK-FLOW直前） */
+/* 補助導線テキスト（サブコピー直下） */
 .hero__nav-hint--bottom {
-    text-align: center;
+    text-align: left;
     margin: 0 0 80px;
-    /* WORK-FLOWとの距離 */
     padding: 0;
 }
 
