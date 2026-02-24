@@ -158,10 +158,19 @@
 
   /* ----- philosophy-bridge ----- */
   renderers["philosophy-bridge"] = function (s) {
+    const titleHtml = s.title
+      ? `<div class="bridge__title-wrap js-reveal">
+           <span class="bridge__title-line bridge__title-line--left"></span>
+           <span class="bridge__title-bar"></span>
+           <h2 class="bridge__title">${esc(s.title)}</h2>
+           <span class="bridge__title-line bridge__title-line--right"></span>
+         </div>`
+      : "";
     const leadHtml = s.lead ? `<p class="bridge__lead js-reveal">${esc(s.lead)}</p>` : "";
-    const bodyHtml = s.body ? `<p class="bridge__body js-reveal">${esc(s.body)}</p>` : "";
+    const bodyHtml = s.body ? `<p class="bridge__body js-reveal">${nl2br(esc(s.body))}</p>` : "";
     return `<section class="philosophy-bridge" id="${esc(s.id || "")}">
       <div class="container">
+        ${titleHtml}
         ${leadHtml}
         ${bodyHtml}
       </div>

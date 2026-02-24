@@ -284,13 +284,13 @@ strong {
 
 /* ===== Philosophy Bridge ===== */
 .philosophy-bridge {
-    padding: 80px 0 0;
-    margin-bottom: 120px;
-    /* Heroへ入る前の間 */
+    padding: 100px 0 80px;
+    margin-bottom: 0;
     position: relative;
+    text-align: center;
 }
 
-/* セクション上部に薄い区切り線 */
+/* セクション上部の薄い区切り線 */
 .philosophy-bridge::before {
     content: "";
     position: absolute;
@@ -301,19 +301,60 @@ strong {
     background: rgba(0, 0, 0, 0.06);
 }
 
-.bridge__lead {
-    font-size: 20px;
-    line-height: 1.9;
-    font-weight: 600;
-    color: #111;
-    margin: 0 0 16px;
+/* タイトル行（シアン縦バー ＋ 左右横ライン ＋ テキスト） */
+.bridge__title-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 48px;
 }
 
-.bridge__body {
-    font-size: 16px;
-    line-height: 1.9;
-    color: #555;
+/* 左右の横ライン */
+.bridge__title-line {
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.15);
+    max-width: 80px;
+}
+
+/* シアンの縦バー */
+.bridge__title-bar {
+    display: block;
+    width: 4px;
+    height: 20px;
+    background: var(--color-accent);
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.bridge__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+    letter-spacing: 0.06em;
     margin: 0;
+    white-space: nowrap;
+}
+
+/* クッション（共感）：やや大きめ・濃いグレー */
+.bridge__lead {
+    font-size: 18px;
+    line-height: 1.85;
+    font-weight: 500;
+    color: #222;
+    margin: 0 auto 20px;
+    max-width: 640px;
+}
+
+/* スタンス（コア）：小さめ・グレー・行間広め */
+.bridge__body {
+    font-size: 15px;
+    line-height: 2.0;
+    color: #666;
+    margin: 0 auto;
+    max-width: 580px;
 }
 
 /* ===== Reveal Animation（js-reveal / is-visible） ===== */
