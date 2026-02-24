@@ -1642,7 +1642,7 @@ strong {
     font-weight: 700;
     line-height: 1.45;
     color: #222;
-    margin: 0 0 28px;
+    margin: 0 0 32px;
 }
 
 /* case-header 全体のスペース */
@@ -1800,18 +1800,18 @@ strong {
 .case-hero-thumb__img,
 .case-hero-thumb__video {
     width: 100%;
-    max-width: 480px;
+    max-width: 520px;
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     display: block;
 }
 
 .case-hero-thumb__placeholder {
     width: 100%;
-    max-width: 480px;
+    max-width: 520px;
     aspect-ratio: 16 / 9;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     font-size: 11px;
 }
 
@@ -1835,9 +1835,22 @@ strong {
 }
 
 /* 生URL テキストリンク（16:9 動画直下・証拠表示用） */
+.case-hero-url-block {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.case-hero-url__label {
+    font-size: 10px;
+    color: #bbb;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
 .case-hero-url {
     display: block;
-    margin-top: 10px;
     font-size: 12px;
     color: #888;
     text-decoration: underline;
@@ -1845,6 +1858,7 @@ strong {
     overflow-wrap: break-word;
     line-height: 1.5;
     transition: color 0.15s;
+    margin-top: 0;
 }
 
 .case-hero-url:hover {

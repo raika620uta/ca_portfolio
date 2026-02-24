@@ -735,10 +735,14 @@
             ${thumbMediaHtml}
           </div>` : "";
 
-      // url（生URL表示リンク / 信頼性の証拠として横型動画の直下に配置）
+      // url（生URL表示リンク / 「実際の配信ページ」ラベル付き）
       const urlHtml = s.caseHeroText.url
-        ? `<a class="case-hero-url" href="${esc(s.caseHeroText.url)}" target="_blank" rel="noopener">${esc(s.caseHeroText.url)}</a>`
+        ? `<div class="case-hero-url-block">
+            <span class="case-hero-url__label">実際の配信ページ</span>
+            <a class="case-hero-url" href="${esc(s.caseHeroText.url)}" target="_blank" rel="noopener">${esc(s.caseHeroText.url)}</a>
+          </div>`
         : "";
+
 
       caseHeroHtml = `
         <div class="case-hero fade-in">

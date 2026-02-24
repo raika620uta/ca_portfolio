@@ -113,7 +113,7 @@ const PAGE = {
             id: "cases",
             heading: "CASES",
             sub: "制作実例",
-            lead: "ここからは具体的な案件を例に、フローがどのように機能し、再現性を担保しているかを示します。"
+            lead: "AIをどう使うかで、制作の構造は大きく変わる。\n以下では、異なる2つのアプローチを実例で示す。"
         },
 
         /* ----- Case 01: 就活コミュニティ（メインケース） ----- */
@@ -201,7 +201,7 @@ const PAGE = {
             type: "case-detailed",
             id: "case01",
             number: "01",
-            title: "TikTok縦型動画（AI × AfterEffects）",
+            title: "Case01｜AIで\"コンテンツ\"を作る",
 
             // 課題→Case ヘッダー構造
             challenge: {
@@ -331,7 +331,7 @@ const PAGE = {
             type: "case-detailed",
             id: "case02",
             number: "02",
-            title: "TOYOTA × 京都市：KOTOアプリ配信コンテンツ",
+            title: "Case02｜AIで\"仕組み\"を回す",
 
             // 課題→Case ヘッダー構造
             challenge: {
