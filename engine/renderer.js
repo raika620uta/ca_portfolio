@@ -398,12 +398,19 @@
     const textHtml = s.text ? `<p class="bridge__text">${nl2br(esc(s.text))}</p>` : "";
     const leadHtml = s.lead ? `<p class="section__lead">${raw(nl2br(esc(s.lead)))}</p>` : "";
 
+    // インフォグラフィックプレースホルダー（usageImg: true のときのみ表示）
+    const usageImgHtml = s.usageImg ? `
+      <div class="cases-usage-placeholder fade-in">
+        cases_ai_usage_1920x1080.png（他機に差替予定）
+      </div>` : "";
+
     return `
       <section class="section-container fade-in" id="${esc(s.id || "")}">
         ${headingHtml}
         ${subHtml}
         ${titleHtml}
         ${leadHtml}
+        ${usageImgHtml}
         ${textHtml}
       </section>`;
   };
@@ -714,9 +721,10 @@
       const leadHtml = s.caseHeroText.lead
         ? `<p class="case-hero-lead">${nl2br(esc(s.caseHeroText.lead))}</p>` : "";
 
-      // paragraphs（通常段落）
+      // paragraphs（通常段落 / 信頼済みHTMLを含む場合は raw() で出力）
       const parasHtml = (s.caseHeroText.paragraphs || [])
-        .map(p => `<p>${nl2br(esc(p))}</p>`).join("");
+        .map(p => `<p>${raw(nl2br(p))}</p>`).join("");
+
 
       // thumbnail（テキストブロック内の補助メディア / jpg=img・mp4=video自動判別）
       const thumbSrc = s.caseHeroText.thumbnail ? s.caseHeroText.thumbnail.src : "";
@@ -780,6 +788,7 @@
       ${useCaseHero ? "" : `
         <div class="case-header fade-in">
           <div class="case-number">Case ${esc(s.number)}</div>
+          ${s.aiLabel ? `<p class="case-ai-label">${esc(s.aiLabel)}</p>` : ""}
           <h3 class="case-title">${esc(s.title)}</h3>
         </div>
         ${s.description ? `<p class="case-description fade-in">${nl2br(esc(s.description))}</p>` : ""}
@@ -1032,13 +1041,15 @@
   function sectionWrap(s, idx, innerHtml, isWhite) {
     const bgClass = (isWhite || idx % 2 === 1) ? " section--white" : "";
     const numHtml = s.number ? `<p class="section__number">${esc(s.number)}</p>` : "";
+    const aiLabelHtml = s.aiLabel ? `<p class="case-ai-label">${esc(s.aiLabel)}</p>` : "";
     const titleHtml = s.title ? `<h2 class="section__title section-heading underline--major">${esc(s.title)}</h2>` : "";
     const leadHtml = s.lead ? `<p class="section__lead">${raw(nl2br(esc(s.lead)))}</p>` : "";
 
     return `<section class="section-container fade-in ${bgClass}" id="${s.id || ""}">
-      ${numHtml}${titleHtml}${leadHtml}${innerHtml}
+      ${numHtml}${aiLabelHtml}${titleHtml}${leadHtml}${innerHtml}
     </section>`;
   }
+
 
   /* =============================================
      メインレンダリング
