@@ -282,6 +282,53 @@ strong {
 }
 
 
+/* ===== Philosophy Bridge ===== */
+.philosophy-bridge {
+    padding: 80px 0 0;
+    margin-bottom: 120px;
+    /* Heroへ入る前の間 */
+    position: relative;
+}
+
+/* セクション上部に薄い区切り線 */
+.philosophy-bridge::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.bridge__lead {
+    font-size: 20px;
+    line-height: 1.9;
+    font-weight: 600;
+    color: #111;
+    margin: 0 0 16px;
+}
+
+.bridge__body {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #555;
+    margin: 0;
+}
+
+/* ===== Reveal Animation（js-reveal / is-visible） ===== */
+.js-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform;
+}
+
+.js-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* ===== Hero ===== */
 .hero-simple {
     padding: clamp(80px, 15vw, 180px) 0 80px;

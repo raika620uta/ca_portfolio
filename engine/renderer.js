@@ -143,6 +143,18 @@
     </section>`;
   };
 
+  /* ----- philosophy-bridge ----- */
+  renderers["philosophy-bridge"] = function (s) {
+    const leadHtml = s.lead ? `<p class="bridge__lead js-reveal">${esc(s.lead)}</p>` : "";
+    const bodyHtml = s.body ? `<p class="bridge__body js-reveal">${esc(s.body)}</p>` : "";
+    return `<section class="philosophy-bridge" id="${esc(s.id || "")}">
+      <div class="container">
+        ${leadHtml}
+        ${bodyHtml}
+      </div>
+    </section>`;
+  };
+
   /* ----- hero-simple ----- */
   renderers["hero-simple"] = function (s) {
     let titleHtml = "";
@@ -1199,6 +1211,23 @@
       }, true);
     });
   }
+
+
+  /* ----- Reveal Animation（.js-reveal） ----- */
+  function initReveal() {
+    document.querySelectorAll(".js-reveal").forEach(function (el) {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            el.classList.add("is-visible");
+            obs.unobserve(el);
+          }
+        });
+      }, { threshold: 0.25 });
+      obs.observe(el);
+    });
+  }
+  initReveal();
 
 })();
 

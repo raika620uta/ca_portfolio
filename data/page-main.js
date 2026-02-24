@@ -44,6 +44,14 @@ const PAGE = {
             ]
         },
 
+        /* ----- PHILOSOPHY BRIDGE ----- */
+        {
+            type: "philosophy-bridge",
+            id: "bridge",
+            lead: "AIを使った制作は、当たり外れが大きいと感じています。",
+            body: "だからこそ、手順として回せる形に落とし込み、安定して仕上げまで持っていきます。"
+        },
+
         /* ----- HERO ----- */
         {
             type: "hero-simple",
