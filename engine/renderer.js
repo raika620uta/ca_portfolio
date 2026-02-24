@@ -52,10 +52,23 @@
     const navEl = document.getElementById("site-nav");
     if (!navEl) return;
 
-    // セクション内ナビ（idを持つセクションのみ）
-    const sectionLinks = sections
-      .filter(s => s.id && s.type !== "hero-simple" && s.type !== "contact")
-      .map(s => `<a class="site-nav__link" href="#${esc(s.id)}">${esc(s.title || s.id)}</a>`)
+
+    // 固定ナビマップ（ID ↔ 表示房)
+    var NAV_ITEMS = [
+      { label: "イントロ", id: "intro" },
+      { label: "スタンス", id: "hero" },
+      { label: "ワークフロー", id: "workflow" },
+      { label: "プロセス", id: "process-diagram" },
+      { label: "事例", id: "cases" },
+      { label: "縦型動画制作", id: "case01" },
+      { label: "自動化事例", id: "case03" },
+      { label: "これまでの制作", id: "other-works" }
+    ];
+
+    var sectionLinks = NAV_ITEMS
+      .map(function (item) {
+        return `<a class="site-nav__link" href="#${item.id}" data-nav-id="${item.id}">${item.label}</a>`;
+      })
       .join("");
 
     navEl.className = "site-nav";
@@ -157,6 +170,8 @@
 
   /* ----- hero-simple ----- */
   renderers["hero-simple"] = function (s) {
+    // 導線テキスト（アウトプットへの補助動線）
+    var hintHtml = `<p class="hero__nav-hint"><a href="#other-works" class="hero__nav-hint-link">アウトプットを先に見たい方は、画面右上の「これまでの制作」からご覧いただけます。</a></p>`;
     let titleHtml = "";
     if (s.title) {
       if (Array.isArray(s.title)) {
@@ -167,6 +182,7 @@
     }
     const subtitleHtml = s.subtitle ? `<p class="hero__subtitle">${nl2br(esc(s.subtitle))}</p>` : "";
     return `<section class="hero-simple fade-in" id="${s.id || ""}">
+      ${hintHtml}
       ${titleHtml}
       ${subtitleHtml}
     </section>`;
@@ -1228,6 +1244,30 @@
     });
   }
   initReveal();
+
+  /* ----- アクティブナビハイライト ----- */
+  function initActiveNav() {
+    var navLinks = document.querySelectorAll('.site-nav__link[data-nav-id]');
+    if (!navLinks.length) return;
+
+    var sectionIds = Array.from(navLinks).map(function (a) { return a.dataset.navId; });
+
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          navLinks.forEach(function (a) {
+            a.classList.toggle('is-active', a.dataset.navId === entry.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '-10% 0px -70% 0px' });
+
+    sectionIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+  }
+  initActiveNav();
 
 })();
 
