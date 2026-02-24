@@ -681,7 +681,17 @@
         </details>`;
     }
 
-    // 課題→Case ヘッダー生成
+    /* -------------------------------------------------------
+       旧レイアウト（V1バックアップ）
+       新レイアウト（caseHeroText あり）に切り替えた場合、
+       case03等 caseHeroText なし のケースは旧レイアウトを維持。
+
+       旧return順：
+         challengeHtml / case-header / case-description /
+         finalHtml / flowImageHtml / ...
+       ------------------------------------------------------- */
+
+    // 課題→Case ヘッダー生成（旧：セクション頭の challenge ブロック）
     const challengeHtml = s.challenge ? `
       <div class="case-challenge fade-in">
         <p class="case-challenge__label">${esc(s.challenge.label)}</p>
@@ -689,14 +699,54 @@
         <p class="case-challenge__desc">${nl2br(esc(s.challenge.description))}</p>
       </div>` : "";
 
+    // case-hero レイアウト（caseHeroText がある場合 = 新レイアウト）
+    const useCaseHero = !!(s.caseHeroText && s.final);
+    let caseHeroHtml = "";
+    if (useCaseHero) {
+      const fn = s.final.src ? s.final.src.split("/").pop() : "";
+      const ph = fn ? fn + " をここに配置" : "VIDEO";
+      const metaHtml = s.caseHeroText.meta
+        ? `<p class="case-meta">${esc(s.caseHeroText.meta)}</p>` : "";
+      const parasHtml = (s.caseHeroText.paragraphs || [])
+        .map(p => `<p>${nl2br(esc(p))}</p>`).join("");
+      caseHeroHtml = `
+        <div class="case-hero fade-in">
+          <div class="case-hero-media">
+            <video class="case-media__video" data-src="${esc(s.final.src)}"
+              controls playsinline preload="metadata"
+              style="aspect-ratio:${esc(s.final.ratio || "9/16")}"></video>
+            <div class="media-placeholder media-placeholder--vertical">${esc(ph)}</div>
+          </div>
+          <div class="case-hero-text">
+            ${metaHtml}
+            ${parasHtml}
+          </div>
+        </div>`;
+    }
+
+    // 課題ブロック（新レイアウト時のみ：動画の下に移動）
+    const caseProblemHtml = (useCaseHero && s.challenge) ? `
+      <div class="case-problem fade-in">
+        <h3 class="case-problem__label">${esc(s.challenge.label)}</h3>
+        <h2 class="case-problem__title">${esc(s.challenge.title)}</h2>
+        <p class="case-problem__desc">${nl2br(esc(s.challenge.description))}</p>
+      </div>` : "";
+
+    // 下誘導矢印（課題直下）
+    const caseArrowHtml = (useCaseHero && s.challenge) ? `<div class="case-arrow">▼</div>` : "";
+
     return sectionWrap(s, idx, `
-      ${challengeHtml}
-      <div class="case-header fade-in">
-        <div class="case-number">Case ${esc(s.number)}</div>
-        <h3 class="case-title">${esc(s.title)}</h3>
-      </div>
-      <p class="case-description fade-in">${nl2br(esc(s.description))}</p>
-      ${finalHtml}
+      ${useCaseHero ? caseHeroHtml : challengeHtml}
+      ${useCaseHero ? "" : `
+        <div class="case-header fade-in">
+          <div class="case-number">Case ${esc(s.number)}</div>
+          <h3 class="case-title">${esc(s.title)}</h3>
+        </div>
+        ${s.description ? `<p class="case-description fade-in">${nl2br(esc(s.description))}</p>` : ""}
+        ${finalHtml}
+      `}
+      ${useCaseHero ? caseProblemHtml : ""}
+      ${useCaseHero ? caseArrowHtml : ""}
       ${flowImageHtml}
       ${hooksHtml}
       ${storyboardHtml}
@@ -708,6 +758,7 @@
     `, true);
 
   };
+
 
   /* ----- case-standard（Case 02/03用の標準レンダラー） ----- */
   renderers["case-standard"] = function (s, idx) {

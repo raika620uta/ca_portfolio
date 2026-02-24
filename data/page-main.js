@@ -210,19 +210,26 @@ const PAGE = {
                 description: "コミュニティ立ち上げ初期の広報担当として、\n限られたリソースでメンバーを集める必要がありました。"
             },
 
+            // メインビジュアル（case-hero）右テキスト
+            caseHeroText: {
+                meta: "28卒向け就活コミュニティの募集動画",
+                paragraphs: [
+                    "広報担当1人の体制で、\n短期間に複数パターンの広告制作が必要でした。",
+                    "AIとAfterEffectsを組み合わせ、\n少人数でも成立する制作フローを構築しています。"
+                ]
+            },
+
             // 制作説明（Case本体の導線として使う）
             lead: "少人数で縦型広告を量産するために、\nAIとAfterEffectsを組み合わせた制作フローを構築しました。",
             description: "28卒向け就活コミュニティの募集動画。\n不安ではなく「得られるもの」にフォーカスし、ベネフィット型のフックを設計しました。",
 
-            // 最終動画（④ Before/After ラベルを data として追加）
+            // 最終動画
             final: {
                 type: "video",
                 src: "assets/cases/case01/CASE01_FINAL.mp4",
                 label: "最終動画（CASE01_FINAL.mp4）",
                 role: "final",
-                ratio: "9/16",
-                beforeAfterLabel: "Before / After",
-                beforeAfterNote: "テンポと構図を調整し、視聴維持率を改善"
+                ratio: "9/16"
             },
 
             // ② フロー図にラベル追加
