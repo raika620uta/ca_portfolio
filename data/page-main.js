@@ -330,28 +330,37 @@ const PAGE = {
         {
             type: "case-detailed",
             id: "case03",
-            number: "03",
+            number: "02",
             title: "TOYOTA 北山区",
 
             // 課題→Case ヘッダー構造
             challenge: {
-                label: "03",
+                label: "02",
                 title: "半自動化による制作フロー設計",
                 description: "30店舗×3本、計90本の動画制作を、\n学生3人で分担する必要がありました。\n\n各店舗ごとに撮影・編集・字幕を最適化すると、\n手作業では到底間に合わない状況でした。"
+            },
+
+            // メインビジュアル（case-hero）右テキスト（Case01と同構造）
+            caseHeroText: {
+                meta: "TOYOTA 北山区 / 学生個人制作の実案件",
+                paragraphs: [
+                    "After Effectsでテンプレートを設計し、\nRemotionでテキストを自動生成。",
+                    "手作業と自動化を切り分けることで、\n再現性と制作速度を両立しています。"
+                ]
             },
 
             lead: "Remotionによる自動化とAEのテンプレート設計を組み合わせ、制作速度を追求した事例です。",
             description: "",
 
-            // 最終動画（横並びレイアウト）
+            // 最終動画（caseHeroText あり → case-hero 内で出力）
             final: {
                 type: "video",
                 src: "assets/cases/case03/CASE03_FINAL.mp4",
                 label: "最終動画（CASE03_FINAL.mp4）",
-                ratio: "9/16",
-                layout: "side-by-side",
-                sideText: "学生個人で制作。\n\nAfter Effectsでテンプレートを設計し、\nRemotionでテキストを自動生成。\n\n手作業と自動化を切り分けることで、\n再現性と制作速度を両立。"
+                ratio: "9/16"
+                /* 旧: layout:"side-by-side", sideText:"学生個人で制作。...再現性と制作速度を両立。" */
             },
+
 
             // 制作フロー（横長MP4 1920x540）
             aeTimeline: {
