@@ -59,7 +59,7 @@ const PAGE = {
                     weight: "strong"
                 },
                 {
-                    text: "AIの本質は品質ではなく、\n再現性あるプロセスにあると考えています。",
+                    text: "AI生成の本質はクオリティではなく、\n再現性あるプロセスにあると考えています。",
                     weight: "thought"
                 }
             ]
@@ -117,6 +117,12 @@ const PAGE = {
         },
 
         /* ----- Case 01: 就活コミュニティ（メインケース） ----- */
+
+        /* =====================================================
+           CASE01_V1_BACKUP  ←  元に戻す場合は下のコメントを解除し、
+           V2 ブロック（CASE01_V2_TEST）をコメントアウトしてください。
+           ===================================================== */
+        /*
         {
             type: "case-detailed",
             id: "case01",
@@ -124,8 +130,6 @@ const PAGE = {
             title: "TikTok縦型動画 AI x AfterEffects",
             lead: "少人数で縦型広告を量産する必要があった。\n就活コミュニティの募集動画。AIによる素材生成とAEによる広告設計を組み合わせた事例です。",
             description: "28卒向け就活コミュニティの募集動画。\n不安ではなく「得られるもの」にフォーカスし、ベネフィット型のフックを設計しました。",
-
-            // 最終動画
             final: {
                 type: "video",
                 src: "assets/cases/case01/CASE01_FINAL.mp4",
@@ -133,15 +137,11 @@ const PAGE = {
                 role: "final",
                 ratio: "9/16"
             },
-
-            // 制作フロー画像（最終動画の直下に表示）
             flowImage: {
                 title: "以下の制作フローの中で、再現性に直結する工程をいくつかピックアップして紹介します。",
                 src: "assets/cases/case01/case01_flow.png",
                 label: "制作フロー（case01_flow.png）"
             },
-
-            // フック比較
             hooks: {
                 title: "01 フック比較　　ー最初がすべて。",
                 purpose: "視聴維持率を最大化するための最適な導入パターンを検証",
@@ -156,32 +156,118 @@ const PAGE = {
                 decision: "UGCを採用",
                 reason: "運営メンバーにも見てもらい複数パターンを検証した結果、前向きな共感で視聴を維持できるUGC形式を採用"
             },
-
-            // 流れと構造を決める（カット割り決め）
             storyboard: {
                 title: "02 流れと構造を決める（カット割り決め）",
                 purpose: "生成の不確実性を排除し、再現可能な構造へ分解",
                 description: "従来の「プロンプト→最終ルック生成」は結果依存で再現性が低い。\n余分な視覚情報を除いたワイヤーフレームで構造を確定。`",
                 singleImage: "assets/cases/case01/case01_cut_structure.png"
             },
-
-            // 一貫性を高める（主体モデルの当て込み）
             blocking: {
                 title: "03 一貫性を高める（主体モデルの当て込み）",
                 purpose: "カット間の人物ブレを防ぎ、一貫性を担保",
                 description: "参照するモデル情報を固定し、カット間のズレを防ぐ",
                 singleImage: "assets/cases/case01/case01_blocking.png"
             },
-
-            // 動きを成立させる（開始・終了フレーム固定）
             startframes: {
                 title: "04 動きを成立させる（開始・終了フレーム固定）",
                 purpose: "動きの破綻を防ぎ、自然な連続性を生成",
                 description: "動画の始点と終点を定義し、自然につながるようにする",
                 halfImage: "assets/cases/case01/case01_start_end.png"
             },
+            aeTimeline: {
+                title: "05 広告として成立させる（AE仕上げ）",
+                purpose: "AI素材を視線誘導・情報整理・テンポ設計により広告品質へ変換",
+                description: "テンポ・視線誘導・情報密度を調整し、視聴を維持できる形に仕上げる",
+                src: "assets/cases/case01/CASE01_AE_TIMELINE.png",
+                label: "AEタイムライン（CASE01_AE_TIMELINE.png）"
+            },
+            failmap: {
+                title: "+@ ノウハウの蓄積（自作ツール:FAILMAP）",
+                description: "失敗・成功の要因をログ化し、次回以降の再現性を更に高める",
+                halfImage: "assets/cases/case01/case01_failmap.png"
+            },
+            details: {
+                title: "詳細プロセスノート",
+                content: "フック設計では、5つのパターンを比較検証しました。FOMO型は不安を刺激しますが、ネガティブな印象を与える可能性があります。UGC型は実際の利用者の声を前面に出すことで、信頼性と親近感を両立できると判断しました。\n\n構図設計では、3Dブロッキングで動線を事前に整理し、AI生成時の偶然性を減らしています。スタートフレームを明確に定義することで、生成結果の一貫性を高めました。\n\nAE仕上げでは、AI素材をそのまま使うのではなく、タイミング調整、色補正、モーショングラフィックスの追加を行い、完成度を高めています。"
+            }
+        },
+        */
 
-            // 広告として成立させる（AE仕上げ）
+        /* =====================================================
+           CASE01_V2_TEST  ←  テスト版。元に戻す場合はここをコメントアウトし、
+           上の V1_BACKUP を解除してください。
+           ===================================================== */
+        {
+            type: "case-detailed",
+            id: "case01",
+            number: "01",
+            title: "TikTok縦型動画 AI x AfterEffects",
+
+            // ① 冒頭定義文（一言で状況説明）
+            lead: "少人数で縦型広告を量産するために、\nAIとAfterEffectsを組み合わせた制作フローを構築しました。",
+            description: "28卒向け就活コミュニティの募集動画。\n不安ではなく「得られるもの」にフォーカスし、ベネフィット型のフックを設計しました。",
+
+            // 最終動画（④ Before/After ラベルを data として追加）
+            final: {
+                type: "video",
+                src: "assets/cases/case01/CASE01_FINAL.mp4",
+                label: "最終動画（CASE01_FINAL.mp4）",
+                role: "final",
+                ratio: "9/16",
+                beforeAfterLabel: "Before / After",
+                beforeAfterNote: "テンポと構図を調整し、視聴維持率を改善"
+            },
+
+            // ② フロー図にラベル追加
+            flowImage: {
+                title: "制作フロー全体",
+                src: "assets/cases/case01/case01_flow.png",
+                label: "制作フロー（case01_flow.png）"
+            },
+
+            // ③ 各工程を1行ラベル化（長文 → 1行 note に圧縮）
+            processSteps: [
+                { label: "フック検証", note: "複数のフックを制作し、反応の差を検証" },
+                { label: "プロンプト設計", note: "構図・人物・動きを分解し、再現可能な形で設計" },
+                { label: "AI生成", note: "条件を固定し、安定したアウトプットを生成" },
+                { label: "AE仕上げ", note: "視線誘導とテンポを再設計し、広告として成立させる" }
+            ],
+
+            // ⑤ フック比較にラベル変更
+            hooks: {
+                title: "フック比較（5パターン）",
+                purpose: "視聴維持率を最大化するための最適な導入パターンを検証",
+                subtitle: "TikTokは冒頭数秒のフックが視聴維持率に直結するため、複数パターンを作成し、比較・検証を行っています",
+                items: [
+                    { src: "assets/cases/case01/CASE01_HOOK_01.mp4", type: "FOMO", intent: "不安を喚起し、「今やらないと損」という防衛的な動機で視聴を引き止める" },
+                    { src: "assets/cases/case01/CASE01_HOOK_02.mp4", type: "UGC", intent: "共感しやすい構造で安心感を与え、前向きな動機で視聴を継続させる" },
+                    { src: "assets/cases/case01/CASE01_HOOK_03.mp4", type: "スクロール阻害", intent: "視聴者の状況を再現し、メタ的な違和感でスクロールを止める" },
+                    { src: "assets/cases/case01/CASE01_HOOK_04.mp4", type: "AI違和感", intent: "あえて非現実的な世界観から始め、違和感によって注意を引く" },
+                    { src: "assets/cases/case01/CASE01_HOOK_05.mp4", type: "男性＋データ提示", intent: "性別差による印象変化と、具体的な数値で信頼性を補強する" }
+                ],
+                decision: "UGCを採用",
+                reason: "運営メンバーにも見てもらい複数パターンを検証した結果、前向きな共感で視聴を維持できるUGC形式を採用"
+            },
+
+            // 既存工程（description を1行に圧縮）
+            storyboard: {
+                title: "02 流れと構造を決める（カット割り決め）",
+                purpose: "生成の不確実性を排除し、再現可能な構造へ分解",
+                description: "ワイヤーフレームで構造を確定し、偶然性を排除する",
+                singleImage: "assets/cases/case01/case01_cut_structure.png"
+            },
+            blocking: {
+                title: "03 一貫性を高める（主体モデルの当て込み）",
+                purpose: "カット間の人物ブレを防ぎ、一貫性を担保",
+                description: "参照するモデル情報を固定し、カット間のズレを防ぐ",
+                singleImage: "assets/cases/case01/case01_blocking.png"
+            },
+            startframes: {
+                title: "04 動きを成立させる（開始・終了フレーム固定）",
+                purpose: "動きの破綻を防ぎ、自然な連続性を生成",
+                description: "動画の始点と終点を定義し、自然につながるようにする",
+                halfImage: "assets/cases/case01/case01_start_end.png"
+            },
             aeTimeline: {
                 title: "05 広告として成立させる（AE仕上げ）",
                 purpose: "AI素材を視線誘導・情報整理・テンポ設計により広告品質へ変換",
@@ -190,14 +276,13 @@ const PAGE = {
                 label: "AEタイムライン（CASE01_AE_TIMELINE.png）"
             },
 
-            // ノウハウの蓄積（FAILMAP）
+            // ⑥ FAILMAP に1行説明追加
             failmap: {
                 title: "+@ ノウハウの蓄積（自作ツール:FAILMAP）",
-                description: "失敗・成功の要因をログ化し、次回以降の再現性を更に高める",
+                description: "失敗パターンを蓄積し、再現性を高める",
                 halfImage: "assets/cases/case01/case01_failmap.png"
             },
 
-            // 詳細ドロップダウン
             details: {
                 title: "詳細プロセスノート",
                 content: "フック設計では、5つのパターンを比較検証しました。FOMO型は不安を刺激しますが、ネガティブな印象を与える可能性があります。UGC型は実際の利用者の声を前面に出すことで、信頼性と親近感を両立できると判断しました。\n\n構図設計では、3Dブロッキングで動線を事前に整理し、AI生成時の偶然性を減らしています。スタートフレームを明確に定義することで、生成結果の一貫性を高めました。\n\nAE仕上げでは、AI素材をそのまま使うのではなく、タイミング調整、色補正、モーショングラフィックスの追加を行い、完成度を高めています。"
