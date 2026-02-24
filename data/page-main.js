@@ -325,6 +325,14 @@ const PAGE = {
             id: "case03",
             number: "03",
             title: "TOYOTA 北山区",
+
+            // 課題→Case ヘッダー構造
+            challenge: {
+                label: "03",
+                title: "半自動化による制作フロー設計",
+                description: "30店舗×3本、計90本の動画制作を、\n学生3人で分担する必要がありました。\n\n各店舗ごとに撮影・編集・字幕を最適化すると、\n手作業では到底間に合わない状況でした。"
+            },
+
             lead: "Remotionによる自動化とAEのテンプレート設計を組み合わせ、制作速度を追求した事例です。",
             description: "",
 
