@@ -909,7 +909,7 @@ strong {
 .wide-video {
     width: 100%;
     display: none;
-    border-radius: 12px;
+    border-radius: var(--border-radius-lg);
     background: #111
 }
 
@@ -1545,7 +1545,7 @@ strong {
     width: 100%;
     max-height: 540px;
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     display: none
 }
 
@@ -1582,7 +1582,7 @@ strong {
     max-width: 960px;
     display: block;
     margin: 0 auto;
-    border-radius: 12px
+    border-radius: var(--border-radius-lg)
 }
 
 /* ===== 課題 → Case ヘッダー構造 ===== */
@@ -1642,7 +1642,7 @@ strong {
     font-weight: 700;
     line-height: 1.45;
     color: #222;
-    margin: 0 0 24px;
+    margin: 0 0 28px;
 }
 
 /* case-header 全体のスペース */
@@ -1839,13 +1839,15 @@ strong {
     display: block;
     margin-top: 10px;
     font-size: 12px;
-    color: #999;
+    color: #888;
     text-decoration: underline;
     word-break: break-all;
+    overflow-wrap: break-word;
     line-height: 1.5;
     transition: color 0.15s;
 }
 
 .case-hero-url:hover {
-    color: #2bc8bb;
+    color: var(--color-accent);
+    text-decoration: underline;
 }

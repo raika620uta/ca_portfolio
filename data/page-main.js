@@ -219,9 +219,9 @@ const PAGE = {
                 ]
             },
 
-            // 制作説明（Case本体の導線として使う）
-            lead: "少人数で縦型広告を量産するために、\nAIとAfterEffectsを組み合わせた制作フローを構築しました。",
-            description: "28卒向け就活コミュニティの募集動画。\n不安ではなく「得られるもの」にフォーカスし、ベネフィット型のフックを設計しました。",
+            // 制作説明（旧レイアウト用 description のみ維持）
+            description: "28卒向け就活コミュニティの募集動画。\n不安ではなく\"得られるもの\"にフォーカスし、ベネフィット型のフックを設計しました。",
+
 
             // 最終動画
             final: {
@@ -355,10 +355,6 @@ const PAGE = {
                 url: "https://koto-experio.jp/event/videos"
             },
 
-
-
-            lead: "Remotionによる自動化とAEのテンプレート設計を組み合わせ、制作速度を追求した事例です。",
-            description: "",
 
             // 最終動画（caseHeroText あり → case-hero 内で出力）
             final: {
