@@ -371,12 +371,15 @@ strong {
     line-height: 1.8;
 }
 
-/* ③ 思想（余韻） */
+/* ③ 思想（余韻）：太字 + シアンアンダーライン */
 .bridge__block--thought {
     font-size: 15px;
-    font-weight: 400;
-    color: #666;
+    font-weight: 600;
+    color: #444;
     line-height: 2.0;
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 4px;
+    display: inline-block;
 }
 
 /* ===== Reveal Animation（js-reveal / is-visible） ===== */
