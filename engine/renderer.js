@@ -141,6 +141,12 @@
           </div>`).join("")}</div>`
       : "";
 
+    // 自己紹介末尾の案内リンク
+    var jumpHtml = `<p class="intro__jump">
+      <a class="intro__jump-link" href="#other-works">これまでの制作：</a>
+      <span class="intro__jump-note">（画面下までスクロールします）</span>
+    </p>`;
+
     return `<section class="profile-intro" id="${esc(s.id || "")}">
       <div class="container">
         <div class="profile-intro__top">
@@ -151,6 +157,7 @@
         <div class="profile-intro__text">
           ${headlineHtml}
           ${itemsHtml}
+          ${jumpHtml}
         </div>
       </div>
     </section>`;
@@ -190,12 +197,9 @@
       }
     }
     const subtitleHtml = s.subtitle ? `<p class="hero__subtitle">${nl2br(esc(s.subtitle))}</p>` : "";
-    // ナビ誤導テキスト（サブコピー直下・ WORK-FLOW直前）
-    var hintHtml = `<p class="hero__nav-hint hero__nav-hint--bottom"><a href="#other-works" class="hero__nav-hint-link">アウトプットを先に見たい方は、画面右上の「これまでの制作」からご覧いただけます。</a></p>`;
     return `<section class="hero-simple fade-in" id="${s.id || ""}">
       ${titleHtml}
       ${subtitleHtml}
-      ${hintHtml}
     </section>`;
   };
 
