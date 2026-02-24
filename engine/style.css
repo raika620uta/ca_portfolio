@@ -1845,3 +1845,20 @@ strong {
         width: 160px;
     }
 }
+
+/* サムネキャプション */
+.case-hero-thumb__caption {
+    font-size: 11px;
+    color: #aaa;
+    margin: 6px 0 0;
+    line-height: 1.4;
+}
+
+/* PC (769px+) でサムネ幅を 220px に */
+@media (min-width: 769px) {
+
+    .case-hero-thumb__img,
+    .case-hero-thumb__placeholder {
+        width: 220px;
+    }
+}

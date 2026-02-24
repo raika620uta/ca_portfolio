@@ -326,10 +326,10 @@ const PAGE = {
                 },
         */
 
-        /* ----- Case 03: TOYOTA 北山区（実案件＋自動化） ----- */
+        /* ----- Case 02: TOYOTA 北山区（実案件＋自動化） ----- */
         {
             type: "case-detailed",
-            id: "case03",
+            id: "case02",
             number: "02",
             title: "TOYOTA 北山区",
 
@@ -337,25 +337,27 @@ const PAGE = {
             challenge: {
                 label: "02",
                 title: "半自動化による制作フロー設計",
-                description: "30店舗×3本、計90本の動画制作を、\n学生3人で分担する必要がありました。\n\n各店舗ごとに撮影・編集・字幕を最適化すると、\n手作業では成立しない規模です。\n\nそこで、\n手作業と自動化を切り分ける設計により、\n再現性と制作速度を両立しました。"
+                description: "30店舗×3本＝計90本の縦型動画を、学生3人で分担。\n店舗ごとに撮影・編集・字幕最適化が必要で、\n手作業だけでは破綻する規模でした。\n\n「固定する部分（AEテンプレ）」と「変える部分（テキスト）」を分離し、\nRemotionで更新コストを下げることで対応しました。"
             },
 
             // メインビジュアル（case-hero）右テキスト
             caseHeroText: {
-                meta: "TOYOTA × 京都市プロジェクト",
-                lead: "実際のアプリ（KOTO）内で配信される\n縦型コンテンツを制作。",
+                meta: "TOYOTA × 京都市プロジェクト（KOTO）",
+                lead: "実際のアプリ（KOTO）内で配信される\n縦型コンテンツを学生チームで制作。",
                 paragraphs: [
-                    "After Effectsのテンプレート設計と、\nRemotionによる自動化を組み合わせ、\n制作フローを構築しています。"
+                    "After Effectsでテンプレートを設計し、\nRemotionでテキスト生成を半自動化。\n\"質と量\"を同時に成立させる制作フローを組みました。"
                 ],
                 thumbnail: {
-                    src: "assets/cases/case03/case03_thumb.jpg",
-                    alt: "KOTO アプリ配信サムネイル"
+                    src: "assets/cases/case03/case03_koto_app_1920x1080.jpg",
+                    alt: "KOTOアプリ内の掲載イメージ",
+                    caption: "KOTOアプリ内の掲載イメージ"
                 },
                 links: [
                     { label: "KOTOアプリを見る", href: "#" },
                     { label: "京都市の取り組みを見る", href: "#" }
                 ]
             },
+
 
             lead: "Remotionによる自動化とAEのテンプレート設計を組み合わせ、制作速度を追求した事例です。",
             description: "",

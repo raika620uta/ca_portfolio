@@ -61,7 +61,7 @@
       { label: "プロセス", id: "process-diagram" },
       { label: "事例", id: "cases" },
       { label: "縦型動画制作", id: "case01" },
-      { label: "自動化事例", id: "case03" },
+      { label: "自動化事例", id: "case02" },
       { label: "これまでの制作", id: "other-works" }
     ];
 
@@ -726,7 +726,10 @@
               alt="${esc(s.caseHeroText.thumbnail.alt || "")}"
               loading="lazy" />
             <div class="media-placeholder case-hero-thumb__placeholder">${esc(s.caseHeroText.thumbnail.src.split("/").pop())}</div>
+            ${s.caseHeroText.thumbnail.caption
+          ? `<p class="case-hero-thumb__caption">${esc(s.caseHeroText.thumbnail.caption)}</p>` : ""}
           </div>` : "";
+
 
       // links（動画直下のテキストリンク群）
       const linksHtml = (s.caseHeroText.links || []).length > 0
