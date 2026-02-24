@@ -129,14 +129,16 @@
       : "";
 
     return `<section class="profile-intro" id="${esc(s.id || "")}">
-      <div class="profile-intro__top">
-        ${imgHtml}
-        ${nameHtml}
-        ${affHtml}
-      </div>
-      <div class="profile-intro__text">
-        ${headlineHtml}
-        ${itemsHtml}
+      <div class="container">
+        <div class="profile-intro__top">
+          ${imgHtml}
+          ${nameHtml}
+          ${affHtml}
+        </div>
+        <div class="profile-intro__text">
+          ${headlineHtml}
+          ${itemsHtml}
+        </div>
       </div>
     </section>`;
   };

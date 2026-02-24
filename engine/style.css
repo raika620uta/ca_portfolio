@@ -218,11 +218,9 @@ strong {
     margin: 0;
 }
 
-/* テキストブロック：左揃え・中央配置 */
+/* テキストブロック：containerに委ねる */
 .profile-intro__text {
-    max-width: 560px;
-    margin: 0 auto;
-    padding: 0 24px;
+    width: 100%;
 }
 
 /* headline（2行） */
@@ -270,10 +268,10 @@ strong {
     font-size: 13px;
     font-weight: 400;
     color: #777;
-    line-height: 1.75;
+    line-height: 1.8;
     margin: 0;
-    max-width: 52ch;
-    /* 1行の長さを制限して折り返しを読みやすく */
+    min-width: 0;
+    /* grid内でのはみ出し防止 */
 }
 
 
