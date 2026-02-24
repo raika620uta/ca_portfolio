@@ -436,13 +436,17 @@ strong {
     line-height: 1.8;
     color: #777;
     max-width: 600px;
-    margin: 0;
+    margin: 0 0 28px;
+    /* 誤導テキストとの間 */
+    text-align: center;
 }
 
-/* 補助導線テキスト（Hero上部） */
-.hero__nav-hint {
-    margin: 0 0 16px;
-    padding-top: 24px;
+/* 補助導線テキスト（サブコピー直下・WORK-FLOW直前） */
+.hero__nav-hint--bottom {
+    text-align: center;
+    margin: 0 0 80px;
+    /* WORK-FLOWとの距離 */
+    padding: 0;
 }
 
 .hero__nav-hint-link {

@@ -181,8 +181,6 @@
 
   /* ----- hero-simple ----- */
   renderers["hero-simple"] = function (s) {
-    // 導線テキスト（アウトプットへの補助動線）
-    var hintHtml = `<p class="hero__nav-hint"><a href="#other-works" class="hero__nav-hint-link">アウトプットを先に見たい方は、画面右上の「これまでの制作」からご覧いただけます。</a></p>`;
     let titleHtml = "";
     if (s.title) {
       if (Array.isArray(s.title)) {
@@ -192,10 +190,12 @@
       }
     }
     const subtitleHtml = s.subtitle ? `<p class="hero__subtitle">${nl2br(esc(s.subtitle))}</p>` : "";
+    // ナビ誤導テキスト（サブコピー直下・ WORK-FLOW直前）
+    var hintHtml = `<p class="hero__nav-hint hero__nav-hint--bottom"><a href="#other-works" class="hero__nav-hint-link">アウトプットを先に見たい方は、画面右上の「これまでの制作」からご覧いただけます。</a></p>`;
     return `<section class="hero-simple fade-in" id="${s.id || ""}">
-      ${hintHtml}
       ${titleHtml}
       ${subtitleHtml}
+      ${hintHtml}
     </section>`;
   };
 

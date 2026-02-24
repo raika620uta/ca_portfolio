@@ -70,7 +70,7 @@ const PAGE = {
             type: "hero-simple",
             id: "hero",
             title: ["AIガチャからの脱却。", "クリエイティブの流れの中に、AIを組み込む。"],
-            subtitle: "再現性のある制作フローへ"
+            subtitle: "偶然ではなく、再現できる制作へ。"
         },
 
         /* ----- Workflow見出し + フロー図 ----- */
