@@ -170,32 +170,273 @@ strong {
     opacity: 0.85;
 }
 
+/* ===== Profile Intro ===== */
+.profile-intro {
+    padding: 100px 0 120px;
+    /* Ⅵ 下余白を少し広げる */
+}
+
+/* 上部：画像 + 名前（中央寄せ） */
+.profile-intro__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 56px;
+}
+
+.intro__image-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #D8D8D8;
+}
+
+.intro__image-wrap--fallback {
+    background: #D8D8D8;
+}
+
+.intro__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.intro__name {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: #333;
+    margin: 0;
+}
+
+.intro__affiliation {
+    font-size: 11px;
+    color: #aaa;
+    letter-spacing: 0.03em;
+    margin: 0;
+}
+
+/* テキストブロック：containerに委ねる */
+.profile-intro__text {
+    width: 100%;
+}
+
+/* headline（2行） */
+.intro__headline {
+    margin-bottom: 40px;
+    /* Ⅰ itemsとの距離を少し詳める */
+    text-align: center;
+    /* Ⅰ 中央揃え */
+}
+
+.intro__headline-line {
+    display: block;
+    font-size: clamp(18px, 2.5vw, 22px);
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    color: #111;
+}
+
+/* items 一覧 */
+.intro__items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Ⅳ 各行ブロックの縦リズム */
+}
+
+.intro__item {
+    display: grid;
+    grid-template-columns: 10em 1fr;
+    /* 左カラム固定 / 全項目が縦で揃う */
+    gap: 0 16px;
+    align-items: baseline;
+}
+
+/* トピック名（— できること）：シアン系アクセント */
+.intro__item-title {
+    font-size: 11px;
+    font-weight: 600;
+    /* Ⅱ 少し強調 */
+    color: #5ba3a0;
+    letter-spacing: 0.05em;
+    /* Ⅱ 読みやすさ向上 */
+    margin: 0;
+    white-space: nowrap;
+    padding-top: 2px;
+}
+
+/* 本文：読みやすさ優先 */
+.intro__item-body {
+    font-size: 13px;
+    font-weight: 400;
+    color: #777;
+    line-height: 1.6;
+    /* Ⅲ 間廷び感を解消 */
+    margin: 0;
+    min-width: 0;
+}
+
+
+/* ===== Philosophy Bridge ===== */
+.philosophy-bridge {
+    padding: 100px 0 80px;
+    margin-bottom: 0;
+    position: relative;
+    text-align: center;
+}
+
+/* セクション上部の薄い区切り線 */
+.philosophy-bridge::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.06);
+}
+
+/* タイトル行（シアン縦バー ＋ 左右横ライン ＋ テキスト） */
+.bridge__title-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 48px;
+}
+
+/* 左右の横ライン */
+.bridge__title-line {
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.15);
+    max-width: 80px;
+}
+
+/* シアンの縦バー */
+.bridge__title-bar {
+    display: block;
+    width: 4px;
+    height: 20px;
+    background: var(--color-accent);
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.bridge__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+    letter-spacing: 0.06em;
+    margin: 0;
+    white-space: nowrap;
+}
+
+/* クッション（共感）：やや大きめ・濃いグレー */
+.bridge__lead {
+    font-size: 18px;
+    line-height: 1.85;
+    font-weight: 500;
+    color: #222;
+    margin: 0 auto 20px;
+    max-width: 640px;
+}
+
+/* スタンス（コア）：小さめ・グレー・行間広め */
+.bridge__body {
+    font-size: 15px;
+    line-height: 2.0;
+    color: #666;
+    margin: 0 auto;
+    max-width: 580px;
+}
+
+/* ===== Reveal Animation（js-reveal / is-visible） ===== */
+.js-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform;
+}
+
+.js-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* ===== Hero ===== */
 .hero-simple {
-    padding: clamp(80px, 12vw, 120px) 0 40px;
-    text-align: center;
+    padding: clamp(80px, 15vw, 180px) 0 80px;
+    text-align: left;
     max-width: var(--max-width);
     margin: 0 auto;
-    width: calc(100% - 48px)
+    width: calc(100% - 48px);
+    overflow: visible;
 }
 
 .hero__title {
-    font-size: clamp(28px, 5vw, 48px);
-    font-weight: 700;
-    line-height: 1.15;
+    font-size: clamp(48px, 8vw, 88px);
+    font-weight: 900;
+    line-height: 1.05;
     letter-spacing: -0.02em;
-    color: var(--color-text);
-    max-width: 900px;
-    margin: 0 auto 32px
+    color: #000;
+    margin: 0 0 48px;
+
+    /* 画面左端まで引き伸ばし */
+    margin-left: calc(50% - 50vw + 24px);
+    /* 24pxは微調整用 */
+    padding-left: 0;
+    width: 100vw;
+    max-width: 1100px;
+
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.hero-line {
+    display: block;
+    font-weight: 900;
+    /* 強制的に極太を維持 */
 }
 
 .hero__subtitle {
-    font-size: clamp(14px, 2vw, 18px);
+    font-size: clamp(15px, 2.5vw, 18px);
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.8;
+    color: #777;
+    max-width: 600px;
+    margin: 0;
+}
+
+/* 補助導線テキスト（Hero上部） */
+.hero__nav-hint {
+    margin: 0 0 16px;
+    padding-top: 24px;
+}
+
+.hero__nav-hint-link {
+    font-size: 12px;
+    color: #aaa;
+    font-weight: 400;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+}
+
+.hero__nav-hint-link:hover {
     color: #666;
-    max-width: 700px;
-    margin: 0 auto
+}
+
+/* ナビアクティブハイライト */
+.site-nav__link.is-active {
+    color: var(--color-accent);
+    font-weight: 500;
 }
 
 /* ===== Content Bridge ===== */
@@ -1025,8 +1266,6 @@ strong {
 .subsection__subtitle {
     font-size: var(--font-size-sm);
     color: var(--color-text-sub);
-    font-weight: 400;
-    margin-top: 4px;
     line-height: 1.6
 }
 
@@ -1095,23 +1334,26 @@ strong {
     width: 100%
 }
 
-/* ===== �P�ꃁ�f�B�A ===== */
+/* ===== 1枚メディア ===== */
 .single-media {
-    max-width: 800px;
+    max-width: 100%;
+    width: 100%;
     margin: 16px 0;
     position: relative;
     background: var(--color-card-bg);
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-lg);
     overflow: hidden
 }
 
 .single-media__image {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
     display: none
 }
 
-/* ===== �T�u�Z�N�V���� ===== */
+/* ===== TuZNV ===== */
 .subsection {
     margin-top: 48px
 }
@@ -1182,22 +1424,19 @@ strong {
 .other-works__category-title {
     font-size: var(--font-size-lg);
     font-weight: 600;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     color: #111 !important
 }
 
 .other-works__category-policy {
-    font-size: var(--font-size-base);
+    font-size: 14px;
     font-weight: 400;
-    color: #333;
-    line-height: 1.8;
-    margin: 0 0 24px;
-    max-width: 500px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    transition-delay: 0.1s;
-    /* ラインの後にふわっと出す */
+    color: #777;
+    line-height: 1.7;
+    margin: 4px 0 24px;
+    max-width: 600px;
+    display: block !important;
+    opacity: 1 !important;
 }
 
 /* 親要素が view されたら表示 */
@@ -1205,6 +1444,23 @@ strong {
 .other-works__category.fade-in.is-inview .other-works__category-policy {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* BUILD Badge (Debug) */
+.build-badge {
+    position: fixed;
+    bottom: 4px;
+    right: 4px;
+    font-size: 10px;
+    font-family: monospace;
+    color: #888;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: 1px solid #ddd;
+    z-index: 9999;
+    pointer-events: none;
+    line-height: 1;
 }
 
 .other-works__video {

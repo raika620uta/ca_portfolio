@@ -42,12 +42,6 @@
           <p class="site-header__label">AI Team向け</p>
         </div>
       </div>
-      <div class="site-header__info">
-        <p class="site-header__name">${esc(p.name)}</p>
-        <p class="site-header__affiliation">${esc(p.affiliation)}</p>
-        <p class="site-header__email">Mail: ${esc(p.email)}</p>
-        <p class="site-header__updated">Last Updated: ${updated}</p>
-      </div>
     </div>`;
   }
 
@@ -58,10 +52,23 @@
     const navEl = document.getElementById("site-nav");
     if (!navEl) return;
 
-    // セクション内ナビ（idを持つセクションのみ）
-    const sectionLinks = sections
-      .filter(s => s.id && s.type !== "hero-simple" && s.type !== "contact")
-      .map(s => `<a class="site-nav__link" href="#${esc(s.id)}">${esc(s.title || s.id)}</a>`)
+
+    // 固定ナビマップ（ID ↔ 表示房)
+    var NAV_ITEMS = [
+      { label: "イントロ", id: "intro" },
+      { label: "スタンス", id: "hero" },
+      { label: "ワークフロー", id: "workflow" },
+      { label: "プロセス", id: "process-diagram" },
+      { label: "事例", id: "cases" },
+      { label: "縦型動画制作", id: "case01" },
+      { label: "自動化事例", id: "case03" },
+      { label: "これまでの制作", id: "other-works" }
+    ];
+
+    var sectionLinks = NAV_ITEMS
+      .map(function (item) {
+        return `<a class="site-nav__link" href="#${item.id}" data-nav-id="${item.id}">${item.label}</a>`;
+      })
       .join("");
 
     navEl.className = "site-nav";
@@ -110,11 +117,81 @@
      ============================================= */
   const renderers = {};
 
+  /* ----- profile-intro ----- */
+  renderers["profile-intro"] = function (s) {
+    // 上部：画像 + 名前（中央寄せ）
+    const imgHtml = `<div class="intro__image-wrap">
+        <img src="${esc(s.image || "")}" alt="" class="intro__image"
+             onerror="this.style.display='none';this.parentNode.classList.add('intro__image-wrap--fallback')">
+      </div>`;
+    const nameHtml = s.name ? `<p class="intro__name">${esc(s.name)}</p>` : "";
+    const affHtml = s.affiliation ? `<p class="intro__affiliation">${esc(s.affiliation)}</p>` : "";
+
+    // headline（2行、左揃えブロック）
+    const headlineHtml = (s.headline && s.headline.length)
+      ? `<div class="intro__headline">${s.headline.map(l => `<span class="intro__headline-line">${esc(l)}</span>`).join("")}</div>`
+      : "";
+
+    // items ループ
+    const itemsHtml = (s.items && s.items.length)
+      ? `<div class="intro__items">${s.items.map(it => `
+          <div class="intro__item">
+            <p class="intro__item-title">— ${esc(it.title)}</p>
+            <p class="intro__item-body">${nl2br(esc(it.body))}</p>
+          </div>`).join("")}</div>`
+      : "";
+
+    return `<section class="profile-intro" id="${esc(s.id || "")}">
+      <div class="container">
+        <div class="profile-intro__top">
+          ${imgHtml}
+          ${nameHtml}
+          ${affHtml}
+        </div>
+        <div class="profile-intro__text">
+          ${headlineHtml}
+          ${itemsHtml}
+        </div>
+      </div>
+    </section>`;
+  };
+
+  /* ----- philosophy-bridge ----- */
+  renderers["philosophy-bridge"] = function (s) {
+    const titleHtml = s.title
+      ? `<div class="bridge__title-wrap js-reveal">
+           <span class="bridge__title-line bridge__title-line--left"></span>
+           <span class="bridge__title-bar"></span>
+           <h2 class="bridge__title">${esc(s.title)}</h2>
+           <span class="bridge__title-line bridge__title-line--right"></span>
+         </div>`
+      : "";
+    const leadHtml = s.lead ? `<p class="bridge__lead js-reveal">${esc(s.lead)}</p>` : "";
+    const bodyHtml = s.body ? `<p class="bridge__body js-reveal">${nl2br(esc(s.body))}</p>` : "";
+    return `<section class="philosophy-bridge" id="${esc(s.id || "")}">
+      <div class="container">
+        ${titleHtml}
+        ${leadHtml}
+        ${bodyHtml}
+      </div>
+    </section>`;
+  };
+
   /* ----- hero-simple ----- */
   renderers["hero-simple"] = function (s) {
-    const titleHtml = s.title ? `<h1 class="hero__title">${nl2br(esc(s.title))}</h1>` : "";
+    // 導線テキスト（アウトプットへの補助動線）
+    var hintHtml = `<p class="hero__nav-hint"><a href="#other-works" class="hero__nav-hint-link">アウトプットを先に見たい方は、画面右上の「これまでの制作」からご覧いただけます。</a></p>`;
+    let titleHtml = "";
+    if (s.title) {
+      if (Array.isArray(s.title)) {
+        titleHtml = `<h1 class="hero__title">${s.title.map(line => `<span class="hero-line">${esc(line)}</span>`).join("")}</h1>`;
+      } else {
+        titleHtml = `<h1 class="hero__title">${nl2br(esc(s.title))}</h1>`;
+      }
+    }
     const subtitleHtml = s.subtitle ? `<p class="hero__subtitle">${nl2br(esc(s.subtitle))}</p>` : "";
     return `<section class="hero-simple fade-in" id="${s.id || ""}">
+      ${hintHtml}
       ${titleHtml}
       ${subtitleHtml}
     </section>`;
@@ -405,11 +482,13 @@
           <p class="hook-decision__reason">${esc(s.hooks.reason)}</p>
         </div>` : "";
 
+      const purposeHtml = s.hooks.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.hooks.purpose)}</p>` : "";
       const subtitleHtml = s.hooks.subtitle ? `<p class="subsection__subtitle">${esc(s.hooks.subtitle)}</p>` : "";
 
       hooksHtml = `
         <div class="subsection fade-in">
           <h4 class="subsection__title">${esc(s.hooks.title)}</h4>
+          ${purposeHtml}
           ${subtitleHtml}
           <div class="hooks-grid">${hookTilesHtml}</div>
           ${decisionHtml}
@@ -422,10 +501,12 @@
       if (s.storyboard.singleImage) {
         const fn = s.storyboard.singleImage.split("/").pop();
         const ph = fn ? fn + " をここに配置" : "IMAGE";
+        const purposeHtml = s.storyboard.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.storyboard.purpose)}</p>` : "";
         const desc = s.storyboard.description ? `<p class="subsection__subtitle">${esc(s.storyboard.description)}</p>` : "";
         storyboardHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.storyboard.title)}</h4>
+            ${purposeHtml}
             ${desc}
             <div class="single-media">
               <img class="single-media__image" data-src="${esc(s.storyboard.singleImage)}" alt="${esc(s.storyboard.title)}" loading="lazy" style="aspect-ratio:16/9;object-fit:contain" />
@@ -438,9 +519,11 @@
             <img class="gallery-item__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy" />
             <div class="media-placeholder">${esc(item.label || "IMAGE")}</div>
           </div>`).join("");
+        const purposeHtml = s.storyboard.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.storyboard.purpose)}</p>` : "";
         storyboardHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.storyboard.title)}</h4>
+            ${purposeHtml}
             <div class="horizontal-scroll hscroll">${itemsHtml}</div>
           </div>`;
       }
@@ -452,10 +535,12 @@
       if (s.blocking.singleImage) {
         const fn = s.blocking.singleImage.split("/").pop();
         const ph = fn ? fn + " をここに配置" : "IMAGE";
+        const purposeHtml = s.blocking.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.blocking.purpose)}</p>` : "";
         const desc = s.blocking.description ? `<p class="subsection__subtitle">${esc(s.blocking.description)}</p>` : "";
         blockingHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.blocking.title)}</h4>
+            ${purposeHtml}
             ${desc}
             <div class="single-media">
               <img class="single-media__image" data-src="${esc(s.blocking.singleImage)}" alt="${esc(s.blocking.title)}" loading="lazy" style="aspect-ratio:16/9;object-fit:contain" />
@@ -468,9 +553,11 @@
             <img class="gallery-item__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy" />
             <div class="media-placeholder">${esc(item.label || "IMAGE")}</div>
           </div>`).join("");
+        const purposeHtml = s.blocking.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.blocking.purpose)}</p>` : "";
         blockingHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.blocking.title)}</h4>
+            ${purposeHtml}
             <div class="gallery-grid">${itemsHtml}</div>
           </div>`;
       }
@@ -483,9 +570,11 @@
       if (s.startframes.halfImage) {
         const fn = s.startframes.halfImage.split("/").pop();
         const ph = fn ? fn + " をここに配置" : "IMAGE";
+        const purposeHtml = s.startframes.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.startframes.purpose)}</p>` : "";
         startframesHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.startframes.title)}</h4>
+            ${purposeHtml}
             ${sfDesc}
             <div class="half-media">
               <img class="half-media__img" data-src="${esc(s.startframes.halfImage)}" alt="${esc(s.startframes.title)}" loading="lazy" />
@@ -495,9 +584,11 @@
       } else if (s.startframes.singleImage) {
         const fn = s.startframes.singleImage.split("/").pop();
         const ph = fn ? fn + " をここに配置" : "IMAGE";
+        const purposeHtml = s.startframes.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.startframes.purpose)}</p>` : "";
         startframesHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.startframes.title)}</h4>
+            ${purposeHtml}
             ${sfDesc}
             <div class="single-media">
               <img class="single-media__image" data-src="${esc(s.startframes.singleImage)}" alt="${esc(s.startframes.title)}" loading="lazy" style="aspect-ratio:16/9;object-fit:contain" />
@@ -510,9 +601,11 @@
             <img class="gallery-item__image" data-src="${esc(item.src)}" alt="${esc(item.label || "")}" loading="lazy" />
             <div class="media-placeholder">${esc(item.label || "IMAGE")}</div>
           </div>`).join("");
+        const purposeHtml = s.startframes.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.startframes.purpose)}</p>` : "";
         startframesHtml = `
           <div class="subsection fade-in">
             <h4 class="subsection__title">${esc(s.startframes.title)}</h4>
+            ${purposeHtml}
             <div class="gallery-grid">${itemsHtml}</div>
           </div>`;
       }
@@ -530,18 +623,21 @@
         aeMediaHtml = `
           <div class="wide-video-wrap">
             <video class="wide-video" data-src="${esc(s.aeTimeline.src)}" data-autoplay-video="1" muted loop playsinline preload="metadata"${ratioStyle}></video>
-            <div class="media-placeholder" style="aspect-ratio:${esc(s.aeTimeline.ratio || '16/9')}">${esc(aePh)}</div>
+            <div class="media-placeholder" style="aspect-ratio:${esc(s.aeTimeline.ratio || '1920/540')}">${esc(aePh)}</div>
           </div>`;
       } else {
+        const ratioStyle = ` style="aspect-ratio: 1920/540; width: 100%; object-fit: contain;"`;
         aeMediaHtml = `
-          <div class="single-media">
+          <div class="single-media" ${ratioStyle}>
             <img class="single-media__image" data-src="${esc(s.aeTimeline.src)}" alt="${esc(s.aeTimeline.label || "")}" loading="lazy" />
             <div class="media-placeholder">${esc(aePh)}</div>
           </div>`;
       }
+      const purposeHtml = s.aeTimeline.purpose ? `<p class="subsection__purpose"><strong>目的：</strong>${esc(s.aeTimeline.purpose)}</p>` : "";
       aeTimelineHtml = `
         <div class="subsection fade-in">
           <h4 class="subsection__title">${esc(s.aeTimeline.title)}</h4>
+          ${purposeHtml}
           ${aeDesc}
           ${aeMediaHtml}
         </div>`;
@@ -1140,6 +1236,47 @@
       }, true);
     });
   }
+
+
+  /* ----- Reveal Animation（.js-reveal） ----- */
+  function initReveal() {
+    document.querySelectorAll(".js-reveal").forEach(function (el) {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            el.classList.add("is-visible");
+            obs.unobserve(el);
+          }
+        });
+      }, { threshold: 0.25 });
+      obs.observe(el);
+    });
+  }
+  initReveal();
+
+  /* ----- アクティブナビハイライト ----- */
+  function initActiveNav() {
+    var navLinks = document.querySelectorAll('.site-nav__link[data-nav-id]');
+    if (!navLinks.length) return;
+
+    var sectionIds = Array.from(navLinks).map(function (a) { return a.dataset.navId; });
+
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          navLinks.forEach(function (a) {
+            a.classList.toggle('is-active', a.dataset.navId === entry.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '-10% 0px -70% 0px' });
+
+    sectionIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+  }
+  initActiveNav();
 
 })();
 
