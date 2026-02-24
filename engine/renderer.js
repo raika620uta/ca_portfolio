@@ -733,8 +733,8 @@
       const thumbHtml = s.caseHeroText.thumbnail
         ? `<div class="case-hero-thumb">
             ${thumbMediaHtml}
-            <div class="media-placeholder case-hero-thumb__placeholder">${esc(thumbSrc.split("/").pop())}</div>
           </div>` : "";
+
 
 
       // links（動画直下のテキストリンク群）

@@ -1677,7 +1677,7 @@ strong {
     display: grid;
     grid-template-columns: 5fr 6fr;
     gap: 48px;
-    align-items: start;
+    align-items: stretch;
     margin: 40px 0 56px;
     padding: 48px 0;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
@@ -1694,6 +1694,8 @@ strong {
     font-size: 14px;
     line-height: 1.85;
     color: #555;
+    display: flex;
+    flex-direction: column;
 }
 
 .case-hero-text p {
@@ -1810,9 +1812,10 @@ strong {
     color: #fff;
 }
 
-/* サムネイル補助画像 */
+/* サムネイル補助画像（margin-top:auto で右カラムの底に固定 → 左の 9:16 動画と下辺が揃う） */
 .case-hero-thumb {
-    margin-top: 20px;
+    margin-top: auto;
+    padding-top: 20px;
     position: relative;
 }
 
