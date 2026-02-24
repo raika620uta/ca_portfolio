@@ -113,7 +113,8 @@ const PAGE = {
             id: "cases",
             heading: "CASES",
             sub: "制作実例",
-            lead: "AIをどう使うかで、制作の構造は大きく変わる。\n以下では、異なる2つのアプローチを実例で示す。"
+            lead: "AIをどう使うかで、制作の構造は大きく変わる。\n以下では、異なる2つのアプローチを実例で示す。",
+            usageImg: true
         },
 
         /* ----- Case 01: 就活コミュニティ（メインケース） ----- */
@@ -201,7 +202,8 @@ const PAGE = {
             type: "case-detailed",
             id: "case01",
             number: "01",
-            title: "Case01｜AIで\"コンテンツ\"を作る",
+            title: "TikTok縦型動画（AI × After Effects）",
+            aiLabel: "Case01｜AIで\"コンテンツ\"を作る",
 
             // 課題→Case ヘッダー構造
             challenge: {
@@ -331,7 +333,8 @@ const PAGE = {
             type: "case-detailed",
             id: "case02",
             number: "02",
-            title: "Case02｜AIで\"仕組み\"を回す",
+            title: "TOYOTA × 京都市：KOTOアプリ配信コンテンツ",
+            aiLabel: "Case02｜AIで\"仕組み\"を回す",
 
             // 課題→Case ヘッダー構造
             challenge: {
@@ -345,7 +348,7 @@ const PAGE = {
                 meta: "TOYOTA × 京都市プロジェクト（KOTO）",
                 lead: "実際のアプリ（KOTO）内で配信される\n縦型コンテンツを学生チームで制作。",
                 paragraphs: [
-                    "After Effectsでテンプレートを設計し、\nRemotionでテキスト生成を半自動化。\n\"質と量\"を同時に成立させる制作フローを組みました。"
+                    "After Effectsでテンプレートを設計し、<strong>Remotion</strong>でテキスト生成を半自動化。\n<strong>質と量</strong>を同時に成立させる制作フローを組みました。"
                 ],
                 thumbnail: {
                     src: "assets/cases/case03/case03_koto_app_1920x1080.mp4",
