@@ -337,15 +337,23 @@ const PAGE = {
             challenge: {
                 label: "02",
                 title: "半自動化による制作フロー設計",
-                description: "30店舗×3本、計90本の動画制作を、\n学生3人で分担する必要がありました。\n\n各店舗ごとに撮影・編集・字幕を最適化すると、\n手作業では到底間に合わない状況でした。"
+                description: "30店舗×3本、計90本の動画制作を、\n学生3人で分担する必要がありました。\n\n各店舗ごとに撮影・編集・字幕を最適化すると、\n手作業では成立しない規模です。\n\nそこで、\n手作業と自動化を切り分ける設計により、\n再現性と制作速度を両立しました。"
             },
 
-            // メインビジュアル（case-hero）右テキスト（Case01と同構造）
+            // メインビジュアル（case-hero）右テキスト
             caseHeroText: {
-                meta: "TOYOTA 北山区 / 学生個人制作の実案件",
+                meta: "TOYOTA × 京都市プロジェクト",
+                lead: "実際のアプリ（KOTO）内で配信される\n縦型コンテンツを制作。",
                 paragraphs: [
-                    "After Effectsでテンプレートを設計し、\nRemotionでテキストを自動生成。",
-                    "手作業と自動化を切り分けることで、\n再現性と制作速度を両立しています。"
+                    "After Effectsのテンプレート設計と、\nRemotionによる自動化を組み合わせ、\n制作フローを構築しています。"
+                ],
+                thumbnail: {
+                    src: "assets/cases/case03/case03_thumb.jpg",
+                    alt: "KOTO アプリ配信サムネイル"
+                },
+                links: [
+                    { label: "KOTOアプリを見る", href: "#" },
+                    { label: "京都市の取り組みを見る", href: "#" }
                 ]
             },
 

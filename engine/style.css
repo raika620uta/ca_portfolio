@@ -1675,10 +1675,12 @@ strong {
 /* ===== case-hero（動画 + 右テキスト） ===== */
 .case-hero {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-    margin: 32px 0 40px;
+    grid-template-columns: 5fr 6fr;
+    gap: 48px;
+    align-items: start;
+    margin: 40px 0 56px;
+    padding: 48px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .case-hero-media video {
@@ -1770,5 +1772,76 @@ strong {
 
     .case-problem__title {
         font-size: 19px;
+    }
+}
+
+/* ===== case-hero 拡張要素 ===== */
+
+/* 強調段落（太字・行間広め） */
+.case-hero-lead {
+    font-size: clamp(15px, 1.8vw, 17px);
+    font-weight: 700;
+    line-height: 1.75;
+    color: #222;
+    margin: 0 0 18px;
+}
+
+/* テキストリンク群（動画直下） */
+.case-hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.case-hero-link {
+    font-size: 13px;
+    color: #2bc8bb;
+    text-decoration: none;
+    border: 1px solid #2bc8bb;
+    border-radius: 4px;
+    padding: 5px 12px;
+    transition: background 0.18s, color 0.18s;
+    white-space: nowrap;
+}
+
+.case-hero-link:hover {
+    background: #2bc8bb;
+    color: #fff;
+}
+
+/* サムネイル補助画像 */
+.case-hero-thumb {
+    margin-top: 20px;
+    position: relative;
+}
+
+.case-hero-thumb__img {
+    width: 200px;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 8px;
+    opacity: 0.9;
+    display: block;
+}
+
+.case-hero-thumb__placeholder {
+    width: 200px;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    font-size: 11px;
+}
+
+/* スマホ: リンクも縦積み */
+@media (max-width: 768px) {
+    .case-hero-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .case-hero-thumb__img,
+    .case-hero-thumb__placeholder {
+        width: 160px;
     }
 }

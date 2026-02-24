@@ -705,10 +705,37 @@
     if (useCaseHero) {
       const fn = s.final.src ? s.final.src.split("/").pop() : "";
       const ph = fn ? fn + " をここに配置" : "VIDEO";
+
+      // meta（シアンラベル）
       const metaHtml = s.caseHeroText.meta
         ? `<p class="case-meta">${esc(s.caseHeroText.meta)}</p>` : "";
+
+      // lead（強調段落：太字・行間広め）
+      const leadHtml = s.caseHeroText.lead
+        ? `<p class="case-hero-lead">${nl2br(esc(s.caseHeroText.lead))}</p>` : "";
+
+      // paragraphs（通常段落）
       const parasHtml = (s.caseHeroText.paragraphs || [])
         .map(p => `<p>${nl2br(esc(p))}</p>`).join("");
+
+      // thumbnail（テキストブロック内の補助画像）
+      const thumbHtml = s.caseHeroText.thumbnail
+        ? `<div class="case-hero-thumb">
+            <img class="case-hero-thumb__img"
+              src="${esc(s.caseHeroText.thumbnail.src)}"
+              alt="${esc(s.caseHeroText.thumbnail.alt || "")}"
+              loading="lazy" />
+            <div class="media-placeholder case-hero-thumb__placeholder">${esc(s.caseHeroText.thumbnail.src.split("/").pop())}</div>
+          </div>` : "";
+
+      // links（動画直下のテキストリンク群）
+      const linksHtml = (s.caseHeroText.links || []).length > 0
+        ? `<div class="case-hero-links">
+            ${(s.caseHeroText.links).map(lk =>
+          `<a class="case-hero-link" href="${esc(lk.href || "#")}" target="_blank" rel="noopener">${esc(lk.label)}</a>`
+        ).join("")}
+          </div>` : "";
+
       caseHeroHtml = `
         <div class="case-hero fade-in">
           <div class="case-hero-media">
@@ -716,13 +743,17 @@
               controls playsinline preload="metadata"
               style="aspect-ratio:${esc(s.final.ratio || "9/16")}"></video>
             <div class="media-placeholder media-placeholder--vertical">${esc(ph)}</div>
+            ${linksHtml}
           </div>
           <div class="case-hero-text">
             ${metaHtml}
+            ${leadHtml}
             ${parasHtml}
+            ${thumbHtml}
           </div>
         </div>`;
     }
+
 
     // 課題ブロック（新レイアウト時のみ：動画の下に移動）
     const caseProblemHtml = (useCaseHero && s.challenge) ? `
