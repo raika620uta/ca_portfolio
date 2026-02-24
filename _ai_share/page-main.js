@@ -23,7 +23,7 @@ const PAGE = {
             items: [
                 {
                     title: "できること",
-                    body: "AI生成からAfter Effectsでの仕上げまで、一貫した動画制作。\n目的に応じてツールを横断し、足りない部分は自作で補いながら\n制作を進めます。"
+                    body: "AI生成からAfter Effectsでの仕上げまで、一貫した動画制作。"
                 },
                 {
                     title: "大切にしていること",

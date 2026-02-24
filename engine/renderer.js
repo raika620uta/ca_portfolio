@@ -143,8 +143,8 @@
 
     // 自己紹介末尾の案内リンク
     var jumpHtml = `<p class="intro__jump">
-      <a class="intro__jump-link" href="#other-works">これまでの制作：</a>
-      <span class="intro__jump-note">（画面下までスクロールします）</span>
+      <a class="intro__jump-link" href="#other-works">実績を見る</a>
+      <span class="intro__jump-note">（スクロール）</span>
     </p>`;
 
     return `<section class="profile-intro" id="${esc(s.id || "")}">
