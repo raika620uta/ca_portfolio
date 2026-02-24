@@ -735,7 +735,10 @@
             ${thumbMediaHtml}
           </div>` : "";
 
-
+      // url（生URL表示リンク / 信頼性の証拠として横型動画の直下に配置）
+      const urlHtml = s.caseHeroText.url
+        ? `<a class="case-hero-url" href="${esc(s.caseHeroText.url)}" target="_blank" rel="noopener">${esc(s.caseHeroText.url)}</a>`
+        : "";
 
       // links（動画直下のテキストリンク群）
       const linksHtml = (s.caseHeroText.links || []).length > 0
@@ -759,8 +762,10 @@
             ${leadHtml}
             ${parasHtml}
             ${thumbHtml}
+            ${urlHtml}
           </div>
         </div>`;
+
     }
 
 

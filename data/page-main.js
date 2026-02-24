@@ -352,11 +352,14 @@ const PAGE = {
                     alt: ""
                 },
 
+                url: "https://koto-experio.jp/event/videos",
+
                 links: [
-                    { label: "KOTOアプリを見る", href: "#" },
+                    { label: "KOTOアプリを見る", href: "https://koto-experio.jp/event/videos" },
                     { label: "京都市の取り組みを見る", href: "#" }
                 ]
             },
+
 
 
             lead: "Remotionによる自動化とAEのテンプレート設計を組み合わせ、制作速度を追求した事例です。",

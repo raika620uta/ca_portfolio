@@ -1855,3 +1855,19 @@ strong {
 .case-hero-thumb__caption {
     display: none;
 }
+
+/* 生URL テキストリンク（16:9 動画直下・証拠表示用） */
+.case-hero-url {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #999;
+    text-decoration: underline;
+    word-break: break-all;
+    line-height: 1.5;
+    transition: color 0.15s;
+}
+
+.case-hero-url:hover {
+    color: #2bc8bb;
+}
