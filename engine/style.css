@@ -339,22 +339,44 @@ strong {
 }
 
 /* クッション（共感）：やや大きめ・濃いグレー */
-.bridge__lead {
-    font-size: 18px;
-    line-height: 1.85;
-    font-weight: 500;
-    color: #222;
-    margin: 0 auto 20px;
-    max-width: 640px;
+.bridge__blocks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
 }
 
-/* スタンス（コア）：小さめ・グレー・行間広め */
-.bridge__body {
+/* 共通：中央揃え・改行維持 */
+.bridge__block {
+    text-align: center;
+    margin: 0;
+    white-space: pre-line;
+    /* \n を改行として表示 */
+    max-width: 560px;
+}
+
+/* ① 導入（軽く） */
+.bridge__block--light {
+    font-size: 16px;
+    font-weight: 400;
+    color: #888;
+    line-height: 1.85;
+}
+
+/* ② 主張（最も強い） */
+.bridge__block--strong {
+    font-size: 20px;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.8;
+}
+
+/* ③ 思想（余韻） */
+.bridge__block--thought {
     font-size: 15px;
-    line-height: 2.0;
+    font-weight: 400;
     color: #666;
-    margin: 0 auto;
-    max-width: 580px;
+    line-height: 2.0;
 }
 
 /* ===== Reveal Animation（js-reveal / is-visible） ===== */

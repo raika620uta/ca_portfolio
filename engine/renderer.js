@@ -166,13 +166,15 @@
            <span class="bridge__title-line bridge__title-line--right"></span>
          </div>`
       : "";
-    const leadHtml = s.lead ? `<p class="bridge__lead js-reveal">${esc(s.lead)}</p>` : "";
-    const bodyHtml = s.body ? `<p class="bridge__body js-reveal">${nl2br(esc(s.body))}</p>` : "";
+    const blocksHtml = (s.blocks || []).map(function (b) {
+      return `<p class="bridge__block bridge__block--${esc(b.weight || "light")} js-reveal">${nl2br(esc(b.text || ""))}</p>`;
+    }).join("");
     return `<section class="philosophy-bridge" id="${esc(s.id || "")}">
       <div class="container">
         ${titleHtml}
-        ${leadHtml}
-        ${bodyHtml}
+        <div class="bridge__blocks">
+          ${blocksHtml}
+        </div>
       </div>
     </section>`;
   };
