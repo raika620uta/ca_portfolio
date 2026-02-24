@@ -172,7 +172,8 @@ strong {
 
 /* ===== Profile Intro ===== */
 .profile-intro {
-    padding: 100px 0 80px;
+    padding: 100px 0 120px;
+    /* Ⅵ 下余白を少し広げる */
 }
 
 /* 上部：画像 + 名前（中央寄せ） */
@@ -225,7 +226,10 @@ strong {
 
 /* headline（2行） */
 .intro__headline {
-    margin-bottom: 48px;
+    margin-bottom: 40px;
+    /* Ⅰ itemsとの距離を少し詳める */
+    text-align: center;
+    /* Ⅰ 中央揃え */
 }
 
 .intro__headline-line {
@@ -242,6 +246,7 @@ strong {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    /* Ⅳ 各行ブロックの縦リズム */
 }
 
 .intro__item {
@@ -255,9 +260,11 @@ strong {
 /* トピック名（— できること）：シアン系アクセント */
 .intro__item-title {
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
+    /* Ⅱ 少し強調 */
     color: #5ba3a0;
-    /* 落ち着いたシアン：主張しすぎない */
+    letter-spacing: 0.05em;
+    /* Ⅱ 読みやすさ向上 */
     margin: 0;
     white-space: nowrap;
     padding-top: 2px;
@@ -268,10 +275,10 @@ strong {
     font-size: 13px;
     font-weight: 400;
     color: #777;
-    line-height: 1.8;
+    line-height: 1.6;
+    /* Ⅲ 間廷び感を解消 */
     margin: 0;
     min-width: 0;
-    /* grid内でのはみ出し防止 */
 }
 
 
