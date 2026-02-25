@@ -1933,3 +1933,49 @@ strong {
     max-width: none;
     white-space: pre-line;
 }
+
+/* --- hero-simple --- */
+.hero-simple {
+    text-align: center;
+    padding: 60px 24px 48px;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.hero__title {
+    margin-bottom: 32px;
+    text-align: left;
+}
+
+.hero-line {
+    display: block;
+}
+
+.hero__subtitle {
+    line-height: 2.0;
+    color: var(--color-text);
+}
+
+.hero__note {
+    font-size: 13px;
+    color: var(--color-text-light);
+    margin-bottom: 20px;
+}
+
+.hero__main {
+    font-size: 17px;
+    line-height: 2.2;
+    margin-bottom: 8px;
+}
+
+.hero__spacer {
+    height: 20px;
+}
+
+.hero__highlight {
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 5px;
+    text-decoration-thickness: 2px;
+    color: inherit;
+}

@@ -35,7 +35,7 @@ const PAGE = {
                 },
                 {
                     title: "趣味",
-                    body: "ドラム / DTM / チワワ"
+                    body: "ドラム / バンド / チワワ / ゲームの攻略動画作り"
                 },
                 {
                     title: "連絡先",
@@ -51,11 +51,11 @@ const PAGE = {
             title: "私がAIを使う上で大切にしていること",
             blocks: [
                 {
-                    text: "AIを使った制作は、当たり外れが大きいと感じています。",
+                    text: "生成AIを使った制作は、当たり外れが大きいと感じています。",
                     weight: "light"
                 },
                 {
-                    text: "どれだけ質が高くても、\n運による上振れには価値がない。",
+                    text: "どれだけ質が高くても、\n運による上振れには、いずれ限界が来る。",
                     weight: "strong"
                 },
                 {
@@ -70,7 +70,7 @@ const PAGE = {
             type: "hero-simple",
             id: "hero",
             title: ["AIガチャからの脱却。", "クリエイティブの流れの中に、AIを組み込む。"],
-            subtitle: "偶然ではなく、再現性で作る。"
+            subtitle: `<p class="hero__note">募集要項に「AIの使用経験」とあったため、</p><p class="hero__main">本ポートフォリオでは<br><strong>「AIで作ったもの」</strong>ではなく、</p><p class="hero__spacer"></p><p class="hero__main"><strong class="hero__highlight">「AIをどう使い、どうアウトプットに繋げたか」</strong><br>というプロセスを軸に構成しています。</p>`
         },
 
         /* ----- Workflow見出し + フロー図 ----- */
