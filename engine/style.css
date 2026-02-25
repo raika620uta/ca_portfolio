@@ -530,6 +530,32 @@ strong {
     max-width: 65ch
 }
 
+/* ===== Cases 見方テキストブロック（#cases-guide） ===== */
+.bridge__guide-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--color-text-light);
+    text-transform: uppercase;
+    margin: 0 0 6px;
+}
+
+#cases-guide {
+    margin-top: 24px;
+    margin-bottom: 32px;
+    background: rgba(0, 0, 0, 0.015);
+    border-radius: var(--border-radius);
+    padding: 20px 24px;
+}
+
+#cases-guide .bridge__text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #555;
+    max-width: none;
+    white-space: pre-line;
+}
+
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -581,10 +607,13 @@ strong {
 }
 
 .site-header__affiliation,
-.site-header__email,
-.site-header__updated {
+.site-header__email {
     font-size: var(--font-size-sm);
     color: var(--color-text-sub)
+}
+
+.site-header__updated {
+    display: none;
 }
 
 /* --- ナビ --- */
@@ -1529,21 +1558,9 @@ strong {
     transform: translateY(0);
 }
 
-/* BUILD Badge (Debug) */
+/* BUILD Badge (Debug) — 非表示 */
 .build-badge {
-    position: fixed;
-    bottom: 4px;
-    right: 4px;
-    font-size: 10px;
-    font-family: monospace;
-    color: #888;
-    background: rgba(255, 255, 255, 0.85);
-    padding: 2px 6px;
-    border-radius: 2px;
-    border: 1px solid #ddd;
-    z-index: 9999;
-    pointer-events: none;
-    line-height: 1;
+    display: none;
 }
 
 .other-works__video {
@@ -1893,4 +1910,26 @@ strong {
 .case-hero-url:hover {
     color: var(--color-accent);
     text-decoration: underline;
+}
+
+/* ===== 締めブロック（#closing-final） ===== */
+#closing-final {
+    margin-top: 56px;
+    margin-bottom: 40px;
+}
+
+#closing-final .bridge__guide-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+#closing-final .bridge__text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #555;
+    max-width: none;
+    white-space: pre-line;
 }

@@ -17,17 +17,17 @@ const PAGE = {
             name: "外川 蓮 / TOGAWA REN",
             affiliation: "京都精華大学 メディア表現学部 イメージ表現専攻 2年",
             headline: [
-                "AIを制作フローに組み込み、",
-                "再現可能な形でアウトプットを作る。"
+                "新しい技術を取り入れながら",
+                "形にしていくクリエイティブが好きです。"
             ],
             items: [
                 {
                     title: "できること",
-                    body: "AI生成からAfter Effectsでの仕上げまで、一貫した動画制作。"
+                    body: "After Effectsを中心に、企画から仕上げまで一貫したコンテンツ制作を行っています。"
                 },
                 {
                     title: "大切にしていること",
-                    body: "制作を仕組みに落とし込み、安定して回せる形にすること。"
+                    body: "制作を仕組みに落とし込み、AIも活用しながら安定して回せる形にすること。"
                 },
                 {
                     title: "興味・関心",
@@ -35,7 +35,7 @@ const PAGE = {
                 },
                 {
                     title: "趣味",
-                    body: "ドラム / チワワ"
+                    body: "ドラム / DTM / チワワ"
                 },
                 {
                     title: "連絡先",
@@ -115,6 +115,14 @@ const PAGE = {
             sub: "制作実例",
             lead: "AIをどう使うかで、制作の構造は大きく変わる。\n以下では、異なる2つのアプローチを実例で示す。",
             usageImg: "assets/cases/cases_ai_usage_1920x1080.png"
+        },
+
+        /* ----- 見方テキスト（インフォグラフィック → Case01 の導線） ----- */
+        {
+            type: "content-bridge",
+            id: "cases-guide",
+            text: "AIの使い方によって、制作の進め方は大きく変わります。\n以下では、それぞれのアプローチを実際の制作事例で示します。",
+            guideLabel: "見方"
         },
 
         /* ----- Case 01: 就活コミュニティ（メインケース） ----- */
@@ -295,7 +303,7 @@ const PAGE = {
             // ⑥ FAILMAP に1行説明追加
             failmap: {
                 title: "+@ ノウハウの蓄積（自作ツール:FAILMAP）",
-                description: "失敗パターンを蓄積し、再現性を高める",
+                description: "AI生成はブラックボックス化しやすいからこそ、自作ツールを使って失敗パターンを蓄積し、再現性を高めています",
                 halfImage: "assets/cases/case01/case01_failmap.png"
             },
 
@@ -397,14 +405,14 @@ const PAGE = {
                 {
                     id: "video",
                     title: "Video / Motion",
-                    policy: "テンポとグラフィックの気持ちよさを軸に、視覚的に心地よい映像体験を設計しています。",
+                    policy: "テンポとグラフィックの気持ちよさを軸に、視覚的に心地よい映像体験を意識しています。",
                     items: [
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_01.mp4", label: "VIDEO_01（OTHER_VIDEO_01.mp4）", caption: { title: "Video 01", body: "モーショングラフィックス" } },
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_02.mp4", label: "VIDEO_02（OTHER_VIDEO_02.mp4）", caption: { title: "Video 02", body: "タイポグラフィ演出" } },
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_03.mp4", label: "VIDEO_03（OTHER_VIDEO_03.mp4）", caption: { title: "Video 03", body: "プロモーション映像" } },
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_04.mp4", label: "VIDEO_04（OTHER_VIDEO_04.mp4）", caption: { title: "Video 04", body: "イベント映像" } },
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_05.mp4", label: "VIDEO_05（OTHER_VIDEO_05.mp4）", caption: { title: "Video 05", body: "ショートムービー" } },
-                        { type: "video", src: "assets/other/video/OTHER_VIDEO_06.mp4", label: "VIDEO_06（OTHER_VIDEO_06.mp4）", caption: { title: "Video 06", body: "エフェクト実験" } }
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_01.mp4", label: "VIDEO_01（OTHER_VIDEO_01.mp4）", caption: { title: "ミュージックビデオ①", body: "3DモーションとAfter Effectsを組み合わせた映像制作" } },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_02.mp4", label: "VIDEO_02（OTHER_VIDEO_02.mp4）", caption: { title: "ミュージックビデオ②", body: "After Effectsを用いた自主制作MV" } },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_03.mp4", label: "VIDEO_03（OTHER_VIDEO_03.mp4）", caption: { title: "VFX練習", body: "実写とCGを組み合わせたメタ的な映像表現" } },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_04.mp4", label: "VIDEO_04（OTHER_VIDEO_04.mp4）", caption: { title: "配信アイキャッチ映像", body: "配信時の導入として制作したオープニングムービー" } },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_05.mp4", label: "VIDEO_05（OTHER_VIDEO_05.mp4）", caption: { title: "セルルックCG映像", body: "BlenderとAfter Effectsを用いた3DCG映像" } },
+                        { type: "video", src: "assets/other/video/OTHER_VIDEO_06.mp4", label: "VIDEO_06（OTHER_VIDEO_06.mp4）", caption: { title: "ゲーム攻略動画", body: "YouTubeで運営しているゲーム攻略動画の編集" } }
                     ]
                 },
                 {
@@ -412,38 +420,46 @@ const PAGE = {
                     title: "UI / Interface",
                     policy: "ユーザーの行動を起点に、迷わず使える構造と新しさのバランスを設計しています。",
                     items: [
-                        { type: "image", src: "assets/other/ui/OTHER_UI_01.png", label: "UI_01（OTHER_UI_01.png）", caption: { title: "UI 01", body: "ダッシュボードUI" } },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_02.png", label: "UI_02（OTHER_UI_02.png）", caption: { title: "UI 02", body: "モバイルアプリUI" } },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_03.png", label: "UI_03（OTHER_UI_03.png）", caption: { title: "UI 03", body: "ランディングページ" } },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_04.png", label: "UI_04（OTHER_UI_04.png）", caption: { title: "UI 04", body: "管理画面プロトタイプ" } },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_05.png", label: "UI_05（OTHER_UI_05.png）", caption: { title: "UI 05", body: "デザインシステム設計" } },
-                        { type: "image", src: "assets/other/ui/OTHER_UI_06.png", label: "UI_06（OTHER_UI_06.png）", caption: { title: "UI 06", body: "コンポーネントライブラリ" } }
+                        { type: "image", src: "assets/other/ui/OTHER_UI_01.png", label: "UI_01（OTHER_UI_01.png）", caption: { title: "オンラインセッションアプリ", body: "" } },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_02.png", label: "UI_02（OTHER_UI_02.png）", caption: { title: "家計簿アプリ", body: "" } },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_03.png", label: "UI_03（OTHER_UI_03.png）", caption: { title: "オーディオ再生インターフェース", body: "" } },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_04.png", label: "UI_04（OTHER_UI_04.png）", caption: { title: "オンラインセッションアプリ｜設計資料", body: "企画書・画面フロー設計を作成" } },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_05.png", label: "UI_05（OTHER_UI_05.png）", caption: { title: "家計簿アプリ｜設計資料", body: "サービス設計とUIフローを整理" } },
+                        { type: "image", src: "assets/other/ui/OTHER_UI_06.png", label: "UI_06（OTHER_UI_06.png）", caption: { title: "オーディオUI｜設計資料", body: "操作導線と機能構造を設計" } }
                     ]
                 },
                 {
                     id: "graphic",
                     title: "Graphic Design",
-                    policy: "余白と視線誘導をコントロールし、情報が自然に伝わるビジュアルを意識しています。",
+                    policy: "余白と視線誘導をコントロールし、情報が自然に伝わるビジュアルを模索しています。",
                     items: [
-                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_01.png", label: "GRAPHIC_01", caption: { title: "Graphic 01", body: "タイポグラフィポスター" } },
-                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_02.png", label: "GRAPHIC_02", caption: { title: "Graphic 02", body: "インフォグラフィック設計" } },
-                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_03.png", label: "GRAPHIC_03", caption: { title: "Graphic 03", body: "ビジュアルアイデンティティ" } },
-                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_04.png", label: "GRAPHIC_04", caption: { title: "Graphic 04", body: "ブランドブックレイアウト" } },
-                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_05.png", label: "GRAPHIC_05", caption: { title: "Graphic 05", body: "展示会キービジュアル" } },
-                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_06.png", label: "GRAPHIC_06", caption: { title: "Graphic 06", body: "広告バナー展開" } }
+                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_01.png", label: "GRAPHIC_01", caption: { title: "MV用タイポグラフィ", body: "ミュージックビデオ内で使用するロゴとして設計したタイポグラフィ。" } },
+                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_02.png", label: "GRAPHIC_02", caption: { title: "楽曲モチーフのグラフィック", body: "楽曲の世界観をもとに、ビジュアルへ落とし込んだグラフィック制作課題。" } },
+                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_03.png", label: "GRAPHIC_03", caption: { title: "配信アイキャッチデザイン", body: "配信時の視認性と印象を意識して設計したアイキャッチビジュアル。" } },
+                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_04.png", label: "GRAPHIC_04", caption: { title: "アプリモチーフデザイン", body: "アプリケーションのコンセプトを視覚化したモチーフデザイン。" } },
+                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_05.png", label: "GRAPHIC_05", caption: { title: "音の可視化グラフィック", body: "音の要素を視覚的な形に変換し、構造として表現した実験的作品。" } },
+                        { type: "image", src: "assets/other/graphic/OTHER_GRAPHIC_06.png", label: "GRAPHIC_06", caption: { title: "コラボレーショングラフィック", body: "イラストレーターと共同制作し、ビジュアルを構成したグラフィック作品。" } }
                     ]
                 },
                 {
                     id: "system",
                     title: "Apps / Systems",
-                    policy: "使われることを前提に、シンプルで再利用可能な構造設計を行っています。",
+                    policy: "Webページやアプリケーションの企画からデザイン・実装まで一貫した制作を行っています。",
                     items: [
-                        { type: "image", src: "assets/other/system/OTHER_SYS_01.png", label: "SYS_01（OTHER_SYS_01.png）", caption: { title: "System 01", body: "自動化ツール" } },
-                        { type: "image", src: "assets/other/system/OTHER_SYS_02.png", label: "SYS_02（OTHER_SYS_02.png）", caption: { title: "System 02", body: "データ管理システム" } },
-                        { type: "image", src: "assets/other/system/OTHER_SYS_03.png", label: "SYS_03（OTHER_SYS_03.png）", caption: { title: "System 03", body: "APIインテグレーション" } }
+                        { type: "image", src: "assets/other/system/OTHER_SYS_01.png", label: "SYS_01（OTHER_SYS_01.png）", caption: { title: "FAILMAP", body: "生成AIの失敗を記録・分析するツール" } },
+                        { type: "image", src: "assets/other/system/OTHER_SYS_02.png", label: "SYS_02（OTHER_SYS_02.png）", caption: { title: "LizArt", body: "クリエイター向けリファレンスアプリの遷移設計" } },
+                        { type: "image", src: "assets/other/system/OTHER_SYS_03.png", label: "SYS_03（OTHER_SYS_03.png）", caption: { title: "Webポートフォリオ", body: "AIの活用にフォーカスしたポートフォリオを新しくWebで構築" } }
                     ]
                 }
             ]
+        },
+
+        /* ----- 締めブロック（FINAL） ----- */
+        {
+            type: "content-bridge",
+            id: "closing-final",
+            guideLabel: "FINAL",
+            text: "制作を一時的なアウトプットで終わらせず、\n仕組みとして回り続ける形にしていきたいと考えています。"
         },
 
         /* ----- Contact ----- */

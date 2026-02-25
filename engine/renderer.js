@@ -30,7 +30,7 @@
     if (!headerEl) return;
 
     const p = SITE.profile;
-    const updated = new Date().toISOString().slice(0, 10);
+
 
     headerEl.className = "site-header";
     headerEl.innerHTML = `<div class="container">
@@ -143,7 +143,7 @@
 
     // 自己紹介末尾の案内リンク
     var jumpHtml = `<p class="intro__jump">
-      <a class="intro__jump-link" href="#other-works">実績を見る</a>
+      <a class="intro__jump-link" href="#other-works">これまでの制作物はこちら</a>
       <span class="intro__jump-note">（スクロール）</span>
     </p>`;
 
@@ -395,6 +395,7 @@
     const headingHtml = s.heading ? `<h2 class="bridge__heading section-heading underline--major">${esc(s.heading)}</h2>` : "";
     const subHtml = s.sub ? `<p class="bridge__sub">${esc(s.sub)}</p>` : "";
     const titleHtml = s.title ? `<h3 class="bridge__title">${esc(s.title)}</h3>` : "";
+    const guideLabelHtml = s.guideLabel ? `<p class="bridge__guide-label">${esc(s.guideLabel)}</p>` : "";
     const textHtml = s.text ? `<p class="bridge__text">${nl2br(esc(s.text))}</p>` : "";
     const leadHtml = s.lead ? `<p class="section__lead">${raw(nl2br(esc(s.lead)))}</p>` : "";
 
@@ -420,6 +421,7 @@
         ${titleHtml}
         ${leadHtml}
         ${usageImgHtml}
+        ${guideLabelHtml}
         ${textHtml}
       </section>`;
   };

@@ -301,7 +301,7 @@ const PAGE = {
                 {
                     id: "system",
                     title: "Apps / Systems",
-                    policy: "使われることを前提に、シンプルで再利用可能な構造設計を行っています。",
+                    policy: "Webページやアプリケーションの企画からデザイン・実装まで一貫した制作を行っています。",
                     items: [
                         { type: "image", src: "assets/other/system/OTHER_SYS_01.png", label: "SYS_01（OTHER_SYS_01.png）", caption: { title: "System 01", body: "自動化ツール" } },
                         { type: "image", src: "assets/other/system/OTHER_SYS_02.png", label: "SYS_02（OTHER_SYS_02.png）", caption: { title: "System 02", body: "データ管理システム" } },
