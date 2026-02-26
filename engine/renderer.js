@@ -196,7 +196,7 @@
         titleHtml = `<h1 class="hero__title">${nl2br(esc(s.title))}</h1>`;
       }
     }
-    const subtitleHtml = s.subtitle ? `<div class="hero__subtitle">${raw(s.subtitle)}</div>` : "";
+    const subtitleHtml = s.subtitle ? `<div class="process-note">${raw(s.subtitle)}</div>` : "";
     return `<section class="hero-simple fade-in" id="${s.id || ""}">
       ${titleHtml}
       ${subtitleHtml}

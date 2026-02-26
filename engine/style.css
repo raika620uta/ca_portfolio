@@ -1936,9 +1936,8 @@ strong {
 
 /* --- hero-simple --- */
 .hero-simple {
-    text-align: center;
     padding: 60px 24px 48px;
-    max-width: 720px;
+    max-width: var(--max-width);
     margin: 0 auto;
 }
 
@@ -1951,31 +1950,49 @@ strong {
     display: block;
 }
 
-.hero__subtitle {
+/* --- process-note（HERO内サブタイトルブロック） --- */
+.process-note {
+    max-width: 780px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    text-align: center;
     line-height: 2.0;
     color: var(--color-text);
 }
 
-.hero__note {
-    font-size: 13px;
+.process-note__lead {
+    font-size: clamp(12px, 1vw, 14px);
     color: var(--color-text-light);
     margin-bottom: 20px;
+    line-height: 1.8;
 }
 
-.hero__main {
-    font-size: 17px;
+.process-note__body {
+    font-size: clamp(15px, 1.3vw, 18px);
     line-height: 2.2;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
 }
 
-.hero__spacer {
-    height: 20px;
+.process-note__body:last-child {
+    margin-bottom: 0;
 }
 
-.hero__highlight {
+.u-accent {
+    display: inline;
     text-decoration: underline;
     text-decoration-color: var(--color-accent);
     text-underline-offset: 5px;
     text-decoration-thickness: 2px;
-    color: inherit;
+    text-decoration-skip-ink: none;
+}
+
+/* --- レスポンシブ（600px以下） --- */
+@media (max-width: 600px) {
+    .process-note {
+        padding-inline: 20px;
+    }
+
+    .process-note__body {
+        font-size: 15px;
+    }
 }

@@ -70,7 +70,7 @@ const PAGE = {
             type: "hero-simple",
             id: "hero",
             title: ["AIガチャからの脱却。", "クリエイティブの流れの中に、AIを組み込む。"],
-            subtitle: `<p class="hero__note">募集要項に「AIの使用経験」とあったため、</p><p class="hero__main">本ポートフォリオでは<br><strong>「AIで作ったもの」</strong>ではなく、</p><p class="hero__spacer"></p><p class="hero__main"><strong class="hero__highlight">「AIをどう使い、どうアウトプットに繋げたか」</strong><br>というプロセスを軸に構成しています。</p>`
+            subtitle: `<p class="process-note__lead">募集要項に「AIの使用経験」とあったため、</p><p class="process-note__body">本ポートフォリオでは<br><strong>「AIで作ったもの」</strong>ではなく、</p><p class="process-note__body"><span class="u-accent"><strong>「AIをどう使い、どうアウトプットに繋げたか」</strong></span><br>そのプロセスを軸に構成しています。</p>`
         },
 
         /* ----- Workflow見出し + フロー図 ----- */
