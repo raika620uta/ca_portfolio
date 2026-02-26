@@ -14,7 +14,7 @@ const PAGE = {
             type: "profile-intro",
             id: "intro",
             image: "assets/common/profile.png",
-            name: "外川 蓮 / TOGAWA REN",
+            name: "外川 漣 / TOGAWA REN",
             affiliation: "京都精華大学 メディア表現学部 イメージ表現専攻 2年",
             headline: [
                 "新しい技術を取り入れながら",
