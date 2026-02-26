@@ -59,9 +59,9 @@
       { label: "スタンス", id: "hero" },
       { label: "ワークフロー", id: "workflow" },
       { label: "プロセス", id: "process-diagram" },
-      { label: "事例", id: "cases" },
-      { label: "縦型動画制作", id: "case01" },
-      { label: "自動化事例", id: "case02" },
+      { label: "事例 → 2つの活用", id: "cases" },
+      { label: "縦型動画 → AIでつくる", id: "case01" },
+      { label: "縦型動画 → AIでまわす", id: "case02" },
       { label: "これまでの制作", id: "other-works" }
     ];
 
