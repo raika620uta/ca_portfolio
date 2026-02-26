@@ -757,7 +757,7 @@
       // url（生URL表示リンク / 「実際の配信ページ」ラベル付き）
       const urlHtml = s.caseHeroText.url
         ? `<div class="case-hero-url-block">
-            <span class="case-hero-url__label">実際の配信ページ</span>
+            <span class="case-hero-url__label">実際の配信ページ ※現在はDEMO版です</span>
             <a class="case-hero-url" href="${esc(s.caseHeroText.url)}" target="_blank" rel="noopener">${esc(s.caseHeroText.url)}</a>
           </div>`
         : "";
@@ -928,8 +928,7 @@
     if (disablePlayback && m.type === "video") {
       overlayHtml = `
         <div class="video-disable-overlay">
-          <div class="video-disable-overlay__title">完成版に差し替え中</div>
-          <div class="video-disable-overlay__sub">本日中に更新予定</div>
+          <div class="video-disable-overlay__title">調整中</div>
           <div class="video-disable-overlay__line"></div>
         </div>`;
     }
