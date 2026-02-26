@@ -226,7 +226,7 @@ const PAGE = {
                 meta: "28卒向け就活コミュニティの募集動画",
                 paragraphs: [
                     "広報担当1人の体制で、\n短期間に複数パターンの広告制作が必要でした。",
-                    "AIとAfterEffectsを組み合わせ、\n少人数でも成立する制作フローを構築しています。"
+                    "AIとAfterEffectsを組み合わせ、\n少ないクレジット消費で再現性高く思い通りのカットを制作するフローを模索しました。"
                 ]
             },
 
@@ -406,7 +406,7 @@ const PAGE = {
                 {
                     id: "video",
                     title: "Video / Motion",
-                    policy: "テンポとグラフィックの気持ちよさを軸に、視覚的に心地よい映像体験を意識しています。",
+                    policy: "視覚的に心地よいグラフィカルな映像体験を目指して制作しています。※ホバーで説明が表示されます",
                     items: [
                         { type: "video", src: "assets/other/video/OTHER_VIDEO_01.mp4", label: "VIDEO_01（OTHER_VIDEO_01.mp4）", caption: { title: "ミュージックビデオ①", body: "3DモーションとAfter Effectsを組み合わせた映像制作" } },
                         { type: "video", src: "assets/other/video/OTHER_VIDEO_02.mp4", label: "VIDEO_02（OTHER_VIDEO_02.mp4）", caption: { title: "ミュージックビデオ②", body: "After Effectsを用いた自主制作MV" } },
@@ -460,7 +460,7 @@ const PAGE = {
             type: "content-bridge",
             id: "closing-final",
             guideLabel: "FINAL",
-            text: "制作を一時的なアウトプットで終わらせず、\n仕組みとして回り続ける形にしていきたいと考えています。"
+            text: "制作を一時的なアウトプットで終わらせず仕組化し、\nAIの力を活かしながらも、最終的には人の手でコンテンツとして仕上げることを重視しています。\n\n縦型動画制作においてAIを活用する経験を積む中で、\n再現性のある制作フローの重要性を実感してきました。\n\nまだ未熟ではありますが、TikTokチームでの実務を通して学び、\n自身のスキルを高めながら貢献していきたいと思い志望いたしました。"
         },
 
         /* ----- Contact ----- */

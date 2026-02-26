@@ -143,7 +143,7 @@
 
     // 自己紹介末尾の案内リンク
     var jumpHtml = `<p class="intro__jump">
-      <a class="intro__jump-link" href="#other-works">これまでの制作物はこちら</a>
+      <a class="intro__jump-link" href="#other-works">これまでの制作物はこちらから</a>
       <span class="intro__jump-note">（スクロール）</span>
     </p>`;
 
