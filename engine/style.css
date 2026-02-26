@@ -1998,3 +1998,45 @@ strong {
         font-size: 15px;
     }
 }
+
+/* --- 再生無効オーバーレイ --- */
+.case-media,
+.case-hero-media {
+    position: relative;
+}
+
+.video-disable-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: inherit;
+    z-index: 10;
+    pointer-events: auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.video-disable-overlay__title {
+    color: #fff;
+    font-weight: 700;
+    font-size: clamp(16px, 2.5vw, 18px);
+    margin: 0;
+}
+
+.video-disable-overlay__sub {
+    color: #fff;
+    margin-top: 8px;
+    font-size: clamp(12px, 1.8vw, 13px);
+    opacity: 0.85;
+}
+
+.video-disable-overlay__line {
+    margin-top: 12px;
+    height: 2px;
+    width: 120px;
+    background: var(--color-accent);
+}

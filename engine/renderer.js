@@ -59,9 +59,9 @@
       { label: "スタンス", id: "hero" },
       { label: "ワークフロー", id: "workflow" },
       { label: "プロセス", id: "process-diagram" },
-      { label: "事例 → 2つの活用", id: "cases" },
-      { label: "縦型動画 → AIでつくる", id: "case01" },
-      { label: "縦型動画 → AIでまわす", id: "case02" },
+      { label: "2つの活用", id: "cases" },
+      { label: "AIでつくる", id: "case01" },
+      { label: "AIでまわす", id: "case02" },
       { label: "これまでの制作", id: "other-works" }
     ];
 
@@ -462,7 +462,7 @@
             </div>
           </div>`;
       } else {
-        finalHtml = renderMediaItem(s.final);
+        finalHtml = renderMediaItem(s.final, s.disablePlayback);
       }
     }
 
@@ -766,10 +766,7 @@
       caseHeroHtml = `
         <div class="case-hero fade-in">
           <div class="case-hero-media">
-            <video class="case-media__video" data-src="${esc(s.final.src)}"
-              controls playsinline preload="metadata"
-              style="aspect-ratio:${esc(s.final.ratio || "9/16")}"></video>
-            <div class="media-placeholder media-placeholder--vertical">${esc(ph)}</div>
+            ${renderMediaItem(s.final, s.disablePlayback, true)}
           </div>
           <div class="case-hero-text">
             ${metaHtml}
@@ -822,7 +819,7 @@
 
   /* ----- case-standard（Case 02/03用の標準レンダラー） ----- */
   renderers["case-standard"] = function (s, idx) {
-    const mediaHtml = (s.media || []).map(m => renderMediaItem(m)).join("");
+    const mediaHtml = (s.media || []).map(m => renderMediaItem(m, s.disablePlayback)).join("");
 
     let detailsHtml = "";
     if (s.details) {
@@ -896,7 +893,7 @@
   };
 
   /* ----- ヘルパー: メディアアイテムレンダリング ----- */
-  function renderMediaItem(m) {
+  function renderMediaItem(m, disablePlayback, isHero) {
     // --- 任意メタからインラインスタイルを生成（未指定時は空文字） ---
     const mediaStyles = [];
     // ratio および aspect の両方をサポート（ratio 優先）
@@ -907,6 +904,12 @@
     if (m.fit) {
       mediaStyles.push("object-fit:" + m.fit);
     }
+
+    // 再生無効化時のスタイル
+    if (disablePlayback && m.type === "video") {
+      mediaStyles.push("pointer-events:none");
+    }
+
     const mediaStyleAttr = mediaStyles.length ? ` style="${mediaStyles.join(";")}"` : "";
 
     // span: グリッドで横2列占有（未指定 or 1 は何もしない）
@@ -920,11 +923,40 @@
     const fileName = m.src ? m.src.split("/").pop() : "";
     const placeholderText = fileName ? fileName + " をここに配置" : (m.label || (m.type === "video" ? "VIDEO" : "IMAGE"));
 
+    // オーバーレイHTML
+    let overlayHtml = "";
+    if (disablePlayback && m.type === "video") {
+      overlayHtml = `
+        <div class="video-disable-overlay">
+          <div class="video-disable-overlay__title">完成版に差し替え中</div>
+          <div class="video-disable-overlay__sub">本日中に更新予定</div>
+          <div class="video-disable-overlay__line"></div>
+        </div>`;
+    }
+
     const label = m.label ? `<div class="case-media__label">${esc(m.label)}</div>` : "";
+
+    // ヒーローレイアウト（case-detailed の case-hero 内）の場合はラッパー不要
+    if (isHero) {
+      if (m.type === "video") {
+        const controls = disablePlayback ? "" : " controls";
+        return `
+          <video class="case-media__video" data-src="${esc(m.src)}"${controls} playsinline preload="metadata"${mediaStyleAttr}></video>
+          <div class="media-placeholder media-placeholder--vertical">${esc(placeholderText)}</div>
+          ${overlayHtml}`;
+      } else {
+        return `
+          <img class="case-media__image" data-src="${esc(m.src)}" alt="${esc(m.label || "")}" loading="lazy"${mediaStyleAttr} />
+          <div class="media-placeholder">${esc(placeholderText)}</div>`;
+      }
+    }
+
     if (m.type === "video") {
+      const controls = disablePlayback ? "" : " controls";
       return `<div class="case-media fade-in"${wrapStyleAttr}>
-        <video class="case-media__video" data-src="${esc(m.src)}" controls playsinline preload="metadata"${mediaStyleAttr}></video>
+        <video class="case-media__video" data-src="${esc(m.src)}"${controls} playsinline preload="metadata"${mediaStyleAttr}></video>
         <div class="media-placeholder media-placeholder--vertical">${esc(placeholderText)}</div>
+        ${overlayHtml}
         ${label}
       </div>`;
     } else {

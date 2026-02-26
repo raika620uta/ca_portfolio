@@ -209,6 +209,7 @@ const PAGE = {
         {
             type: "case-detailed",
             id: "case01",
+            disablePlayback: true,
             number: "01",
             title: "TikTok縦型動画（AI × After Effects）",
             aiLabel: "Case01｜AIで\"コンテンツ\"を作る",
