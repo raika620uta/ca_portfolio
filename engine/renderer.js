@@ -94,21 +94,6 @@
       <p class="footer__contact"><a href="mailto:${esc(p.email)}">${esc(p.email)}</a></p>
       <div class="footer__links">${links}</div>
       <p class="footer__copy">${raw(f.copyright)}</p>
-      <details class="guide">
-        <summary>How to Update（差し替えガイド）</summary>
-        <div class="guide__body">
-          <h4>🚀 最短手順</h4>
-          <ul>
-            <li>① <code>assets/videos/</code> にMP4を入れる</li>
-            <li>② <code>data/page-main.js</code> の cases に追加</li>
-            <li>③ git push → スマホで確認</li>
-          </ul>
-          <h4>セクション追加</h4>
-          <p><code>data/page-main.js</code> の sections 配列にオブジェクトを挿入するだけ。</p>
-          <h4>新ページ追加</h4>
-          <p><code>data/page-xxx.js</code> を作成 → HTMLをコピー → script src を変更 → <code>data/site.js</code> の pageNav に追加。</p>
-        </div>
-      </details>
     </div>`;
   }
 
